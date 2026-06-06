@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <Import Project="..\Contellation.Custom.Controls\Contellation.Custom.Controls.projitems" Label="Shared" />
+
+  <Import Project="..\..\Contellation.Custom.Convertes\Contellation.Custom.Convertes.projitems" Label="Shared" />
+
+</Project>
