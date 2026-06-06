@@ -1,8 +1,4 @@
-﻿using Contellation.Custom.Controls.ResponsiveGrids;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using System.Windows;
 
 namespace Contellation.Custom.Controls
 {

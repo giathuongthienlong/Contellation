@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Globalization;
 
-namespace Contellation.Custom.Convertes.Controls
+namespace Contellation.Custom.Converters.Controls
 {
     internal class BreakPointsTypeConverter : TypeConverter
     {
