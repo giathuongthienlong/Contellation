@@ -3,10 +3,10 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>ef21e9f7-601d-46b4-b72b-c70384574cd2</SharedGUID>
+    <SharedGUID>e33492e2-67ed-4b9a-aaa9-6c74615a74e1</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Contellation.Custom.Convertes</Import_RootNamespace>
+    <Import_RootNamespace>Contellation.Custom.Converters</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BreakPointsTypeConverter.cs" />

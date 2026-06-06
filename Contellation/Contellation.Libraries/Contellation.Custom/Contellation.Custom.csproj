@@ -7,8 +7,10 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <Import Project="..\Contellation.Custom.Convertes\Contellation.Custom.Convertes.projitems" Label="Shared" />
+
   <Import Project="..\Contellation.Custom.Controls\Contellation.Custom.Controls.projitems" Label="Shared" />
 
-  <Import Project="..\Contellation.Custom.Convertes\Contellation.Custom.Convertes.projitems" Label="Shared" />
+  <Import Project="..\Contellation.Custom.Converters\Contellation.Custom.Converters.projitems" Label="Shared" />
 
 </Project>
