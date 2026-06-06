@@ -9,6 +9,6 @@
 
   <Import Project="..\Contellation.Custom.Controls\Contellation.Custom.Controls.projitems" Label="Shared" />
 
-  <Import Project="..\..\Contellation.Custom.Convertes\Contellation.Custom.Convertes.projitems" Label="Shared" />
+  <Import Project="..\Contellation.Custom.Convertes\Contellation.Custom.Convertes.projitems" Label="Shared" />
 
 </Project>

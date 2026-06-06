@@ -1,7 +1,7 @@
 <Solution>
   <Folder Name="/Contellation.Libraries/">
-    <Project Path="Contellation.Custom.Convertes/Contellation.Custom.Convertes.shproj" Id="ef21e9f7-601d-46b4-b72b-c70384574cd2" />
     <Project Path="Contellation.Libraies/Contellation.Custom.Controls/Contellation.Custom.Controls.shproj" Id="06f558cb-246e-405c-9d96-92d9211c4a20" />
+    <Project Path="Contellation.Libraies/Contellation.Custom.Convertes/Contellation.Custom.Convertes.shproj" Id="ef21e9f7-601d-46b4-b72b-c70384574cd2" />
     <Project Path="Contellation.Libraies/Contellation.Custom/Contellation.Custom.csproj" Id="edf2ca9c-f466-455f-a4af-cd1d9ef7127b" />
   </Folder>
   <Project Path="Contellation.Desktop/Contellation.Desktop.csproj" />
