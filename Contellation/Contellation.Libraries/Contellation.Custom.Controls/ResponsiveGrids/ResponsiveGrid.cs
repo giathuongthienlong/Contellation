@@ -58,82 +58,70 @@ namespace Contellation.Custom.Controls
     {
         #region Dependency Properties
 
-        public bool ShowGridLines
-        {
-            get => (bool)GetValue(ShowGridLinesProperty);
-            set => SetValue(ShowGridLinesProperty, value);
-        }
-        public static readonly DependencyProperty ShowGridLinesProperty = DependencyProperty.Register(nameof(ShowGridLines), 
-            typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, (d, e) => ((ResponsiveGrid)d).InvalidateVisual()));
+        public static readonly DependencyProperty ShowGridLinesProperty =
+            DependencyProperty.Register(nameof(ShowGridLines), typeof(bool), typeof(ResponsiveGrid),
+                new PropertyMetadata(false, (d, e) => ((ResponsiveGrid)d).InvalidateVisual()));
 
-        public BreakPoints BreakPoints
-        {
-            get => (BreakPoints)GetValue(BreakPointsProperty);
-            set => SetValue(BreakPointsProperty, value);
-        }
-        public static readonly DependencyProperty BreakPointsProperty = DependencyProperty.Register(nameof(BreakPoints), 
-            typeof(BreakPoints), typeof(ResponsiveGrid), new PropertyMetadata(BreakPoints.Default, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
+        public static readonly DependencyProperty BreakPointsProperty =
+            DependencyProperty.Register(nameof(BreakPoints), typeof(BreakPoints), typeof(ResponsiveGrid),
+                new PropertyMetadata(BreakPoints.Default, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
 
+        public bool ShowGridLines { get => (bool)GetValue(ShowGridLinesProperty); set => SetValue(ShowGridLinesProperty, value); }
+        public BreakPoints BreakPoints { get => (BreakPoints)GetValue(BreakPointsProperty); set => SetValue(BreakPointsProperty, value); }
         #endregion
 
         #region Attached Properties
-
-        // Span
         public static readonly DependencyProperty XSProperty = DependencyProperty.RegisterAttached("XS", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(12, OnLayoutChanged));
+        public static readonly DependencyProperty SMProperty = DependencyProperty.RegisterAttached("SM", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static readonly DependencyProperty MDProperty = DependencyProperty.RegisterAttached("MD", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static readonly DependencyProperty LGProperty = DependencyProperty.RegisterAttached("LG", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static readonly DependencyProperty XLProperty = DependencyProperty.RegisterAttached("XL", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.RegisterAttached("Offset", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static readonly DependencyProperty PushProperty = DependencyProperty.RegisterAttached("Push", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static readonly DependencyProperty PullProperty = DependencyProperty.RegisterAttached("Pull", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+
+        public static readonly DependencyProperty HiddenXSProperty = DependencyProperty.RegisterAttached("HiddenXS", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static readonly DependencyProperty HiddenSMProperty = DependencyProperty.RegisterAttached("HiddenSM", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static readonly DependencyProperty HiddenMDProperty = DependencyProperty.RegisterAttached("HiddenMD", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static readonly DependencyProperty HiddenLGProperty = DependencyProperty.RegisterAttached("HiddenLG", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+
+        // Getters & Setters
         public static int GetXS(DependencyObject obj) => (int)obj.GetValue(XSProperty);
         public static void SetXS(DependencyObject obj, int value) => obj.SetValue(XSProperty, value);
 
-        public static readonly DependencyProperty SMProperty = DependencyProperty.RegisterAttached("SM", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
         public static int GetSM(DependencyObject obj) => (int)obj.GetValue(SMProperty);
         public static void SetSM(DependencyObject obj, int value) => obj.SetValue(SMProperty, value);
 
-        public static readonly DependencyProperty MDProperty = DependencyProperty.RegisterAttached("MD", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
         public static int GetMD(DependencyObject obj) => (int)obj.GetValue(MDProperty);
         public static void SetMD(DependencyObject obj, int value) => obj.SetValue(MDProperty, value);
-        
-        public static readonly DependencyProperty LGProperty = DependencyProperty.RegisterAttached("LG", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+
         public static int GetLG(DependencyObject obj) => (int)obj.GetValue(LGProperty);
         public static void SetLG(DependencyObject obj, int value) => obj.SetValue(LGProperty, value);
-        
-        public static readonly DependencyProperty XLProperty = DependencyProperty.RegisterAttached("XL", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+
         public static int GetXL(DependencyObject obj) => (int)obj.GetValue(XLProperty);
         public static void SetXL(DependencyObject obj, int value) => obj.SetValue(XLProperty, value);
 
-        // Offset, Push, Pull
-        public static readonly DependencyProperty OffsetProperty = DependencyProperty.RegisterAttached("Offset", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
         public static int GetOffset(DependencyObject obj) => (int)obj.GetValue(OffsetProperty);
         public static void SetOffset(DependencyObject obj, int value) => obj.SetValue(OffsetProperty, value);
 
-        public static readonly DependencyProperty PushProperty = DependencyProperty.RegisterAttached("Push", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
         public static int GetPush(DependencyObject obj) => (int)obj.GetValue(PushProperty);
         public static void SetPush(DependencyObject obj, int value) => obj.SetValue(PushProperty, value);
 
-        public static readonly DependencyProperty PullProperty = DependencyProperty.RegisterAttached("Pull", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
         public static int GetPull(DependencyObject obj) => (int)obj.GetValue(PullProperty);
         public static void SetPull(DependencyObject obj, int value) => obj.SetValue(PullProperty, value);
 
-        // Visibility Responsive
-        public static readonly DependencyProperty HiddenXSProperty = DependencyProperty.RegisterAttached("HiddenXS", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
         public static bool GetHiddenXS(DependencyObject obj) => (bool)obj.GetValue(HiddenXSProperty);
         public static void SetHiddenXS(DependencyObject obj, bool value) => obj.SetValue(HiddenXSProperty, value);
 
-        public static readonly DependencyProperty HiddenSMProperty = DependencyProperty.RegisterAttached("HiddenSM", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
         public static bool GetHiddenSM(DependencyObject obj) => (bool)obj.GetValue(HiddenSMProperty);
         public static void SetHiddenSM(DependencyObject obj, bool value) => obj.SetValue(HiddenSMProperty, value);
 
-        public static readonly DependencyProperty HiddenMDProperty = DependencyProperty.RegisterAttached("HiddenMD", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
         public static bool GetHiddenMD(DependencyObject obj) => (bool)obj.GetValue(HiddenMDProperty);
         public static void SetHiddenMD(DependencyObject obj, bool value) => obj.SetValue(HiddenMDProperty, value);
 
-        public static readonly DependencyProperty HiddenLGProperty = DependencyProperty.RegisterAttached("HiddenLG", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
         public static bool GetHiddenLG(DependencyObject obj) => (bool)obj.GetValue(HiddenLGProperty);
         public static void SetHiddenLG(DependencyObject obj, bool value) => obj.SetValue(HiddenLGProperty, value);
-
-        public static readonly DependencyProperty VisibleXSProperty = DependencyProperty.RegisterAttached("VisibleXS", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(true, OnLayoutChanged));
-        public static bool GetVisibleXS(DependencyObject obj) => (bool)obj.GetValue(VisibleXSProperty);
-        public static void SetVisibleXS(DependencyObject obj, bool value) => obj.SetValue(VisibleXSProperty, value);
-
-        // ... (các Set/Get khác tương tự, mình viết đầy đủ XS->XL + Hidden)
 
         private static void OnLayoutChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -146,7 +134,7 @@ namespace Contellation.Custom.Controls
         protected override Size MeasureOverride(Size availableSize)
         {
             if (double.IsPositiveInfinity(availableSize.Width))
-                availableSize.Width = 1920; // fallback lớn
+                availableSize.Width = 1920;
 
             double width = availableSize.Width;
             var bp = BreakPoints;
@@ -165,8 +153,7 @@ namespace Contellation.Custom.Controls
                 currentRowHeight = Math.Max(currentRowHeight, child.DesiredSize.Height);
 
                 currentX += itemWidth;
-
-                if (currentX + itemWidth > width * 1.01)
+                if (currentX > width * 0.98)
                 {
                     totalHeight += currentRowHeight;
                     currentRowHeight = 0;
@@ -174,12 +161,10 @@ namespace Contellation.Custom.Controls
                 }
             }
 
-            if (currentRowHeight > 0)
-                totalHeight += currentRowHeight;
+            if (currentRowHeight > 0) totalHeight += currentRowHeight;
 
             return new Size(width, totalHeight);
         }
-
         protected override Size ArrangeOverride(Size finalSize)
         {
             double width = finalSize.Width;
@@ -193,19 +178,22 @@ namespace Contellation.Custom.Controls
             foreach (var child in visibleChildren)
             {
                 int span = GetSpan(child, width, bp);
-                int offset = GetOffset(child, width, bp);
-                double itemWidth = (width / 12.0) * span;
+                int offset = GetOffset(child);
+                int push = GetPush(child);
+                int pull = GetPull(child);
 
-                if (currentX + itemWidth > width * 1.01)
+                double itemWidth = (width / 12.0) * span;
+                double finalX = currentX + (offset + push - pull) * (width / 12.0);
+
+                if (finalX + itemWidth > width * 1.02)
                 {
                     currentY += rowMaxHeight;
                     currentX = 0;
                     rowMaxHeight = 0;
+                    finalX = currentX + (offset + push - pull) * (width / 12.0);
                 }
 
-                double xPos = currentX + offset * (width / 12.0);
-                child.Arrange(new Rect(xPos, currentY, itemWidth, child.DesiredSize.Height));
-
+                child.Arrange(new Rect(finalX, currentY, itemWidth, child.DesiredSize.Height));
                 rowMaxHeight = Math.Max(rowMaxHeight, child.DesiredSize.Height);
                 currentX += itemWidth;
             }
@@ -216,27 +204,25 @@ namespace Contellation.Custom.Controls
         private List<UIElement> GetVisibleChildren(UIElementCollection children, double width, BreakPoints bp)
         {
             return children.OfType<UIElement>()
-                           .Where(child => IsVisibleAtBreakpoint(child, width, bp))
-                           .ToList();
+                .Where(child => IsVisibleAtBreakpoint(child, width, bp))
+                .ToList();
         }
 
         private bool IsVisibleAtBreakpoint(UIElement element, double width, BreakPoints bp)
         {
-            // Có thể mở rộng thêm VisibleXX sau
             if (GetHiddenXS(element) && width < bp.SM) return false;
             if (GetHiddenSM(element) && width >= bp.SM && width < bp.MD) return false;
             if (GetHiddenMD(element) && width >= bp.MD && width < bp.LG) return false;
             if (GetHiddenLG(element) && width >= bp.LG) return false;
-
             return true;
         }
 
         private int GetSpan(UIElement element, double width, BreakPoints bp)
         {
-            if (width >= bp.XL) return GetXL(element) > 0 ? GetXL(element) : GetLG(element) > 0 ? GetLG(element) : 12;
-            if (width >= bp.LG) return GetLG(element) > 0 ? GetLG(element) : GetMD(element) > 0 ? GetMD(element) : 12;
-            if (width >= bp.MD) return GetMD(element) > 0 ? GetMD(element) : GetSM(element) > 0 ? GetSM(element) : 12;
-            if (width >= bp.SM) return GetSM(element) > 0 ? GetSM(element) : GetXS(element);
+            if (width >= bp.XL && GetXL(element) > 0) return GetXL(element);
+            if (width >= bp.LG && GetLG(element) > 0) return GetLG(element);
+            if (width >= bp.MD && GetMD(element) > 0) return GetMD(element);
+            if (width >= bp.SM && GetSM(element) > 0) return GetSM(element);
             return GetXS(element);
         }
 
@@ -246,45 +232,38 @@ namespace Contellation.Custom.Controls
             return GetOffset(element); // có thể mở rộng responsive offset sau
         }
 
+        // ==================== GRID LINES ====================
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
-            if (!ShowGridLines){ return; }
+            if (!ShowGridLines) return;
 
-            // Vẽ grid lines (mình có thể bổ sung nếu cậu muốn)
             var pen = new Pen(Brushes.Red, 1) { DashStyle = DashStyles.Dash };
-            var textPen = new Pen(Brushes.Blue, 1);
-            double width = ActualWidth;
-            double height = ActualHeight;
-
-            // Vẽ các cột 12 grid
-            for (int i = 1; i < 12; i++)
-            {
-                double x = (width / 12) * i;
-                dc.DrawLine(pen, new Point(x, 0), new Point(x, height));
-            }
-            // Vẽ breakpoint lines (màu khác để dễ phân biệt)
-            var bp = BreakPoints;
             var bpPen = new Pen(Brushes.Orange, 2) { DashStyle = DashStyles.Dot };
+            double w = ActualWidth;
+            double h = ActualHeight;
 
-            var breakpoints = new[] { bp.SM, bp.MD, bp.LG, bp.XL };
+            // 12 cột
+            for (int i = 1; i < 12; i++)
+                dc.DrawLine(pen, new Point((w / 12) * i, 0), new Point((w / 12) * i, h));
+
+            // Breakpoints
+            var bp = BreakPoints;
+            var points = new[] { bp.SM, bp.MD, bp.LG, bp.XL };
             var labels = new[] { "SM", "MD", "LG", "XL" };
 
-            for (int i = 0; i < breakpoints.Length; i++)
+            for (int i = 0; i < points.Length; i++)
             {
-                if (breakpoints[i] < width)
+                if (points[i] > 0 && points[i] < w)
                 {
-                    dc.DrawLine(bpPen, new Point(breakpoints[i], 0), new Point(breakpoints[i], height));
-
-                    // Vẽ text label
-                    var formattedText = new FormattedText(labels[i], CultureInfo.CurrentCulture,
-                        FlowDirection.LeftToRight, new Typeface("Arial"), 11, Brushes.Orange, 1.0);
-                    dc.DrawText(formattedText, new Point(breakpoints[i] + 4, 4));
+                    dc.DrawLine(bpPen, new Point(points[i], 0), new Point(points[i], h));
+                    var ft = new FormattedText(labels[i], CultureInfo.CurrentCulture, FlowDirection.LeftToRight,
+                        new Typeface("Segoe UI"), 10, Brushes.Orange, 1.0);
+                    dc.DrawText(ft, new Point(points[i] + 4, 4));
                 }
             }
 
-            // Vẽ border ngoài
-            dc.DrawRectangle(null, new Pen(Brushes.Lime, 1.5), new Rect(0, 0, width, height));
+            dc.DrawRectangle(null, new Pen(Brushes.LimeGreen, 2), new Rect(0, 0, w, h));
         }
 
     }

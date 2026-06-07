@@ -26,16 +26,9 @@ namespace Contellation.Custom.Controls
     public class BreakPointsConverter : TypeConverter
     {
         public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType)
-        {
-            return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
-        }
+                    => sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
 
         public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value)
-        {
-            if (value is string str && string.IsNullOrEmpty(str))
-                return BreakPoints.Default;
-
-            return base.ConvertFrom(context, culture, value);
-        }
+                    => value is string ? BreakPoints.Default : base.ConvertFrom(context, culture, value);
     }
 }
