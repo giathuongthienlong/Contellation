@@ -3,13 +3,12 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>e33492e2-67ed-4b9a-aaa9-6c74615a74e1</SharedGUID>
+    <SharedGUID>8b21d221-e3d9-4338-840e-fc94524a77c1</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Contellation.Custom.Converters</Import_RootNamespace>
+    <Import_RootNamespace>Contellation.Custom.Extensions</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\BreakPointsTypeConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ResponsiveVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UiElement.cs" />
   </ItemGroup>
 </Project>

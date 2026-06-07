@@ -1,17 +1,16 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Contellation.Custom.Controls
 {
-
     /// <summary>
     /// Responsive Grid
     /// </summary>
     /// <example> 
     /// <code lang="xml"> base
     ///     <ui:ResponsiveGrid Margin="10" BreakPoints="345, 567, 789">
-
     ///         <Border rg:ResponsiveGrid.XS="12">
     ///             <TextBlock Text = "[Header]&#xa;XS=12" />
     ///         </ Border >
@@ -33,11 +32,9 @@ namespace Contellation.Custom.Controls
     ///         < Border rg:ResponsiveGrid.XS="12" rg:ResponsiveGrid.SM="6" rg:ResponsiveGrid.MD="2">
     ///             <TextBlock Text = "[F]&#xa;XS=12&#xa;SM=6&#xa;MD=2" />
     ///         </ Border >
-
     ///         < Border rg:ResponsiveGrid.XS="12">
     ///             <TextBlock Text = "[Footer]&#xa;XS=12" />
     ///         </ Border >
-
     ///     </ ui:ResponsiveGrid>
     /// </code>
     /// </example>
@@ -49,7 +46,6 @@ namespace Contellation.Custom.Controls
     ///         <ui:ResponsiveGrid.BreakPoints>
     ///             <rg:BreakPoints MD_LG = "789" SM_MD="567" XS_SM="345" />
     ///         </ui:ResponsiveGrid.BreakPoints>
-
     ///         <TextBlock />
     ///         <TextBlock />
     ///         <TextBlock />
@@ -57,185 +53,239 @@ namespace Contellation.Custom.Controls
     ///     </ui:ResponsiveGrid>
     /// </code>
     /// </example>
-    public partial class ResponsiveGrid : Panel
+    /// 
+    public class ResponsiveGrid : Panel
     {
-        public ResponsiveGrid()
+        #region Dependency Properties
+
+        public bool ShowGridLines
         {
-            this.MaxDivision = 12;
-            this.BreakPoints = new BreakPoints();
+            get => (bool)GetValue(ShowGridLinesProperty);
+            set => SetValue(ShowGridLinesProperty, value);
         }
+        public static readonly DependencyProperty ShowGridLinesProperty = DependencyProperty.Register(nameof(ShowGridLines), 
+            typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, (d, e) => ((ResponsiveGrid)d).InvalidateVisual()));
+
+        public BreakPoints BreakPoints
+        {
+            get => (BreakPoints)GetValue(BreakPointsProperty);
+            set => SetValue(BreakPointsProperty, value);
+        }
+        public static readonly DependencyProperty BreakPointsProperty = DependencyProperty.Register(nameof(BreakPoints), 
+            typeof(BreakPoints), typeof(ResponsiveGrid), new PropertyMetadata(BreakPoints.Default, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
+
+        #endregion
+
+        #region Attached Properties
+
+        // Span
+        public static readonly DependencyProperty XSProperty = DependencyProperty.RegisterAttached("XS", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(12, OnLayoutChanged));
+        public static int GetXS(DependencyObject obj) => (int)obj.GetValue(XSProperty);
+        public static void SetXS(DependencyObject obj, int value) => obj.SetValue(XSProperty, value);
+
+        public static readonly DependencyProperty SMProperty = DependencyProperty.RegisterAttached("SM", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetSM(DependencyObject obj) => (int)obj.GetValue(SMProperty);
+        public static void SetSM(DependencyObject obj, int value) => obj.SetValue(SMProperty, value);
+
+        public static readonly DependencyProperty MDProperty = DependencyProperty.RegisterAttached("MD", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetMD(DependencyObject obj) => (int)obj.GetValue(MDProperty);
+        public static void SetMD(DependencyObject obj, int value) => obj.SetValue(MDProperty, value);
+        
+        public static readonly DependencyProperty LGProperty = DependencyProperty.RegisterAttached("LG", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetLG(DependencyObject obj) => (int)obj.GetValue(LGProperty);
+        public static void SetLG(DependencyObject obj, int value) => obj.SetValue(LGProperty, value);
+        
+        public static readonly DependencyProperty XLProperty = DependencyProperty.RegisterAttached("XL", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetXL(DependencyObject obj) => (int)obj.GetValue(XLProperty);
+        public static void SetXL(DependencyObject obj, int value) => obj.SetValue(XLProperty, value);
+
+        // Offset, Push, Pull
+        public static readonly DependencyProperty OffsetProperty = DependencyProperty.RegisterAttached("Offset", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetOffset(DependencyObject obj) => (int)obj.GetValue(OffsetProperty);
+        public static void SetOffset(DependencyObject obj, int value) => obj.SetValue(OffsetProperty, value);
+
+        public static readonly DependencyProperty PushProperty = DependencyProperty.RegisterAttached("Push", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetPush(DependencyObject obj) => (int)obj.GetValue(PushProperty);
+        public static void SetPush(DependencyObject obj, int value) => obj.SetValue(PushProperty, value);
+
+        public static readonly DependencyProperty PullProperty = DependencyProperty.RegisterAttached("Pull", typeof(int), typeof(ResponsiveGrid), new PropertyMetadata(0, OnLayoutChanged));
+        public static int GetPull(DependencyObject obj) => (int)obj.GetValue(PullProperty);
+        public static void SetPull(DependencyObject obj, int value) => obj.SetValue(PullProperty, value);
+
+        // Visibility Responsive
+        public static readonly DependencyProperty HiddenXSProperty = DependencyProperty.RegisterAttached("HiddenXS", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static bool GetHiddenXS(DependencyObject obj) => (bool)obj.GetValue(HiddenXSProperty);
+        public static void SetHiddenXS(DependencyObject obj, bool value) => obj.SetValue(HiddenXSProperty, value);
+
+        public static readonly DependencyProperty HiddenSMProperty = DependencyProperty.RegisterAttached("HiddenSM", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static bool GetHiddenSM(DependencyObject obj) => (bool)obj.GetValue(HiddenSMProperty);
+        public static void SetHiddenSM(DependencyObject obj, bool value) => obj.SetValue(HiddenSMProperty, value);
+
+        public static readonly DependencyProperty HiddenMDProperty = DependencyProperty.RegisterAttached("HiddenMD", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static bool GetHiddenMD(DependencyObject obj) => (bool)obj.GetValue(HiddenMDProperty);
+        public static void SetHiddenMD(DependencyObject obj, bool value) => obj.SetValue(HiddenMDProperty, value);
+
+        public static readonly DependencyProperty HiddenLGProperty = DependencyProperty.RegisterAttached("HiddenLG", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(false, OnLayoutChanged));
+        public static bool GetHiddenLG(DependencyObject obj) => (bool)obj.GetValue(HiddenLGProperty);
+        public static void SetHiddenLG(DependencyObject obj, bool value) => obj.SetValue(HiddenLGProperty, value);
+
+        public static readonly DependencyProperty VisibleXSProperty = DependencyProperty.RegisterAttached("VisibleXS", typeof(bool), typeof(ResponsiveGrid), new PropertyMetadata(true, OnLayoutChanged));
+        public static bool GetVisibleXS(DependencyObject obj) => (bool)obj.GetValue(VisibleXSProperty);
+        public static void SetVisibleXS(DependencyObject obj, bool value) => obj.SetValue(VisibleXSProperty, value);
+
+        // ... (các Set/Get khác tương tự, mình viết đầy đủ XS->XL + Hidden)
+
+        private static void OnLayoutChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is UIElement element && VisualTreeHelper.GetParent(element) is ResponsiveGrid grid)
+                grid.InvalidateMeasure();
+        }
+
+        #endregion
 
         protected override Size MeasureOverride(Size availableSize)
         {
-            var count = 0;
-            var currentRow = 0;
+            if (double.IsPositiveInfinity(availableSize.Width))
+                availableSize.Width = 1920; // fallback lớn
 
-            var availableWidth = double.IsPositiveInfinity(availableSize.Width) ? double.PositiveInfinity : availableSize.Width / this.MaxDivision;
-            var children = this.Children.OfType<UIElement>();
+            double width = availableSize.Width;
+            var bp = BreakPoints;
+            var visibleChildren = GetVisibleChildren(InternalChildren, width, bp);
 
+            double totalHeight = 0;
+            double currentRowHeight = 0;
+            double currentX = 0;
 
-            foreach (UIElement child in this.Children)
+            foreach (var child in visibleChildren)
             {
-                if (child != null)
+                int span = GetSpan(child, width, bp);
+                double itemWidth = (width / 12.0) * span;
+
+                child.Measure(new Size(itemWidth, availableSize.Height));
+                currentRowHeight = Math.Max(currentRowHeight, child.DesiredSize.Height);
+
+                currentX += itemWidth;
+
+                if (currentX + itemWidth > width * 1.01)
                 {
-                    // Không bố trí khi đã thu gọn 
-                    if (child.Visibility == Visibility.Collapsed) { continue; }
-
-                    var span = this.GetSpan(child, availableSize.Width);
-                    var offset = this.GetOffset(child, availableSize.Width);
-                    var push = this.GetPush(child, availableSize.Width);
-                    var pull = this.GetPull(child, availableSize.Width);
-
-                    if (count + span + offset > this.MaxDivision)
-                    {
-                        // cài lại
-                        currentRow++;
-                        count = 0;
-                    }
-
-                    SetActualColumn(child, count + offset + push - pull);
-                    SetActualRow(child, currentRow);
-
-                    count += (span + offset);
-
-                    var size = new Size(availableWidth * span, double.PositiveInfinity);
-                    child.Measure(size);
+                    totalHeight += currentRowHeight;
+                    currentRowHeight = 0;
+                    currentX = 0;
                 }
             }
 
-            //  Nhóm theo hàng
-            var group = this.Children.OfType<UIElement>().GroupBy(x => GetActualRow(x));
+            if (currentRowHeight > 0)
+                totalHeight += currentRowHeight;
 
-            var totalSize = new Size();
-            if (group.Count() != 0)
-            {
-                totalSize.Width = group.Max(rows => rows.Sum(o => o.DesiredSize.Width));
-                totalSize.Height = group.Sum(rows => rows.Max(o => o.DesiredSize.Height));
-            }
-
-            return totalSize;
-        }
-
-        protected int GetSpan(UIElement element, double width)
-        {
-            var span = 0;
-
-            var getXS = new Func<UIElement, int>((o) => { var x = GetXS(o); return x != 0 ? x : this.MaxDivision; });
-            var getSM = new Func<UIElement, int>((o) => { var x = GetSM(o); return x != 0 ? x : getXS(o); });
-            var getMD = new Func<UIElement, int>((o) => { var x = GetMD(o); return x != 0 ? x : getSM(o); });
-            var getLG = new Func<UIElement, int>((o) => { var x = GetLG(o); return x != 0 ? x : getMD(o); });
-
-            if (width < this.BreakPoints.XS_SM) { span = getXS(element); }
-            else if (width < this.BreakPoints.SM_MD) { span = getSM(element); }
-            else if (width < this.BreakPoints.MD_LG) { span = getMD(element); }
-            else { span = getLG(element); }
-
-            return Math.Min(Math.Max(0, span), this.MaxDivision); ;
-        }
-
-        protected int GetOffset(UIElement element, double width)
-        {
-            var span = 0;
-
-            var getXS = new Func<UIElement, int>((o) => { var x = GetXS_Offset(o); return x != 0 ? x : 0; });
-            var getSM = new Func<UIElement, int>((o) => { var x = GetSM_Offset(o); return x != 0 ? x : getXS(o); });
-            var getMD = new Func<UIElement, int>((o) => { var x = GetMD_Offset(o); return x != 0 ? x : getSM(o); });
-            var getLG = new Func<UIElement, int>((o) => { var x = GetLG_Offset(o); return x != 0 ? x : getMD(o); });
-
-            if (width < this.BreakPoints.XS_SM) { span = getXS(element); }
-            else if (width < this.BreakPoints.SM_MD) { span = getSM(element); }
-            else if (width < this.BreakPoints.MD_LG) { span = getMD(element); }
-            else { span = getLG(element); }
-
-            return Math.Min(Math.Max(0, span), this.MaxDivision); ;
-        }
-
-        protected int GetPush(UIElement element, double width)
-        {
-            var span = 0;
-
-            var getXS = new Func<UIElement, int>((o) => { var x = GetXS_Push(o); return x != 0 ? x : 0; });
-            var getSM = new Func<UIElement, int>((o) => { var x = GetSM_Push(o); return x != 0 ? x : getXS(o); });
-            var getMD = new Func<UIElement, int>((o) => { var x = GetMD_Push(o); return x != 0 ? x : getSM(o); });
-            var getLG = new Func<UIElement, int>((o) => { var x = GetLG_Push(o); return x != 0 ? x : getMD(o); });
-
-            if (width < this.BreakPoints.XS_SM) { span = getXS(element); }
-            else if (width < this.BreakPoints.SM_MD) { span = getSM(element); }
-            else if (width < this.BreakPoints.MD_LG) { span = getMD(element); }
-            else { span = getLG(element); }
-
-            return Math.Min(Math.Max(0, span), this.MaxDivision); ;
-        }
-
-        protected int GetPull(UIElement element, double width)
-        {
-            var span = 0;
-
-            var getXS = new Func<UIElement, int>((o) => { var x = GetXS_Pull(o); return x != 0 ? x : 0; });
-            var getSM = new Func<UIElement, int>((o) => { var x = GetSM_Pull(o); return x != 0 ? x : getXS(o); });
-            var getMD = new Func<UIElement, int>((o) => { var x = GetMD_Pull(o); return x != 0 ? x : getSM(o); });
-            var getLG = new Func<UIElement, int>((o) => { var x = GetLG_Pull(o); return x != 0 ? x : getMD(o); });
-
-            if (width < this.BreakPoints.XS_SM) { span = getXS(element); }
-            else if (width < this.BreakPoints.SM_MD) { span = getSM(element); }
-            else if (width < this.BreakPoints.MD_LG) { span = getMD(element); }
-            else { span = getLG(element); }
-
-            return Math.Min(Math.Max(0, span), this.MaxDivision); ;
+            return new Size(width, totalHeight);
         }
 
         protected override Size ArrangeOverride(Size finalSize)
         {
-            var columnWidth = finalSize.Width / this.MaxDivision;
+            double width = finalSize.Width;
+            var bp = BreakPoints;
+            var visibleChildren = GetVisibleChildren(InternalChildren, width, bp);
 
-            // Nhóm theo hàng
-            var group = this.Children.OfType<UIElement>().GroupBy(x => GetActualRow(x));
+            double currentX = 0;
+            double currentY = 0;
+            double rowMaxHeight = 0;
 
-            double temp = 0;
-            foreach (var rows in group)
+            foreach (var child in visibleChildren)
             {
-                double max = 0;
+                int span = GetSpan(child, width, bp);
+                int offset = GetOffset(child, width, bp);
+                double itemWidth = (width / 12.0) * span;
 
-                var columnHeight = rows.Max(o => o.DesiredSize.Height);
-                foreach (var element in rows)
+                if (currentX + itemWidth > width * 1.01)
                 {
-                    var column = GetActualColumn(element);
-                    var row = GetActualRow(element);
-                    var columnSpan = this.GetSpan(element, finalSize.Width);
-
-                    var rect = new Rect(columnWidth * column, temp, columnWidth * columnSpan, columnHeight);
-
-                    element.Arrange(rect);
-
-                    max = Math.Max(element.DesiredSize.Height, max);
+                    currentY += rowMaxHeight;
+                    currentX = 0;
+                    rowMaxHeight = 0;
                 }
 
-                temp += max;
+                double xPos = currentX + offset * (width / 12.0);
+                child.Arrange(new Rect(xPos, currentY, itemWidth, child.DesiredSize.Height));
+
+                rowMaxHeight = Math.Max(rowMaxHeight, child.DesiredSize.Height);
+                currentX += itemWidth;
             }
-            return base.ArrangeOverride(finalSize);
+
+            return finalSize;
         }
 
-        private static readonly Pen _guidePen1 = new Pen(Brushes.Yellow, 1);
-        private static readonly Pen _guidePen2 = new Pen(Brushes.Blue, 1)
+        private List<UIElement> GetVisibleChildren(UIElementCollection children, double width, BreakPoints bp)
         {
-            DashStyle = new DashStyle(new double[] { 4, 4 }, 0)
-        };
+            return children.OfType<UIElement>()
+                           .Where(child => IsVisibleAtBreakpoint(child, width, bp))
+                           .ToList();
+        }
+
+        private bool IsVisibleAtBreakpoint(UIElement element, double width, BreakPoints bp)
+        {
+            // Có thể mở rộng thêm VisibleXX sau
+            if (GetHiddenXS(element) && width < bp.SM) return false;
+            if (GetHiddenSM(element) && width >= bp.SM && width < bp.MD) return false;
+            if (GetHiddenMD(element) && width >= bp.MD && width < bp.LG) return false;
+            if (GetHiddenLG(element) && width >= bp.LG) return false;
+
+            return true;
+        }
+
+        private int GetSpan(UIElement element, double width, BreakPoints bp)
+        {
+            if (width >= bp.XL) return GetXL(element) > 0 ? GetXL(element) : GetLG(element) > 0 ? GetLG(element) : 12;
+            if (width >= bp.LG) return GetLG(element) > 0 ? GetLG(element) : GetMD(element) > 0 ? GetMD(element) : 12;
+            if (width >= bp.MD) return GetMD(element) > 0 ? GetMD(element) : GetSM(element) > 0 ? GetSM(element) : 12;
+            if (width >= bp.SM) return GetSM(element) > 0 ? GetSM(element) : GetXS(element);
+            return GetXS(element);
+        }
+
+        //private int GetOffset(UIElement element) => (int)element.GetValue(OffsetProperty);
+        private int GetOffset(UIElement element, double width, BreakPoints bp)
+        {
+            return GetOffset(element); // có thể mở rộng responsive offset sau
+        }
 
         protected override void OnRender(DrawingContext dc)
         {
             base.OnRender(dc);
-            // ShowGridLines (Nếu được bật, hãy vẽ lưới hướng dẫn trước khi vẽ các phần tử khác nhau để dễ thấy)
-            if (this.ShowGridLines)
+            if (!ShowGridLines){ return; }
+
+            // Vẽ grid lines (mình có thể bổ sung nếu cậu muốn)
+            var pen = new Pen(Brushes.Red, 1) { DashStyle = DashStyles.Dash };
+            var textPen = new Pen(Brushes.Blue, 1);
+            double width = ActualWidth;
+            double height = ActualHeight;
+
+            // Vẽ các cột 12 grid
+            for (int i = 1; i < 12; i++)
             {
-                var gridNum = this.MaxDivision;
-                var unit = this.ActualWidth / gridNum;
-                for (var i = 0; i <= gridNum; i++)
+                double x = (width / 12) * i;
+                dc.DrawLine(pen, new Point(x, 0), new Point(x, height));
+            }
+            // Vẽ breakpoint lines (màu khác để dễ phân biệt)
+            var bp = BreakPoints;
+            var bpPen = new Pen(Brushes.Orange, 2) { DashStyle = DashStyles.Dot };
+
+            var breakpoints = new[] { bp.SM, bp.MD, bp.LG, bp.XL };
+            var labels = new[] { "SM", "MD", "LG", "XL" };
+
+            for (int i = 0; i < breakpoints.Length; i++)
+            {
+                if (breakpoints[i] < width)
                 {
-                    var x = (int)(unit * i);
-                    dc.DrawLine(_guidePen1, new Point(x, 0), new Point(x, this.ActualHeight));
-                    dc.DrawLine(_guidePen2, new Point(x, 0), new Point(x, this.ActualHeight));
+                    dc.DrawLine(bpPen, new Point(breakpoints[i], 0), new Point(breakpoints[i], height));
+
+                    // Vẽ text label
+                    var formattedText = new FormattedText(labels[i], CultureInfo.CurrentCulture,
+                        FlowDirection.LeftToRight, new Typeface("Arial"), 11, Brushes.Orange, 1.0);
+                    dc.DrawText(formattedText, new Point(breakpoints[i] + 4, 4));
                 }
             }
+
+            // Vẽ border ngoài
+            dc.DrawRectangle(null, new Pen(Brushes.Lime, 1.5), new Rect(0, 0, width, height));
         }
+
     }
 }

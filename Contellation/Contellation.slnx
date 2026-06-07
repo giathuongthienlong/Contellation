@@ -2,7 +2,11 @@
   <Folder Name="/Contellation.Libraries/">
     <Project Path="Contellation.Libraries/Contellation.Custom.Controls/Contellation.Custom.Controls.shproj" Id="06f558cb-246e-405c-9d96-92d9211c4a20" />
     <Project Path="Contellation.Libraries/Contellation.Custom.Converters/Contellation.Custom.Converters.shproj" Id="e33492e2-67ed-4b9a-aaa9-6c74615a74e1" />
+    <Project Path="Contellation.Libraries/Contellation.Custom.Enums/Contellation.Custom.Enums.shproj" Id="7e8c6b8b-6db5-4b5c-b6f9-f296b16ebb04" />
+    <Project Path="Contellation.Libraries/Contellation.Custom.Extensions/Contellation.Custom.Extensions.shproj" Id="8b21d221-e3d9-4338-840e-fc94524a77c1" />
+    <Project Path="Contellation.Libraries/Contellation.Custom.Structs/Contellation.Custom.Structs.shproj" Id="ce5ee9d7-8a06-4c4d-9ca9-994856fd54fd" />
     <Project Path="Contellation.Libraries/Contellation.Custom/Contellation.Custom.csproj" />
   </Folder>
   <Project Path="Contellation.Desktop/Contellation.Desktop.csproj" />
+  <Project Path="Contellation.Libraries/Contellation.Custom.Interops/Contellation.Custom.Interops.shproj" Id="04cd4ed3-8a72-4831-8e59-b3714d47a42c" />
 </Solution>

@@ -12,8 +12,14 @@
     <None Include="$(MSBuildThisFileDirectory)ResponsiveGrids\Readme.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Attachs\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\BreakPoints.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.Properties.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 </Project>
