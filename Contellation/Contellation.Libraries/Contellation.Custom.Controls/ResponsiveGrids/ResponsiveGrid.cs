@@ -57,7 +57,6 @@ namespace Contellation.Custom.Controls
     public class ResponsiveGrid : Panel
     {
         #region Dependency Properties
-
         public static readonly DependencyProperty ShowGridLinesProperty =
             DependencyProperty.Register(nameof(ShowGridLines), typeof(bool), typeof(ResponsiveGrid),
                 new PropertyMetadata(false, (d, e) => ((ResponsiveGrid)d).InvalidateVisual()));
@@ -66,8 +65,18 @@ namespace Contellation.Custom.Controls
             DependencyProperty.Register(nameof(BreakPoints), typeof(BreakPoints), typeof(ResponsiveGrid),
                 new PropertyMetadata(BreakPoints.Default, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
 
+        public static readonly DependencyProperty ColumnGapProperty =
+            DependencyProperty.Register(nameof(ColumnGap), typeof(double), typeof(ResponsiveGrid),
+                new PropertyMetadata(0.0, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
+
+        public static readonly DependencyProperty RowGapProperty =
+            DependencyProperty.Register(nameof(RowGap), typeof(double), typeof(ResponsiveGrid),
+                new PropertyMetadata(0.0, (d, e) => ((ResponsiveGrid)d).InvalidateMeasure()));
+
         public bool ShowGridLines { get => (bool)GetValue(ShowGridLinesProperty); set => SetValue(ShowGridLinesProperty, value); }
         public BreakPoints BreakPoints { get => (BreakPoints)GetValue(BreakPointsProperty); set => SetValue(BreakPointsProperty, value); }
+        public double ColumnGap { get => (double)GetValue(ColumnGapProperty); set => SetValue(ColumnGapProperty, value); }
+        public double RowGap { get => (double)GetValue(RowGapProperty); set => SetValue(RowGapProperty, value); }
         #endregion
 
         #region Attached Properties
@@ -130,7 +139,6 @@ namespace Contellation.Custom.Controls
         }
 
         #endregion
-
         protected override Size MeasureOverride(Size availableSize)
         {
             if (double.IsPositiveInfinity(availableSize.Width))
@@ -147,24 +155,26 @@ namespace Contellation.Custom.Controls
             foreach (var child in visibleChildren)
             {
                 int span = GetSpan(child, width, bp);
-                double itemWidth = (width / 12.0) * span;
+                double itemWidth = (width - (11 * ColumnGap)) / 12.0 * span;   // Trừ gap
 
-                child.Measure(new Size(itemWidth, availableSize.Height));
+                child.Measure(new Size(itemWidth, double.PositiveInfinity));
                 currentRowHeight = Math.Max(currentRowHeight, child.DesiredSize.Height);
 
-                currentX += itemWidth;
+                currentX += itemWidth + ColumnGap;
                 if (currentX > width * 0.98)
                 {
-                    totalHeight += currentRowHeight;
+                    totalHeight += currentRowHeight + RowGap;
                     currentRowHeight = 0;
                     currentX = 0;
                 }
             }
 
-            if (currentRowHeight > 0) totalHeight += currentRowHeight;
+            if (currentRowHeight > 0)
+                totalHeight += currentRowHeight;
 
             return new Size(width, totalHeight);
         }
+
         protected override Size ArrangeOverride(Size finalSize)
         {
             double width = finalSize.Width;
@@ -182,20 +192,21 @@ namespace Contellation.Custom.Controls
                 int push = GetPush(child);
                 int pull = GetPull(child);
 
-                double itemWidth = (width / 12.0) * span;
-                double finalX = currentX + (offset + push - pull) * (width / 12.0);
+                double itemWidth = (width - (11 * ColumnGap)) / 12.0 * span;
+                double finalX = currentX + (offset + push - pull) * ((width - (11 * ColumnGap)) / 12.0);
 
                 if (finalX + itemWidth > width * 1.02)
                 {
-                    currentY += rowMaxHeight;
+                    currentY += rowMaxHeight + RowGap;
                     currentX = 0;
                     rowMaxHeight = 0;
-                    finalX = currentX + (offset + push - pull) * (width / 12.0);
+                    finalX = currentX + (offset + push - pull) * ((width - (11 * ColumnGap)) / 12.0);
                 }
 
                 child.Arrange(new Rect(finalX, currentY, itemWidth, child.DesiredSize.Height));
+
                 rowMaxHeight = Math.Max(rowMaxHeight, child.DesiredSize.Height);
-                currentX += itemWidth;
+                currentX += itemWidth + ColumnGap;
             }
 
             return finalSize;
@@ -238,16 +249,16 @@ namespace Contellation.Custom.Controls
             base.OnRender(dc);
             if (!ShowGridLines) return;
 
+            // Grid lines + Breakpoints (giữ nguyên code vẽ từ trước)
             var pen = new Pen(Brushes.Red, 1) { DashStyle = DashStyles.Dash };
             var bpPen = new Pen(Brushes.Orange, 2) { DashStyle = DashStyles.Dot };
             double w = ActualWidth;
             double h = ActualHeight;
 
-            // 12 cột
             for (int i = 1; i < 12; i++)
                 dc.DrawLine(pen, new Point((w / 12) * i, 0), new Point((w / 12) * i, h));
 
-            // Breakpoints
+            // Breakpoint lines...
             var bp = BreakPoints;
             var points = new[] { bp.SM, bp.MD, bp.LG, bp.XL };
             var labels = new[] { "SM", "MD", "LG", "XL" };
@@ -262,8 +273,6 @@ namespace Contellation.Custom.Controls
                     dc.DrawText(ft, new Point(points[i] + 4, 4));
                 }
             }
-
-            dc.DrawRectangle(null, new Pen(Brushes.LimeGreen, 2), new Rect(0, 0, w, h));
         }
 
     }
