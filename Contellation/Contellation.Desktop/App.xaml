@@ -6,7 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <!--<ResourceDictionary Source="../Contellation.Custom/Controls/Themes/Generic.xaml" />-->
+                <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

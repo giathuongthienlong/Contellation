@@ -2,7 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="../Contellation.Custom;component/Controls/Buttons/Normal/ButtonStyle.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Themes/GenericStyles.xaml" />
 
+
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

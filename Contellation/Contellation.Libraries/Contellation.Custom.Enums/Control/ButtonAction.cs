@@ -1,4 +1,4 @@
-﻿namespace Contellation.Custom.Enums.Controls
+﻿namespace Contellation.Custom.Enums.Control
 {
     public enum ButtonAction
     {

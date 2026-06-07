@@ -8,25 +8,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ui:ResponsiveGrid 
-    ShowGridLines="True"
-    ColumnGap="16"
-    RowGap="20">
-
-            <Border ui:ResponsiveGrid.XS="12" ui:ResponsiveGrid.SM="6" ui:ResponsiveGrid.MD="4" 
-            Background="#FF6B6B" Height="120">
-                <TextBlock Text="XS=12 SM=6 MD=4" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
-
-            <Border ui:ResponsiveGrid.XS="12" ui:ResponsiveGrid.SM="6" ui:ResponsiveGrid.MD="4" 
-            Background="#4ECDC4" Height="120">
-                <TextBlock Text="XS=12 SM=6 MD=4" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
-
-            <Border ui:ResponsiveGrid.XS="12" ui:ResponsiveGrid.MD="4" 
-            Background="#45B7D1" Height="120">
-                <TextBlock Text="XS=12 MD=4" Foreground="White" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-            </Border>
-        </ui:ResponsiveGrid>
+        <ui:Button ButtonType="Close" Content="Hello World" HorizontalAlignment="Center" VerticalAlignment="Center" />
     </Grid>
 </Window>

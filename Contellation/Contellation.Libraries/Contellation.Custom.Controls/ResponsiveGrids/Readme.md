@@ -13,17 +13,27 @@
 - Hiển thị Grid Lines + Breakpoint Lines tiện debug
 - Hiệu suất tốt, code sạch
 
+## Các Attached Properties chính
 
+| Property                    | Kiểu   | Mô tả |
+|-----------------------------|--------|-------|
+| `XS`, `SM`, `MD`, `LG`, `XL` | `int`  | Số cột chiếm tại breakpoint tương ứng (giá trị từ 1 đến 12) |
+| `Offset`                    | `int`  | Dịch chuyển item sang phải (offset) |
+| `Push`                      | `int`  | Đẩy item sang phải |
+| `Pull`                      | `int`  | Kéo item sang trái |
+| `HiddenXS`                  | `bool` | Ẩn item khi màn hình < SM |
+| `HiddenSM`                  | `bool` | Ẩn item khi màn hình trong khoảng SM |
+| `HiddenMD`                  | `bool` | Ẩn item khi màn hình trong khoảng MD |
+| `HiddenLG`                  | `bool` | Ẩn item khi màn hình ≥ LG |
 
-Property | Kiểu | Mô tả
-----------------------------------------------------------
-XS, SM, MD, LG, XL | int | Số cột chiếm (1-12) 
-Offset | int | Dịch chuyển sang phải
-Push / Pull | int | Đẩy hoặc kéo item
-HiddenXS ... HiddenLG | bool | Ẩn theo breakpoint
-----------------------------------------------------------
+## Dependency Properties
 
-Dependency Properties
+| Property          | Kiểu          | Mặc định     | Mô tả |
+|-------------------|---------------|--------------|-------|
+| `ShowGridLines`   | `bool`        | `false`      | Bật/tắt hiển thị grid lines để debug |
+| `ColumnGap`       | `double`      | `0`          | Khoảng cách ngang giữa các cột |
+| `RowGap`          | `double`      | `0`          | Khoảng cách dọc giữa các hàng |
+| `BreakPoints`     | `BreakPoints` | `Default`    | Cấu hình các breakpoint (XS, SM, MD, LG, XL) |
 
 ShowGridLines (bool)
 ColumnGap (double)
@@ -38,6 +48,7 @@ Bật ShowGridLines="True" khi đang phát triển để debug
 
 ## Cách sử dụng
 
+```xml
 Sử dụng BreakPoints tùy chỉnh
 <ui:ResponsiveGrid BreakPoints="{x:Static rg:BreakPoints.Default}" ... >
 Hoặc tạo custom:
@@ -47,12 +58,12 @@ BreakPoints customBp = new BreakPoints
     MD = 900, 
     LG = 1200 
 };
+```
 
 ### 1. Thêm namespace
 
 ```xml
-xmlns:ui="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom.Controls"
-xmlns:rg="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom.Controls"
+xmlns:ui="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom"
 ```
 ### 2. Sử dụng ResponsiveGrid cơ bản
 ```xml 

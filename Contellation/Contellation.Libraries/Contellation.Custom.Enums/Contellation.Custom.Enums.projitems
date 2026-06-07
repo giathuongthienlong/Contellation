@@ -9,7 +9,7 @@
     <Import_RootNamespace>Contellation.Custom.Enums</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ButtonAction.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Controls\ControlAppearance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\ButtonAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\ControlAppearance.cs" />
   </ItemGroup>
 </Project>

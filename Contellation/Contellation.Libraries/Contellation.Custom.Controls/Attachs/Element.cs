@@ -20,10 +20,10 @@ namespace Contellation.Custom.Controls
         public static string GetIcon(DependencyObject element) => (string)element.GetValue(IconProperty);
 
         /// <summary> FontFamily FontAwesomes for Icon <see cref="FontFamily"/>. </summary>
-        public static readonly DependencyProperty FontFamilyIconProperty = DependencyProperty.RegisterAttached("FontFamilyIcon",
+        public static readonly DependencyProperty FontFamilyOtherProperty = DependencyProperty.RegisterAttached("FontFamilyOther",
             typeof(FontFamily), typeof(Element), new PropertyMetadata(null));
-        public static void SetFontFamilyIcon(DependencyObject element, FontFamily value) => element.SetValue(FontFamilyIconProperty, value);
-        public static FontFamily GetFontFamilyIcon(DependencyObject element) => (FontFamily)element.GetValue(FontFamilyIconProperty);
+        public static void SetFontFamilyIcon(DependencyObject element, FontFamily value) => element.SetValue(FontFamilyOtherProperty, value);
+        public static FontFamily GetFontFamilyIcon(DependencyObject element) => (FontFamily)element.GetValue(FontFamilyOtherProperty);
 
         public static readonly DependencyProperty IsReadOnlyProperty = DependencyProperty.RegisterAttached("IsReadOnly",
             typeof(bool), typeof(Element), new PropertyMetadata(false));
