@@ -10,6 +10,12 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Control\ButtonAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\CacheSlot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\ControlAppearance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\MessageBoxButton.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\MessageBoxResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TaskBarProgressState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\WindowBackdropType.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\WindowCornerPreference.cs" />
   </ItemGroup>
 </Project>

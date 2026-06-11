@@ -13,25 +13,67 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Attachs\Element.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Buttons\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Borders\ClientArea.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\BreakPoints.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TitleBars\TitleBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Hicon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Internal\InternalNotifyIconManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\NotifyIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\NotifyIconService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\TrayData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\TrayManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\Dialogs\Dialog.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\Dialogs\DialogContainer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\MessageBoxs\MessageBoxs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\Normal\Window.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowBackdrop.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Buttons\Button.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\Generic.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\GenericColor.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Generic\Color.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)Themes\GenericStyles.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Generic\Contellation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Generic\Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Generic\FontFamily.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Generic\Style.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)TitleBars\TitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Windows\Dialogs\Dialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Windows\MessageBoxs\MessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Windows\Normal\Window.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Buttons\Normal\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Windows\Normal\" />
   </ItemGroup>
 </Project>

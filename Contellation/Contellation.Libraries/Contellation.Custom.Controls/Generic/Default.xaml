@@ -3,10 +3,6 @@
     xmlns:system="clr-namespace:System;assembly=System.Runtime">
 
 
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Themes/GenericColor.xaml" />
-    </ResourceDictionary.MergedDictionaries>
-
 
     <system:Double x:Key="ControlContentThemeFontSize">14</system:Double>
     <CornerRadius x:Key="ControlCornerRadius">4,4,4,4</CornerRadius>

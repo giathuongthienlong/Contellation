@@ -9,6 +9,16 @@
     <Import_RootNamespace>Contellation.Custom.Interops</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Collector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Common.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dwmapi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)InteropMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Shell32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ShObjIdl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unsafes\UnsafeNativeMethods.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Unsafes\UnsafeReflection.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)User32.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)UxTheme.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Win32\Utilities.cs" />
   </ItemGroup>
 </Project>

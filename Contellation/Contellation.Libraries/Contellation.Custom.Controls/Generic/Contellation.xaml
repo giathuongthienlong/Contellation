@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
+        
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/TitleBars/TitleBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Windows/Normal/Window.xaml" />
+
+        
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>

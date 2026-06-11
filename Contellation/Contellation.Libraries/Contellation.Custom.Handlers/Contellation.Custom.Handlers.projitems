@@ -3,15 +3,13 @@
   <PropertyGroup>
     <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
     <HasSharedItems>true</HasSharedItems>
-    <SharedGUID>8b21d221-e3d9-4338-840e-fc94524a77c1</SharedGUID>
+    <SharedGUID>cb5eeca5-5c3b-4062-af05-8a3a25d76437</SharedGUID>
   </PropertyGroup>
   <PropertyGroup Label="Configuration">
-    <Import_RootNamespace>Contellation.Custom.Extensions</Import_RootNamespace>
+    <Import_RootNamespace>Contellation.Custom.Handlers</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Inputs\IRelayCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Inputs\RelayCommand.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)UiElement.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ValueExtension.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\NotifyIconEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayHandler.cs" />
   </ItemGroup>
 </Project>

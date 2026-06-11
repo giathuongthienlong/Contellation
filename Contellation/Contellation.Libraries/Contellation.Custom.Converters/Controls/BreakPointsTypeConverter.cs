@@ -24,5 +24,6 @@ namespace Contellation.Custom.Converters.Controls
 
         //    return new BreakPoints() { XS_SM = list[0], SM_MD = list[1], MD_LG = list[2] };
         //}
+        
     }
 }

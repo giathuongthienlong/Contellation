@@ -4,7 +4,7 @@
                     xmlns:controltype="clr-namespace:Contellation.Custom.Enums.Control">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Themes/GenericStyles.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Thickness x:Key="ButtonPadding">11,5,11,6</Thickness>
@@ -478,10 +478,11 @@
                             <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource ButtonBorderBrushDisabled}" />
                             <Setter Property="Foreground" Value="{DynamicResource ButtonForegroundDisabled}" />
                         </Trigger>
-
                         <Trigger Property="ButtonType" Value="{x:Static controltype:ButtonAction.Minimize}">
                             <Setter Property="CommandParameter" Value="{x:Static controltype:ButtonAction.Minimize}" />
-                            <Setter Property="controls:Element.Icon" Value="&#xf2d1;" />
+                            <Setter Property="Command" Value="{x:Static SystemCommands.MinimizeWindowCommand}" />
+                            <!--<Setter Property="FontFamilyIcon" Value="{StaticResource FontAwesome_Light_Pro}" />-->
+                            <!--<Setter Property="Icon" Value="&#xf2d1;" />-->
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="CornerRadius" Value="0" />
                             <Setter Property="Margin" Value="0" />
@@ -490,16 +491,20 @@
                         </Trigger>
                         <Trigger Property="ButtonType" Value="{x:Static controltype:ButtonAction.Maximize}">
                             <Setter Property="CommandParameter" Value="{x:Static controltype:ButtonAction.Maximize}" />
-                            <Setter Property="controls:Element.Icon" Value="&#xf0c8;" />
+                            <Setter Property="Command" Value="{x:Static SystemCommands.MaximizeWindowCommand}" />
+                            <!--<Setter Property="FontFamilyIcon" Value="{StaticResource FontAwesome_Light_Pro}" />-->
+                            <!--<Setter Property="Icon" Value="&#xf0c8;" />-->
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="CornerRadius" Value="0" />
                             <Setter Property="Margin" Value="0" />
                             <Setter Property="Width" Value="48" />
                         </Trigger>
-                        
                         <Trigger Property="ButtonType" Value="{x:Static controltype:ButtonAction.Close}">
                             <Setter Property="Command" Value="{x:Static SystemCommands.CloseWindowCommand}" />
+                            <!--<Setter Property="Command" Value="{x:Static extension:CommandControl.CloseWindow}" />-->
                             <Setter Property="CommandParameter" Value="{x:Static controltype:ButtonAction.Close}" />
+                            <!--<Setter Property="FontFamilyIcon" Value="{StaticResource FontAwesome_Light_Pro}" />
+                            <Setter Property="Icon" Value="&#xf00d;" />-->
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="CornerRadius" Value="0" />
                             <Setter Property="Margin" Value="0" />

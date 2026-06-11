@@ -9,6 +9,11 @@
     <Import_RootNamespace>Contellation.Custom.Structs</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)APPBARDATA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DisplayDpi.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)HRESULT.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MINMAXINFO.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MONITORINFO.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Points\POINT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Points\POINTL.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rects\RECT.cs" />
