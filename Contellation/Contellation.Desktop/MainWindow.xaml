@@ -8,19 +8,21 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+        <!--<ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />-->
         <!--<ui:Button Content="Hello World" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
-
-        <!--<ui:NotifyIcon FocusOnLeftClick="True"
+        <ui:Button Content="aaaa" ButtonAction="Close"  />
+        
+        
+        <ui:NotifyIcon FocusOnLeftClick="True"
                        MenuOnRightClick="True" TooltipText="Contellation"
                        >
-            <ui:NotifyIcon.Menu>
+            <!--<ui:NotifyIcon.Menu>
                 <ContextMenu>
                     <MenuItem Header="Tắt ứng dụng" Command="{x:Static SystemCommands.CloseWindowCommand}"/>
                 </ContextMenu>
-            </ui:NotifyIcon.Menu>
-        </ui:NotifyIcon>-->
+            </ui:NotifyIcon.Menu>-->
+        </ui:NotifyIcon>
     </Grid>
 
 </ui:Window>

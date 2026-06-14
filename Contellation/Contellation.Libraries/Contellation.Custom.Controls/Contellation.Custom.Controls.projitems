@@ -14,10 +14,57 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Attachs\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\ClientArea.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\NumberBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\ContainerCustomisations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\CollectionTeaser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\FuncComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\InterTabTransfer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\MultiComparer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\Native.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\TabHeaderDragStartInformation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DefaultInterLayoutClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DefaultInterTabClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Branch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\BranchAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\BranchResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\CouldBeHeaderedStyleSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\DropZone.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Finder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\FloatingItemSnapShot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\FloatTransfer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Layout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LayoutAccessor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationReport.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationReportBuilder.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationReportException.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationSnapShot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Tiler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzItemsControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HeaderedDragablzItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HorizontalOrganiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\InterTabController.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\MoveItemRequest.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\NewTabHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\PositionMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Referenceless\AnonymousDisposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Referenceless\DefaultDisposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Referenceless\Disposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Referenceless\SerialDisposable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\StackOrganiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\StackPositionMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\StoryboardCompletionListener.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\TabablzControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\TilerCalculator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\BreakPoints.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)TitleBars\TitleBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scrolls\PassiveScrollViewer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Bars\TitleBars\TitleBar.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Hicon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Internal\InternalNotifyIconManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\NotifyIcon.cs" />
@@ -31,6 +78,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowBackdrop.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Boxs\Number\NumberBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -55,7 +110,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="$(MSBuildThisFileDirectory)TitleBars\TitleBar.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Bars\TitleBars\TitleBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -74,6 +129,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Buttons\Normal\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Bars\" />
+    <Folder Include="$(MSBuildThisFileDirectory)TabControls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Windows\Normal\" />
   </ItemGroup>
 </Project>

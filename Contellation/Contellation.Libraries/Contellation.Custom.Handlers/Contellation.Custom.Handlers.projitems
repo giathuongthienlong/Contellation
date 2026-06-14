@@ -9,7 +9,14 @@
     <Import_RootNamespace>Contellation.Custom.Handlers</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Control\NotifyIconEventHandler.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzDragCompletedEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzDragDeltaEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzDragStartedEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzItemEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\NotifyIconEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\TrayHandler.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Control\TrayIcon\" />
   </ItemGroup>
 </Project>

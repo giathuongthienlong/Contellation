@@ -9,13 +9,29 @@
     <Import_RootNamespace>Contellation.Custom.Enums</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Control\ApplicationTheme.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\ButtonAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\CacheSlot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\ControlAppearance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\AddLocationHint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\BranchItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DropZoneLocation.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\EmptyHeaderSizingHint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\InterTabTransferReason.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\SizeGrip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\TabEmptiedResponse.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\WindowMessage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\WindowSizingMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\MessageBoxButton.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\MessageBoxResult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Number\NumberBoxSpinButtonPlacementMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Number\NumberBoxValidationMode.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Placements\HorizontalPlacement.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\TaskBarProgressState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\WindowBackdropType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\WindowCornerPreference.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Control\Number\" />
   </ItemGroup>
 </Project>

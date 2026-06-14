@@ -116,9 +116,9 @@ namespace Contellation.Custom.Controls
             set => SetValue(FocusOnLeftClickProperty, value);
         }
 
-        public ImageSource Icon
+        public string Icon
         {
-            get => (ImageSource)GetValue(IconProperty);
+            get => (string)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
         }
 
@@ -393,7 +393,7 @@ namespace Contellation.Custom.Controls
                 return;
             }
 
-            notifyIcon.internalNotifyIconManager.Icon = e.NewValue as ImageSource;
+            notifyIcon.internalNotifyIconManager.Icon = e.NewValue as string;
             _ = notifyIcon.internalNotifyIconManager.ModifyIcon();
         }
 

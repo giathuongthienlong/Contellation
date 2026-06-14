@@ -21,7 +21,7 @@ namespace Contellation.Custom.Controls
             return Register(notifyIcon, GetParentSource());
         }
 
-        public static bool Register(INotifyIcon notifyIcon, System.Windows.Window parentWindow)
+        public static bool Register(INotifyIcon notifyIcon, Window parentWindow)
         {
             if (parentWindow == null)
             {
@@ -143,7 +143,7 @@ namespace Contellation.Custom.Controls
 
             if (notifyIcon.Icon is not null)
             {
-                hIcon = Hicon.FromSource(notifyIcon.Icon);
+                //hIcon = Hicon.FromSource(notifyIcon.Icon);
             }
 
             if (hIcon == IntPtr.Zero)

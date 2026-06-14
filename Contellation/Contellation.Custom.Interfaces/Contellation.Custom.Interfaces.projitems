@@ -9,7 +9,18 @@
     <Import_RootNamespace>Contellation.Custom.Interfaces</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Control\INotifyIcon.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Control\INotifyIconService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\ICancelable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\IInterLayoutClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\IItemsOrganiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\IManualInterTabClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\INewTabHost.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\IInterTabClient.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Number\INumberFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Number\INumberParser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\INotifyIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\INotifyIconService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Control\TrayIcon\" />
   </ItemGroup>
 </Project>

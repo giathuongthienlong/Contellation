@@ -5,7 +5,7 @@
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
         
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
-        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/TitleBars/TitleBar.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Bars/TitleBars/TitleBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Windows/Normal/Window.xaml" />
 
         

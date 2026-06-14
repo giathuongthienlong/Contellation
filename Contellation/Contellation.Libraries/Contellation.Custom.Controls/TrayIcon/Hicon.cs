@@ -6,7 +6,6 @@ using System.Windows.Media.Imaging;
 
 namespace Contellation.Custom.Controls
 {
-
     /// <summary>
     /// Facilitates the creation of a hIcon.
     /// </summary>
@@ -26,7 +25,7 @@ namespace Contellation.Custom.Controls
                     return IntPtr.Zero;
                 }
 
-                var appIconsExtractIcon = System.Drawing.Icon.ExtractAssociatedIcon(processName);
+                var appIconsExtractIcon = Icon.ExtractAssociatedIcon(processName);
 
                 if (appIconsExtractIcon == null)
                 {
@@ -41,7 +40,7 @@ namespace Contellation.Custom.Controls
             {
                 System.Diagnostics.Debug.WriteLine(
                     $"ERROR | Unable to get application hIcon - {e}",
-                    "Wpf.Ui.Hicon"
+                    "Contellation.Custom.Controls.Hicon"
                 );
 #if DEBUG
                 throw;
@@ -64,7 +63,7 @@ namespace Contellation.Custom.Controls
             {
                 System.Diagnostics.Debug.WriteLine(
                     $"ERROR | Unable to allocate hIcon, ImageSource is not a BitmapSource",
-                    "Wpf.Ui.Hicon"
+                    "Contellation.Custom.Controls.Hicon"
                 );
                 return hIcon;
             }
@@ -87,7 +86,7 @@ namespace Contellation.Custom.Controls
             {
                 System.Diagnostics.Debug.WriteLine(
                     $"ERROR | Unable to allocate hIcon, allocation failed.",
-                    "Wpf.Ui.Hicon"
+                    "Contellation.Custom.Controls.Hicon"
                 );
                 return hIcon;
             }

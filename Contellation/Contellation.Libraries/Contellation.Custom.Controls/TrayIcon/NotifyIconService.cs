@@ -13,7 +13,7 @@ namespace Contellation.Custom.Controls
     {
         private readonly InternalNotifyIconManager internalNotifyIconManager;
 
-        public System.Windows.Window ParentWindow { get; internal set; } = null!;
+        public Window ParentWindow { get; internal set; } = null!;
 
         public int Id => internalNotifyIconManager.Id;
 
@@ -31,7 +31,7 @@ namespace Contellation.Custom.Controls
             set => internalNotifyIconManager.ContextMenu = value;
         }
 
-        public ImageSource? Icon
+        public string? Icon
         {
             get => internalNotifyIconManager.Icon;
             set => internalNotifyIconManager.Icon = value;
@@ -60,7 +60,7 @@ namespace Contellation.Custom.Controls
         }
 
         /// <inheritdoc />
-        public void SetParentWindow(System.Windows.Window parentWindow)
+        public void SetParentWindow(Window parentWindow)
         {
             if (ParentWindow is not null)
             {

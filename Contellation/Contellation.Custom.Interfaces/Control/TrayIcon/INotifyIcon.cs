@@ -1,18 +1,14 @@
-﻿using Contellation.Custom.Interops;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows;
+﻿using Contellation.Custom.Controls;
+using Contellation.Custom.Interops;
 using System.Windows.Controls;
 using System.Windows.Interop;
-using System.Windows.Media;
 
 namespace Contellation.Custom.Interfaces.Control
 {
     /// <summary>
     /// Represents an icon in the tray menu.
     /// </summary>
-    interface INotifyIcon
+    internal interface INotifyIcon
     {
         /// <summary>
         /// Gets or sets the notify icon shell data.
@@ -37,7 +33,7 @@ namespace Contellation.Custom.Interfaces.Control
         /// <summary>
         /// Gets or sets the <see cref="System.Windows.Media.Imaging.BitmapSource"/> of the tray icon.
         /// </summary>
-        ImageSource? Icon { get; set; }
+        string? Icon { get; set; }
 
         /// <summary>
         /// Gets or sets the hWnd that will receive messages for the icon.

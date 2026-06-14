@@ -13,9 +13,7 @@ namespace Contellation.Custom.Handlers.Control
         public int ElementId { get; internal set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="TrayHandler"/> class, 
-        /// creating a new hWnd as a child with transparency parameters, no size, and in the default position. 
-        /// It attaches the default delegation to the messages it receives.
+        /// Initializes a new instance of the <see cref="TrayHandler"/> class, creating a new hWnd as a child with transparency parameters, no size, and in the default position. It attaches the default delegation to the messages it receives.
         /// </summary>
         /// <param name="name">The name of the created window.</param>
         /// <param name="parent">Parent of the created window.</param>
@@ -24,7 +22,7 @@ namespace Contellation.Custom.Handlers.Control
         {
             System.Diagnostics.Debug.WriteLine(
                 $"INFO | New {typeof(TrayHandler)} registered with handle: #{Handle}, and parent: #{parent}",
-                "Contellation.Custom.Handlers.Control.TrayHandler"
+                "Wpf.Ui.TrayHandler"
             );
         }
     }

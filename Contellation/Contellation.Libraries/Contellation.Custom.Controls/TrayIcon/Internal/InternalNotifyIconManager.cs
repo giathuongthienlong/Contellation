@@ -1,4 +1,5 @@
-﻿using Contellation.Custom.Handlers.Control;
+﻿using Contellation.Custom.Enums.Control;
+using Contellation.Custom.Handlers.Control;
 using Contellation.Custom.Interfaces.Control;
 using Contellation.Custom.Interops;
 using System.Windows;
@@ -29,7 +30,7 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         public string TooltipText { get; set; } = string.Empty;
 
         /// <inheritdoc />
-        public ImageSource? Icon { get; set; } = default!;
+        public string? Icon { get; set; } = default!;
 
         /// <inheritdoc />
         public HwndSource HookWindow { get; set; } = default!;
@@ -63,9 +64,6 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         public InternalNotifyIconManager()
         {
             //ApplicationThemeManager.Changed += OnThemeChanged;
-
-            ContextMenu?.UpdateDefaultStyle();
-            ContextMenu?.UpdateLayout();
         }
 
         ~InternalNotifyIconManager()
@@ -90,7 +88,7 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         }
 
         /// <inheritdoc />
-        public virtual bool Register(System.Windows.Window parentWindow)
+        public virtual bool Register(Window parentWindow)
         {
             IsRegistered = TrayManager.Register(this, parentWindow);
 
@@ -112,11 +110,11 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         /// <summary>
         /// Occurs when the application theme is changing.
         /// </summary>
-        //protected virtual void OnThemeChanged(ApplicationTheme currentApplicationTheme, Color systemAccent)
-        //{
-        //    ContextMenu?.UpdateDefaultStyle();
-        //    ContextMenu?.UpdateLayout();
-        //}
+        protected virtual void OnThemeChanged(ApplicationTheme currentApplicationTheme, Color systemAccent)
+        {
+            ContextMenu?.UpdateDefaultStyle();
+            ContextMenu?.UpdateLayout();
+        }
 
         /// <summary>
         /// Focus the application main window.
@@ -236,7 +234,10 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         /// <param name="disposing">If disposing equals <see langword="true"/>, dispose all managed and unmanaged resources.</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (_disposed) { return; }
+            if (_disposed)
+            {
+                return;
+            }
 
             _disposed = true;
 

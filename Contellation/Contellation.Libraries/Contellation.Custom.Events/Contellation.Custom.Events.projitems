@@ -9,6 +9,9 @@
     <Import_RootNamespace>Contellation.Custom.Events</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\ItemActionCallbackArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\LocationChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\OrderChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HwndProcEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RoutedNotifyIconEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypedEventHandler.cs" />
