@@ -8,6 +8,5 @@
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Bars/TitleBars/TitleBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Windows/Normal/Window.xaml" />
 
-        
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

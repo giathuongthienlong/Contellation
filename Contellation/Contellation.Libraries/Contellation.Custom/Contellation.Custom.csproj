@@ -27,18 +27,18 @@
 
   <Import Project="..\Contellation.Custom.Extensions\Contellation.Custom.Extensions.projitems" Label="Shared" />
 
-  <Import Project="..\Contellation.Custom.Interops\Contellation.Custom.Interops.projitems" Label="Shared" />
-
-  <Import Project="..\Contellation.Custom.Structs\Contellation.Custom.Structs.projitems" Label="Shared" />
-
   <Import Project="..\Contellation.Custom.Events\Contellation.Custom.Events.projitems" Label="Shared" />
+
+  <Import Project="..\Contellation.Custom.Handlers\Contellation.Custom.Handlers.projitems" Label="Shared" />
 
   <Import Project="..\Contellation.Custom.Helpers\Contellation.Custom.Helpers.projitems" Label="Shared" />
 
   <Import Project="..\Contellation.Custom.Interactivities\Contellation.Custom.Interactivities.projitems" Label="Shared" />
 
-  <Import Project="..\Contellation.Custom.Handlers\Contellation.Custom.Handlers.projitems" Label="Shared" />
+  <Import Project="..\Contellation.Custom.Interfaces\Contellation.Custom.Interfaces.projitems" Label="Shared" />
 
-  <Import Project="..\..\Contellation.Custom.Interfaces\Contellation.Custom.Interfaces.projitems" Label="Shared" />
+  <Import Project="..\Contellation.Custom.Interops\Contellation.Custom.Interops.projitems" Label="Shared" />
+
+  <Import Project="..\Contellation.Custom.Structs\Contellation.Custom.Structs.projitems" Label="Shared" />
 
 </Project>

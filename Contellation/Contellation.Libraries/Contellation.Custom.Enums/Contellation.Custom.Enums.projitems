@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Control\ApplicationTheme.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Control\ButtonAction.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Button\ButtonAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\CacheSlot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\ControlAppearance.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\AddLocationHint.cs" />
@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\WindowCornerPreference.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Control\Button\" />
     <Folder Include="$(MSBuildThisFileDirectory)Control\Number\" />
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿<ui:Window x:Class="Contellation.Desktop.MainWindow"
+﻿<Window x:Class="Contellation.Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -8,21 +8,22 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <!--<ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />-->
+
+        <ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
         <!--<ui:Button Content="Hello World" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
-        <ui:Button Content="aaaa" ButtonAction="Close"  />
+        <ui:Button Content="aaaa" />
         
         
-        <ui:NotifyIcon FocusOnLeftClick="True"
+        <!--<ui:NotifyIcon FocusOnLeftClick="True"
                        MenuOnRightClick="True" TooltipText="Contellation"
-                       >
+                       >-->
             <!--<ui:NotifyIcon.Menu>
                 <ContextMenu>
                     <MenuItem Header="Tắt ứng dụng" Command="{x:Static SystemCommands.CloseWindowCommand}"/>
                 </ContextMenu>
-            </ui:NotifyIcon.Menu>-->
-        </ui:NotifyIcon>
+            </ui:NotifyIcon.Menu>--><!--
+        </ui:NotifyIcon>-->
     </Grid>
 
-</ui:Window>
+</Window>

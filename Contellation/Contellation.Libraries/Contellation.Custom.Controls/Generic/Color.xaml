@@ -1,14 +1,58 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="Transparent" />
+    <SolidColorBrush x:Key="BackgroundBrushShare" Color="Transparent" />
+
+    <Color x:Key="C_80b9ee">#80b9ee</Color>
+    <SolidColorBrush x:Key="Col_80b9ee" Color="{StaticResource C_80b9ee}" />
+    <Color x:Key="C_FFFFFF">#FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_FFFFFF" Color="{StaticResource C_FFFFFF}" />
+    <Color x:Key="C_2D3236">#2D3236</Color>
+    <Color x:Key="C_212D3B">#212D3B</Color>
+    <Color x:Key="C_2B2B2B">#2B2B2B</Color>
+    <SolidColorBrush x:Key="Col_2B2B2B" Color="{StaticResource C_2B2B2B}" />
+    <Color x:Key="C_A6A6A6">#A6A6A6</Color>
+    <SolidColorBrush x:Key="Col_A6A6A6" Color="{StaticResource C_A6A6A6}" />
+    <Color x:Key="C_000000">#000000</Color>
+    <SolidColorBrush x:Key="Col_000000" Color="{StaticResource C_000000}" />
+    <Color x:Key="C_87FFFFFF">#87FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_87FFFFFF" Color="{StaticResource C_87FFFFFF}" />
+    <Color x:Key="C_FF9800">#FF9800</Color>
+    <SolidColorBrush x:Key="Col_FF9800" Color="{StaticResource C_FF9800}" />
+    <Color x:Key="C_4CAF50">#4CAF50</Color>
+    <SolidColorBrush x:Key="Col_4CAF50" Color="{StaticResource C_4CAF50}" />
+    <Color x:Key="C_F44336">#F44336</Color>
+    <SolidColorBrush x:Key="Col_F44336" Color="{StaticResource C_F44336}" />
+    <Color x:Key="C_03A9F4">#03A9F4</Color>
+    <SolidColorBrush x:Key="Col_03A9F4" Color="{StaticResource C_03A9F4}" />
+    <Color x:Key="C_BE000000">#BE000000</Color>
+    <SolidColorBrush x:Key="Col_BE000000" Color="{StaticResource C_BE000000}" />
+    <Color x:Key="C_F3FFFFFF">#F3FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_F3FFFFFF" Color="{StaticResource C_F3FFFFFF}" />
+    <Color x:Key="C_B3FFFFFF">#B3FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_B3FFFFFF" Color="{StaticResource C_B3FFFFFF}" />
+    <Color x:Key="C_62000000">#62000000</Color>
+    <SolidColorBrush x:Key="Col_62000000" Color="{StaticResource C_62000000}" />
+    <Color x:Key="C_52000000">#52000000</Color>
+    <SolidColorBrush x:Key="Col_52000000" Color="{StaticResource C_52000000}" />
+    <Color x:Key="C_72000000">#72000000</Color>
+    <SolidColorBrush x:Key="Col_72000000" Color="{StaticResource C_72000000}" />
+    <Color x:Key="C_C5FFFFFF">#C5FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_C5FFFFFF" Color="{StaticResource C_C5FFFFFF}" />
+    <Color x:Key="C_D6B4FD">#D6B4FD</Color>
+    <SolidColorBrush x:Key="Col_D6B4FD" Color="{StaticResource C_D6B4FD}" />
+    <Color x:Key="C_FFEE32">#FFEE32</Color>
+    <SolidColorBrush x:Key="Col_FFEE32" Color="{StaticResource C_FFEE32}" />
+
     <Color x:Key="KeyboardFocusBorderColor">#87FFFFFF</Color>
+    
     <Color x:Key="SystemAccentColor">#4cc2ff</Color>
     <Color x:Key="SystemAccentColorSecondary">#4cc2ff</Color>
     <Color x:Key="SystemAccentColorTertiary">#4cc2ff</Color>
 
     <!--  Highcontrast theme: NIGHT SKY.  -->
     <Color x:Key="SystemColorWindowTextColor">#FFFFFF</Color>
+    
     <Color x:Key="SystemColorWindowColor">#000000</Color>
     <Color x:Key="SystemColorHighlightTextColor">#2B2B2B</Color>
     <Color x:Key="SystemColorHighlightColor">#D6B4FD</Color>
@@ -74,17 +118,17 @@
     <SolidColorBrush x:Key="ControlElevationBorderBrush" Color="{StaticResource SystemColorWindowTextColor}" />
 
 
-    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource SystemColorHighlightTextColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource C_2B2B2B}" />
 
-    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource SystemColorHighlightTextColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource C_2B2B2B}" />
 
 
 
     <SolidColorBrush x:Key="ButtonForegroundPressed" Color="{StaticResource SystemColorHighlightColor}" />
 
-    <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="{StaticResource SystemColorWindowColor}" />
+    <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="{StaticResource C_000000}" />
     <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="Transparent" />
-    <SolidColorBrush x:Key="ButtonForegroundDisabled" Color="{StaticResource SystemColorGrayTextColor}" />
+    <SolidColorBrush x:Key="ButtonForegroundDisabled" Color="{StaticResource C_A6A6A6}" />
     <SolidColorBrush x:Key="AccentButtonBackground" Color="{StaticResource SystemColorHighlightColor}" />
     <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="{StaticResource SystemColorButtonTextColor}" />
     <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="{StaticResource SystemColorHighlightColor}" />

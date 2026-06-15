@@ -130,7 +130,6 @@
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Buttons\Normal\" />
     <Folder Include="$(MSBuildThisFileDirectory)Bars\" />
-    <Folder Include="$(MSBuildThisFileDirectory)TabControls\" />
     <Folder Include="$(MSBuildThisFileDirectory)Windows\Normal\" />
   </ItemGroup>
 </Project>

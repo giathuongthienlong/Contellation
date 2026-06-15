@@ -1,11 +1,10 @@
-﻿using Contellation.Custom.Enums.Control;
+﻿using Contellation.Custom.Enums;
 using Contellation.Custom.Events;
 using Contellation.Custom.Extensions;
 using Contellation.Custom.Extensions.Inputs;
 using Contellation.Custom.Helpers;
 using Contellation.Custom.Interops;
 using Contellation.Custom.Structs;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -44,6 +43,14 @@ namespace Contellation.Custom.Controls
         public event EventHandler<HwndProcEventArgs>? WndProcInvoked;
 
 
+        /// <summary>
+        /// Gets or sets title displayed on the left.
+        /// </summary>
+        public string? Title
+        {
+            get => (string?)GetValue(TitleProperty);
+            set => SetValue(TitleProperty, value);
+        }
         /// <summary>Identifies the <see cref="Title"/> dependency property.</summary>
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
             nameof(Title),
@@ -52,6 +59,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(null)
         );
 
+        /// <summary>
+        /// Gets or sets the content displayed in the <see cref="TitleBar"/>.
+        /// </summary>
+        public object? Header
+        {
+            get => GetValue(HeaderProperty);
+            set => SetValue(HeaderProperty, value);
+        }
         /// <summary>Identifies the <see cref="Header"/> dependency property.</summary>
         public static readonly DependencyProperty HeaderProperty = DependencyProperty.Register(
             nameof(Header),
@@ -60,6 +75,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(null)
         );
 
+        /// <summary>
+        /// Gets or sets the content displayed in the center of the <see cref="TitleBar"/>.
+        /// </summary>
+        public object? CenterContent
+        {
+            get => GetValue(CenterContentProperty);
+            set => SetValue(CenterContentProperty, value);
+        }
         /// <summary>
         /// Property for <see cref="CenterContent"/>.
         /// </summary>
@@ -71,6 +94,14 @@ namespace Contellation.Custom.Controls
         );
 
         /// <summary>
+        /// Gets or sets the content displayed in right side of the <see cref="TitleBar"/>.
+        /// </summary>
+        public object? TrailingContent
+        {
+            get => GetValue(TrailingContentProperty);
+            set => SetValue(TrailingContentProperty, value);
+        }
+        /// <summary>
         /// Property for <see cref="TrailingContent"/>.
         /// </summary>
         public static readonly DependencyProperty TrailingContentProperty = DependencyProperty.Register(
@@ -80,25 +111,15 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(null)
         );
 
-        /// <summary>Identifies the <see cref="ButtonsForeground"/> dependency property.</summary>
-        public static readonly DependencyProperty ButtonsForegroundProperty = DependencyProperty.Register(
-            nameof(ButtonsForeground),
-            typeof(Brush),
-            typeof(TitleBar),
-            new FrameworkPropertyMetadata(
-                SystemColors.ControlTextBrush,
-                FrameworkPropertyMetadataOptions.Inherits
-            )
-        );
 
-        /// <summary>Identifies the <see cref="ButtonsBackground"/> dependency property.</summary>
-        public static readonly DependencyProperty ButtonsBackgroundProperty = DependencyProperty.Register(
-            nameof(ButtonsBackground),
-            typeof(Brush),
-            typeof(TitleBar),
-            new FrameworkPropertyMetadata(SystemColors.ControlBrush, FrameworkPropertyMetadataOptions.Inherits)
-        );
-
+        /// <summary>
+        /// Gets a value indicating whether the current window is maximized.
+        /// </summary>
+        public bool IsMaximized
+        {
+            get => (bool)GetValue(IsMaximizedProperty);
+            internal set => SetValue(IsMaximizedProperty, value);
+        }
         /// <summary>Identifies the <see cref="IsMaximized"/> dependency property.</summary>
         public static readonly DependencyProperty IsMaximizedProperty = DependencyProperty.Register(
             nameof(IsMaximized),
@@ -107,6 +128,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(false)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the controls affect main application window.
+        /// </summary>
+        public bool ForceShutdown
+        {
+            get => (bool)GetValue(ForceShutdownProperty);
+            set => SetValue(ForceShutdownProperty, value);
+        }
         /// <summary>Identifies the <see cref="ForceShutdown"/> dependency property.</summary>
         public static readonly DependencyProperty ForceShutdownProperty = DependencyProperty.Register(
             nameof(ForceShutdown),
@@ -115,6 +144,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(false)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the maximize button.
+        /// </summary>
+        public bool ShowMaximize
+        {
+            get => (bool)GetValue(ShowMaximizeProperty);
+            set => SetValue(ShowMaximizeProperty, value);
+        }
         /// <summary>Identifies the <see cref="ShowMaximize"/> dependency property.</summary>
         public static readonly DependencyProperty ShowMaximizeProperty = DependencyProperty.Register(
             nameof(ShowMaximize),
@@ -123,6 +160,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(true)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the minimize button.
+        /// </summary>
+        public bool ShowMinimize
+        {
+            get => (bool)GetValue(ShowMinimizeProperty);
+            set => SetValue(ShowMinimizeProperty, value);
+        }
         /// <summary>Identifies the <see cref="ShowMinimize"/> dependency property.</summary>
         public static readonly DependencyProperty ShowMinimizeProperty = DependencyProperty.Register(
             nameof(ShowMinimize),
@@ -131,6 +176,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(true)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the help button
+        /// </summary>
+        public bool ShowHelp
+        {
+            get => (bool)GetValue(ShowHelpProperty);
+            set => SetValue(ShowHelpProperty, value);
+        }
         /// <summary>Identifies the <see cref="ShowHelp"/> dependency property.</summary>
         public static readonly DependencyProperty ShowHelpProperty = DependencyProperty.Register(
             nameof(ShowHelp),
@@ -139,6 +192,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(false)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to show the close button.
+        /// </summary>
+        public bool ShowClose
+        {
+            get => (bool)GetValue(ShowCloseProperty);
+            set => SetValue(ShowCloseProperty, value);
+        }
         /// <summary>Identifies the <see cref="ShowClose"/> dependency property.</summary>
         public static readonly DependencyProperty ShowCloseProperty = DependencyProperty.Register(
             nameof(ShowClose),
@@ -147,6 +208,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(true)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the maximize functionality is enabled. If disabled the MaximizeActionOverride action won't be called
+        /// </summary>
+        public bool CanMaximize
+        {
+            get => (bool)GetValue(CanMaximizeProperty);
+            set => SetValue(CanMaximizeProperty, value);
+        }
         /// <summary>Identifies the <see cref="CanMaximize"/> dependency property.</summary>
         public static readonly DependencyProperty CanMaximizeProperty = DependencyProperty.Register(
             nameof(CanMaximize),
@@ -155,6 +224,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(true)
         );
 
+        /// <summary>
+        /// Gets or sets the titlebar icon.
+        /// </summary>
+        public string? Icon
+        {
+            get => (string?)GetValue(IconProperty);
+            set => SetValue(IconProperty, value);
+        }
         /// <summary>Identifies the <see cref="Icon"/> dependency property.</summary>
         public static readonly DependencyProperty IconProperty = DependencyProperty.Register(
             nameof(Icon),
@@ -163,6 +240,14 @@ namespace Contellation.Custom.Controls
             new PropertyMetadata(null)
         );
 
+        /// <summary>
+        /// Gets or sets a value indicating whether the window can be closed by double clicking on the icon
+        /// </summary>
+        public bool CloseWindowByDoubleClickOnIcon
+        {
+            get => (bool)GetValue(CloseWindowByDoubleClickOnIconProperty);
+            set => SetValue(CloseWindowByDoubleClickOnIconProperty, value);
+        }
         /// <summary>Identifies the <see cref="CloseWindowByDoubleClickOnIcon"/> dependency property.</summary>
         public static readonly DependencyProperty CloseWindowByDoubleClickOnIconProperty =
             DependencyProperty.Register(
@@ -172,35 +257,67 @@ namespace Contellation.Custom.Controls
                 new PropertyMetadata(false)
             );
 
+        /// <summary>
+        /// Event triggered after clicking close button.
+        /// </summary>
+        public event TypedEventHandler<TitleBar, RoutedEventArgs> CloseClicked
+        {
+            add => AddHandler(CloseClickedEvent, value);
+            remove => RemoveHandler(CloseClickedEvent, value);
+        }
         /// <summary>Identifies the <see cref="CloseClicked"/> routed event.</summary>
         public static readonly RoutedEvent CloseClickedEvent = EventManager.RegisterRoutedEvent(
             nameof(CloseClicked),
             RoutingStrategy.Bubble,
-            typeof(TypedEventHandler<TitleBar, RoutedEventArgs>),
+            typeof(TypedEventHandler<Button, RoutedEventArgs>),
             typeof(TitleBar)
         );
 
+        /// <summary>
+        /// Event triggered after clicking maximize or restore button.
+        /// </summary>
+        public event TypedEventHandler<TitleBar, RoutedEventArgs> MaximizeClicked
+        {
+            add => AddHandler(MaximizeClickedEvent, value);
+            remove => RemoveHandler(MaximizeClickedEvent, value);
+        }
         /// <summary>Identifies the <see cref="MaximizeClicked"/> routed event.</summary>
         public static readonly RoutedEvent MaximizeClickedEvent = EventManager.RegisterRoutedEvent(
             nameof(MaximizeClicked),
             RoutingStrategy.Bubble,
-            typeof(TypedEventHandler<TitleBar, RoutedEventArgs>),
+            typeof(TypedEventHandler<Button, RoutedEventArgs>),
             typeof(TitleBar)
         );
 
+        /// <summary>
+        /// Event triggered after clicking minimize button.
+        /// </summary>
+        public event TypedEventHandler<TitleBar, RoutedEventArgs> MinimizeClicked
+        {
+            add => AddHandler(MinimizeClickedEvent, value);
+            remove => RemoveHandler(MinimizeClickedEvent, value);
+        }
         /// <summary>Identifies the <see cref="MinimizeClicked"/> routed event.</summary>
         public static readonly RoutedEvent MinimizeClickedEvent = EventManager.RegisterRoutedEvent(
             nameof(MinimizeClicked),
             RoutingStrategy.Bubble,
-            typeof(TypedEventHandler<TitleBar, RoutedEventArgs>),
+            typeof(TypedEventHandler<Button, RoutedEventArgs>),
             typeof(TitleBar)
         );
 
+        /// <summary>
+        /// Event triggered after clicking help button
+        /// </summary>
+        public event TypedEventHandler<TitleBar, RoutedEventArgs> HelpClicked
+        {
+            add => AddHandler(HelpClickedEvent, value);
+            remove => RemoveHandler(HelpClickedEvent, value);
+        }
         /// <summary>Identifies the <see cref="HelpClicked"/> routed event.</summary>
         public static readonly RoutedEvent HelpClickedEvent = EventManager.RegisterRoutedEvent(
             nameof(HelpClicked),
             RoutingStrategy.Bubble,
-            typeof(TypedEventHandler<TitleBar, RoutedEventArgs>),
+            typeof(TypedEventHandler<Button, RoutedEventArgs>),
             typeof(TitleBar)
         );
 
@@ -211,182 +328,6 @@ namespace Contellation.Custom.Controls
             typeof(TitleBar),
             new PropertyMetadata(null)
         );
-
-
-        /// <summary>
-        /// Gets or sets title displayed on the left.
-        /// </summary>
-        public string? Title
-        {
-            get => (string?)GetValue(TitleProperty);
-            set => SetValue(TitleProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the content displayed in the center of the <see cref="TitleBar"/>.
-        /// </summary>
-        public object? CenterContent
-        {
-            get => GetValue(CenterContentProperty);
-            set => SetValue(CenterContentProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the content displayed in right side of the <see cref="TitleBar"/>.
-        /// </summary>
-        public object? TrailingContent
-        {
-            get => GetValue(TrailingContentProperty);
-            set => SetValue(TrailingContentProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the content displayed in the <see cref="TitleBar"/>.
-        /// </summary>
-        public object? Header
-        {
-            get => GetValue(HeaderProperty);
-            set => SetValue(HeaderProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the foreground of the navigation buttons.
-        /// </summary>
-        [Bindable(true)]
-        [Category("Appearance")]
-        public Brush ButtonsForeground
-        {
-            get => (Brush)GetValue(ButtonsForegroundProperty);
-            set => SetValue(ButtonsForegroundProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the background of the navigation buttons when hovered.
-        /// </summary>
-        [Bindable(true)]
-        [Category("Appearance")]
-        public Brush ButtonsBackground
-        {
-            get => (Brush)GetValue(ButtonsBackgroundProperty);
-            set => SetValue(ButtonsBackgroundProperty, value);
-        }
-
-        /// <summary>
-        /// Gets a value indicating whether the current window is maximized.
-        /// </summary>
-        public bool IsMaximized
-        {
-            get => (bool)GetValue(IsMaximizedProperty);
-            internal set => SetValue(IsMaximizedProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the controls affect main application window.
-        /// </summary>
-        public bool ForceShutdown
-        {
-            get => (bool)GetValue(ForceShutdownProperty);
-            set => SetValue(ForceShutdownProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to show the maximize button.
-        /// </summary>
-        public bool ShowMaximize
-        {
-            get => (bool)GetValue(ShowMaximizeProperty);
-            set => SetValue(ShowMaximizeProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to show the minimize button.
-        /// </summary>
-        public bool ShowMinimize
-        {
-            get => (bool)GetValue(ShowMinimizeProperty);
-            set => SetValue(ShowMinimizeProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to show the help button
-        /// </summary>
-        public bool ShowHelp
-        {
-            get => (bool)GetValue(ShowHelpProperty);
-            set => SetValue(ShowHelpProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to show the close button.
-        /// </summary>
-        public bool ShowClose
-        {
-            get => (bool)GetValue(ShowCloseProperty);
-            set => SetValue(ShowCloseProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the maximize functionality is enabled. If disabled the MaximizeActionOverride action won't be called
-        /// </summary>
-        public bool CanMaximize
-        {
-            get => (bool)GetValue(CanMaximizeProperty);
-            set => SetValue(CanMaximizeProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets the titlebar icon.
-        /// </summary>
-        public string? Icon
-        {
-            get => (string?)GetValue(IconProperty);
-            set => SetValue(IconProperty, value);
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether the window can be closed by double clicking on the icon
-        /// </summary>
-        public bool CloseWindowByDoubleClickOnIcon
-        {
-            get => (bool)GetValue(CloseWindowByDoubleClickOnIconProperty);
-            set => SetValue(CloseWindowByDoubleClickOnIconProperty, value);
-        }
-
-        /// <summary>
-        /// Event triggered after clicking close button.
-        /// </summary>
-        public event TypedEventHandler<TitleBar, RoutedEventArgs> CloseClicked
-        {
-            add => AddHandler(CloseClickedEvent, value);
-            remove => RemoveHandler(CloseClickedEvent, value);
-        }
-
-        /// <summary>
-        /// Event triggered after clicking maximize or restore button.
-        /// </summary>
-        public event TypedEventHandler<TitleBar, RoutedEventArgs> MaximizeClicked
-        {
-            add => AddHandler(MaximizeClickedEvent, value);
-            remove => RemoveHandler(MaximizeClickedEvent, value);
-        }
-
-        /// <summary>
-        /// Event triggered after clicking minimize button.
-        /// </summary>
-        public event TypedEventHandler<TitleBar, RoutedEventArgs> MinimizeClicked
-        {
-            add => AddHandler(MinimizeClickedEvent, value);
-            remove => RemoveHandler(MinimizeClickedEvent, value);
-        }
-
-        /// <summary>
-        /// Event triggered after clicking help button
-        /// </summary>
-        public event TypedEventHandler<TitleBar, RoutedEventArgs> HelpClicked
-        {
-            add => AddHandler(HelpClickedEvent, value);
-            remove => RemoveHandler(HelpClickedEvent, value);
-        }
 
         /// <summary>
         /// Gets the command triggered when clicking the titlebar button.

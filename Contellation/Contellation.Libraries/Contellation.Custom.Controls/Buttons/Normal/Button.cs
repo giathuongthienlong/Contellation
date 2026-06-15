@@ -1,4 +1,5 @@
-﻿using Contellation.Custom.Enums.Control;
+﻿using Contellation.Custom.Enums;
+using Contellation.Custom.Enums.Control;
 using Contellation.Custom.Extensions;
 using Contellation.Custom.Interops;
 using System.ComponentModel;
@@ -85,6 +86,24 @@ namespace Contellation.Custom.Controls
             typeof(Button), new PropertyMetadata(Border.BorderBrushProperty.DefaultMetadata.DefaultValue));
 
         /// <summary>
+        /// Gets or sets the background of the navigation buttons when hovered.
+        /// </summary>
+        [Bindable(true)]
+        [Category(nameof(Appearance))]
+        public Brush ButtonsBackground
+        {
+            get => (Brush)GetValue(ButtonsBackgroundProperty);
+            set => SetValue(ButtonsBackgroundProperty, value);
+        }
+        /// <summary>Identifies the <see cref="ButtonsBackground"/> dependency property.</summary>
+        public static readonly DependencyProperty ButtonsBackgroundProperty = DependencyProperty.Register(
+            nameof(ButtonsBackground),
+            typeof(Brush),
+            typeof(Button),
+            new FrameworkPropertyMetadata(SystemColors.ControlBrush, FrameworkPropertyMetadataOptions.Inherits)
+        );
+
+        /// <summary>
         /// Gets or sets the foreground <see cref="Brush"/> when the user clicks the button.
         /// </summary>
         [Category(nameof(Appearance))]
@@ -138,13 +157,13 @@ namespace Contellation.Custom.Controls
         /// <summary>
         /// Gets or sets the Type of the button.
         /// </summary>
-        public ButtonAction ButtonAction
+        public ButtonAction TypeAction
         {
             get { return (ButtonAction)GetValue(ActionButtonProperty); }
             set { SetValue(ActionButtonProperty, value); }
         }
         /// <summary>Identifies the <see cref="ActionButton"/> dependency property.</summary>
-        public static readonly DependencyProperty ActionButtonProperty = DependencyProperty.Register(nameof(ButtonAction), typeof(ButtonAction),
+        public static readonly DependencyProperty ActionButtonProperty = DependencyProperty.Register(nameof(TypeAction), typeof(ButtonAction),
             typeof(Button), new PropertyMetadata(ButtonAction.Unknown, OnButtonTypeChanged));
 
         private static void OnButtonTypeChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

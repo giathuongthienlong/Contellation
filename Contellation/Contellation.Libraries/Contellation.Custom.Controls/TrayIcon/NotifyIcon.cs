@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Contellation.Custom.Controls
+namespace Contellation.Custom.Controls.TrayIcon
 {
     /// <summary>
     /// Represents the implementation of icon in the tray menu as <see cref="FrameworkElement"/>.
