@@ -1,4 +1,4 @@
-﻿namespace Contellation.Custom.Enums.Control.Dragablz
+﻿namespace Contellation.Custom.Enums
 {
     public enum DropZoneLocation
     {

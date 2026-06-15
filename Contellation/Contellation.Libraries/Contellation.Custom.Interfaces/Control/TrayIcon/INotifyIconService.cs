@@ -1,5 +1,6 @@
 ﻿using Contellation.Custom.Controls;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Contellation.Custom.Interfaces.Control
 {
@@ -31,7 +32,7 @@ namespace Contellation.Custom.Interfaces.Control
         /// <summary>
         /// Gets or sets the <see cref="System.Windows.Media.Imaging.BitmapFrame"/> of the tray icon.
         /// </summary>
-        public string? Icon { get; set; }
+        public ImageSource? Icon { get; set; }
 
         /// <summary>
         /// Tries to register the Notify Icon in the shell.

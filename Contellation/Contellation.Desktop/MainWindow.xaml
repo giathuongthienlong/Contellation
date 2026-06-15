@@ -5,15 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Contellation.Desktop"
         xmlns:ui="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom"
+        xmlns:dag="clr-namespace:Contellation.Custom.Controls.Dragablz.Dockablz;assembly=Contellation.Custom"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
 
-        <ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />
+    <dag:Layout Partition="Test">
+
+        <ui:TabablzControl Margin="8" ConsolidateOrphanedItems="True">
+            <ui:TabablzControl.InterTabController>
+                <ui:InterTabController Partition="Test" />
+            </ui:TabablzControl.InterTabController>
+            <TabItem Header="Tab 1" IsSelected="True">
+                <TextBlock Text="Content of Tab 1" Margin="10"/>
+            </TabItem>
+            <TabItem Header="Tab 2">
+                <TextBlock Text="Content of Tab 2" Margin="10"/>
+            </TabItem>
+        </ui:TabablzControl>
+    </dag:Layout>
+    <!--<ui:TabablzControl >
+        <ui:TabablzControl.InterTabController>
+            <ui:InterTabController Partition="2AE89D18-F236-4D20-9605-6C03319038E6"/>
+        </ui:TabablzControl.InterTabController>
+        <TabItem Header="Tab 1" IsSelected="True">
+            <TextBlock Text="Content of Tab 1" Margin="10"/>
+        </TabItem>
+        <TabItem Header="Tab 2">
+            <TextBlock Text="Content of Tab 2" Margin="10"/>
+        </TabItem>
+    </ui:TabablzControl>-->
+
+    <!--<Grid>
+
+        --><!--<ui:TitleBar Background="LightGray" Title="Contellation Desktop" HorizontalAlignment="Stretch" VerticalAlignment="Top" />-->
+
         <!--<ui:Button Content="Hello World" HorizontalAlignment="Center" VerticalAlignment="Center" />-->
 
-        <ui:Button Content="aaaa" />
-        
+        <!--<ui:Button Content="aaaa" />-->
         
         <!--<ui:NotifyIcon FocusOnLeftClick="True"
                        MenuOnRightClick="True" TooltipText="Contellation"
@@ -23,7 +51,7 @@
                     <MenuItem Header="Tắt ứng dụng" Command="{x:Static SystemCommands.CloseWindowCommand}"/>
                 </ContextMenu>
             </ui:NotifyIcon.Menu>--><!--
-        </ui:NotifyIcon>-->
-    </Grid>
+        </ui:NotifyIcon>--><!--
+    </Grid>-->
 
 </Window>

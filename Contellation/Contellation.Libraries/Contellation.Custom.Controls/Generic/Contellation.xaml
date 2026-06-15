@@ -7,6 +7,10 @@
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Bars/TitleBars/TitleBar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Windows/Normal/Window.xaml" />
+        
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Dragablz/TabablzControl.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Dragablz/MahApps.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Dragablz/MaterialDesign.xaml" />
 
     </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>

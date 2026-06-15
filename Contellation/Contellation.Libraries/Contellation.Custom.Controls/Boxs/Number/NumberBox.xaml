@@ -2,7 +2,6 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:controls="clr-namespace:Contellation.Custom.Controls">
 
-
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
     </ResourceDictionary.MergedDictionaries>

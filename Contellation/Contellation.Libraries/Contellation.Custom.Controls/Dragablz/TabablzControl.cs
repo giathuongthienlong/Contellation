@@ -517,14 +517,14 @@ namespace Contellation.Custom.Controls
                 new PropertyMetadata(default(bool), OnIsDraggingWindowChanged));
 
         /// <summary>
-        /// Readonly dependency property which indicates whether the owning <see cref="Window"/> 
+        /// Readonly dependency property which indicates whether the owning <see cref="System.Windows.Window"/> 
         /// is currently dragged 
         /// </summary>
         public static readonly DependencyProperty IsDraggingWindowProperty =
             IsDraggingWindowPropertyKey.DependencyProperty;
 
         /// <summary>
-        /// Readonly dependency property which indicates whether the owning <see cref="Window"/> 
+        /// Readonly dependency property which indicates whether the owning <see cref="System.Windows.Window"/> 
         /// is currently dragged 
         /// </summary>
         public bool IsDraggingWindow
@@ -875,7 +875,7 @@ namespace Contellation.Custom.Controls
         private void OnLoaded(object sender, RoutedEventArgs routedEventArgs)
         {
             LoadedInstances.Add(this);
-            var window = Window.GetWindow(this);
+            var window = System.Windows.Window.GetWindow(this);
             if (window == null) return;
             window.Closing += WindowOnClosing;
             _windowSubscription.Disposable = Disposable.Create(() => window.Closing -= WindowOnClosing);
@@ -886,7 +886,7 @@ namespace Contellation.Custom.Controls
             _windowSubscription.Disposable = Disposable.Empty;
             if (!ConsolidateOrphanedItems || InterTabController == null) return;
 
-            var window = (Window)sender;
+            var window = (System.Windows.Window)sender;
 
             var orphanedItems = _dragablzItemsControl.DragablzItems();
             if (ConsolidatingOrphanedItemCallback != null)
@@ -1003,7 +1003,7 @@ namespace Contellation.Custom.Controls
 
             if (MonitorReentry(e)) return;
 
-            var myWindow = Window.GetWindow(this);
+            var myWindow = System.Windows.Window.GetWindow(this);
             if (myWindow == null) return;
 
             if (_interTabTransfer != null)
@@ -1067,8 +1067,8 @@ namespace Contellation.Custom.Controls
                 });
 
 
-            var target = Native.SortWindowsTopToBottom(Application.Current.Windows.OfType<Window>())
-                .Join(otherTabablzControls, w => w, a => Window.GetWindow(a.tc), (w, a) => a)
+            var target = Native.SortWindowsTopToBottom(Application.Current.Windows.OfType<System.Windows.Window>())
+                .Join(otherTabablzControls, w => w, a => System.Windows.Window.GetWindow(a.tc), (w, a) => a)
                 .FirstOrDefault(a => new Rect(a.topLeft, a.bottomRight).Contains(screenMousePosition));
 
             if (target == null) return false;
@@ -1110,7 +1110,7 @@ namespace Contellation.Custom.Controls
 
             if (Items.Count != 0) return item;
 
-            var window = Window.GetWindow(this);
+            var window = System.Windows.Window.GetWindow(this);
             if (window != null
                 && InterTabController != null
                 && InterTabController.InterTabClient.TabEmptiedHandler(this, window) == TabEmptiedResponse.CloseWindowOrLayoutBranch)
@@ -1189,7 +1189,7 @@ namespace Contellation.Custom.Controls
             var item = _dragablzItemsControl.ItemContainerGenerator.ItemFromContainer(e.DragablzItem);
             var isTransposing = IsTransposing(newTabHost.TabablzControl);
 
-            var myWindow = Window.GetWindow(this);
+            var myWindow = System.Windows.Window.GetWindow(this);
             if (myWindow == null) throw new ApplicationException("Unable to find owning window.");
             var dragStartWindowOffset = ConfigureNewHostSizeAndGetDragStartWindowOffset(myWindow, newTabHost, e.DragablzItem, isTransposing);
 
@@ -1202,7 +1202,7 @@ namespace Contellation.Custom.Controls
 
             var interTabTransfer = new InterTabTransfer(item, e.DragablzItem, breachOrientation.Value, dragStartWindowOffset, e.DragablzItem.MouseAtDragStart, dragableItemHeaderPoint, dragableItemSize, floatingItemSnapShots, isTransposing);
 
-            if (myWindow.WindowState == WindowState.Maximized)
+            if (myWindow.WindowState == System.Windows.WindowState.Maximized)   
             {
                 var desktopMousePosition = Native.GetCursorPos().ToWpf();
                 newTabHost.Container.Left = desktopMousePosition.X - dragStartWindowOffset.X;
@@ -1301,7 +1301,7 @@ namespace Contellation.Custom.Controls
 
         internal void ReceiveDrag(InterTabTransfer interTabTransfer)
         {
-            var myWindow = Window.GetWindow(this);
+            var myWindow = System.Windows.Window.GetWindow(this);
             if (myWindow == null) throw new ApplicationException("Unable to find owning window.");
             myWindow.Activate();
 
@@ -1463,7 +1463,7 @@ namespace Contellation.Custom.Controls
             var cancel = false;
             if (owner.ClosingItemCallback != null)
             {
-                var callbackArgs = new ItemActionCallbackArgs<TabablzControl>(Window.GetWindow(owner), owner, item);
+                var callbackArgs = new ItemActionCallbackArgs<TabablzControl>(System.Windows.Window.GetWindow(owner), owner, item);
                 owner.ClosingItemCallback(callbackArgs);
                 cancel = callbackArgs.IsCancelled;
             }

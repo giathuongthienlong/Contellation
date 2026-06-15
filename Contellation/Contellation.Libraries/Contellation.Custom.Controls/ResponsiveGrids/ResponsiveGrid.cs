@@ -5,55 +5,6 @@ using System.Windows.Media;
 
 namespace Contellation.Custom.Controls
 {
-    /// <summary>
-    /// Responsive Grid
-    /// </summary>
-    /// <example> 
-    /// <code lang="xml"> base
-    ///     <ui:ResponsiveGrid Margin="10" BreakPoints="345, 567, 789">
-    ///         <Border rg:ResponsiveGrid.XS="12">
-    ///             <TextBlock Text = "[Header]&#xa;XS=12" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="6" rg:ResponsiveGrid.SM="3" rg:ResponsiveGrid.MD="2">
-    ///             <TextBlock Text = "[A]&#xa;XS=6&#xa;SM=3&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="6" rg:ResponsiveGrid.SM="3" rg:ResponsiveGrid.MD="2">
-    ///             <TextBlock Text = "[B]&#xa;XS=6&#xa;SM=3&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="6" rg:ResponsiveGrid.SM="3" rg:ResponsiveGrid.MD="2" rg:ResponsiveGrid.SM_Push="3" rg:ResponsiveGrid.MD_Push="2">
-    ///             <TextBlock Text = "[C]&#xa;XS=6&#xa;SM=3&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="6" rg:ResponsiveGrid.SM="3" rg:ResponsiveGrid.MD="2" rg:ResponsiveGrid.SM_Pull="3" rg:ResponsiveGrid.MD_Pull="2">
-    ///             <TextBlock Text = "[D]&#xa;XS=6&#xa;SM=3&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="12" rg:ResponsiveGrid.SM="6" rg:ResponsiveGrid.MD="2">
-    ///             <TextBlock Text = "[E]&#xa;XS=12&#xa;SM=6&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="12" rg:ResponsiveGrid.SM="6" rg:ResponsiveGrid.MD="2">
-    ///             <TextBlock Text = "[F]&#xa;XS=12&#xa;SM=6&#xa;MD=2" />
-    ///         </ Border >
-    ///         < Border rg:ResponsiveGrid.XS="12">
-    ///             <TextBlock Text = "[Footer]&#xa;XS=12" />
-    ///         </ Border >
-    ///     </ ui:ResponsiveGrid>
-    /// </code>
-    /// </example>
-    /// 
-    /// <example> 
-    /// 
-    /// <code lang="xml">
-    ///    <ui:ResponsiveGrid x:Name="rgrid" Grid.Row="1" ShowGridLines="True">
-    ///         <ui:ResponsiveGrid.BreakPoints>
-    ///             <rg:BreakPoints MD_LG = "789" SM_MD="567" XS_SM="345" />
-    ///         </ui:ResponsiveGrid.BreakPoints>
-    ///         <TextBlock />
-    ///         <TextBlock />
-    ///         <TextBlock />
-    ///         <TextBlock />
-    ///     </ui:ResponsiveGrid>
-    /// </code>
-    /// </example>
-    /// 
     public class ResponsiveGrid : Panel
     {
         #region Dependency Properties

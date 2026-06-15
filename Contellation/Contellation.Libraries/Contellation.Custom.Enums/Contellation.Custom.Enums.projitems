@@ -17,8 +17,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\BranchItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DropZoneLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\EmptyHeaderSizingHint.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\HitTest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\InterTabTransferReason.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\SizeGrip.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\SystemCommand.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\SystemCommandType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\TabEmptiedResponse.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\WindowMessage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\WindowSizingMessage.cs" />

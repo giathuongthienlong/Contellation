@@ -39,17 +39,6 @@ namespace Contellation.Custom.Controls
             typeof(ControlAppearance), typeof(Button), new PropertyMetadata(ControlAppearance.Primary));
 
         /// <summary> 
-        /// Gets or sets displayed Icon
-        /// </summary>
-        public string? Icon
-        {
-            get { return (string?)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
-        }
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(string),
-            typeof(Button), new PropertyMetadata(null));
-
-        /// <summary> 
         /// Gets or sets FontFamily Icon
         /// </summary>
         public FontFamily? FontFamilyIcon

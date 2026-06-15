@@ -18,6 +18,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\CanvasOrganiser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\ContainerCustomisations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\CollectionTeaser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\Extensions.cs" />
@@ -44,10 +45,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationReportException.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\LocationSnapShot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\Tiler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzColors.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzItemsControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\DragablzWindow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HeaderedDragablzItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HeaderedItemViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HorizontalOrganiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\HorizontalPositionMonitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\InterTabController.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\MoveItemRequest.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\NewTabHost.cs" />
@@ -61,6 +67,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\StoryboardCompletionListener.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\TabablzControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Dockablz\TilerCalculator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\TabablzItemStyleSelector.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Themes\MaterialDesignAssist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Themes\Ripple.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Themes\RippleAssist.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Themes\SystemCommandIcon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Trapezoid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\VerticalOrganiser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Dragablz\VerticalPositionMonitor.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\BreakPoints.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scrolls\PassiveScrollViewer.cs" />
@@ -87,6 +101,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dragablz\MahApps.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dragablz\MaterialDesign.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Dragablz\TabablzControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

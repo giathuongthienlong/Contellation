@@ -1,4 +1,5 @@
 ﻿using Contellation.Custom.Controls.Dragablz.Core;
+using Contellation.Custom.Enums;
 using Contellation.Custom.Enums.Control.Dragablz;
 using Contellation.Custom.Events.Control.Dragablz;
 using Contellation.Custom.Handlers.Control.Dragablz;

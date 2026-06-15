@@ -1,4 +1,8 @@
-﻿using System.Windows;
+﻿#if NET40
+using System.Collections;
+using System.Reflection;
+#endif
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 

@@ -31,7 +31,7 @@ namespace Contellation.Custom.Controls
             set => internalNotifyIconManager.ContextMenu = value;
         }
 
-        public string? Icon
+        public ImageSource? Icon
         {
             get => internalNotifyIconManager.Icon;
             set => internalNotifyIconManager.Icon = value;

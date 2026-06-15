@@ -30,7 +30,7 @@ namespace Contellation.Custom.Controls.TrayIcon.Internal
         public string TooltipText { get; set; } = string.Empty;
 
         /// <inheritdoc />
-        public string? Icon { get; set; } = default!;
+        public ImageSource? Icon { get; set; } = default!;
 
         /// <inheritdoc />
         public HwndSource HookWindow { get; set; } = default!;

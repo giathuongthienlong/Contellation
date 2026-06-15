@@ -1,8 +1,5 @@
 ﻿using Contellation.Custom.Enums.Control.Dragablz;
-using System;
-using System.Collections.Generic;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Interop;
 
@@ -69,7 +66,7 @@ namespace Contellation.Custom.Controls.Dragablz.Core
             return wpfPoint;
         }
 
-        public static IEnumerable<Window> SortWindowsTopToBottom(IEnumerable<Window> windows)
+        public static IEnumerable<System.Windows.Window> SortWindowsTopToBottom(IEnumerable<System.Windows.Window> windows)
         {
             var windowsByHandle = windows.Select(window =>
             {

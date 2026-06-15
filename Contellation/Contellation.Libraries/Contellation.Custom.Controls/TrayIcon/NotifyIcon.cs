@@ -5,7 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
 
-namespace Contellation.Custom.Controls.TrayIcon
+namespace Contellation.Custom.Controls
 {
     /// <summary>
     /// Represents the implementation of icon in the tray menu as <see cref="FrameworkElement"/>.
@@ -116,9 +116,9 @@ namespace Contellation.Custom.Controls.TrayIcon
             set => SetValue(FocusOnLeftClickProperty, value);
         }
 
-        public string Icon
+        public ImageSource Icon
         {
-            get => (string)GetValue(IconProperty);
+            get => (ImageSource)GetValue(IconProperty);
             set => SetValue(IconProperty, value);
         }
 
@@ -244,6 +244,9 @@ namespace Contellation.Custom.Controls.TrayIcon
             internalNotifyIconManager = new InternalNotifyIconManager();
 
             RegisterHandlers();
+
+            Loaded += OnLoaded;
+
         }
 
         /// <summary>
@@ -268,6 +271,12 @@ namespace Contellation.Custom.Controls.TrayIcon
             GC.SuppressFinalize(this);
         }
 
+        private void OnLoaded(object sender, RoutedEventArgs e)
+        {
+            InitializeIcon();
+            Register();
+        }
+
         /// <inheritdoc />
         protected override void OnRender(DrawingContext drawingContext)
         {
@@ -277,10 +286,6 @@ namespace Contellation.Custom.Controls.TrayIcon
             {
                 return;
             }
-
-            InitializeIcon();
-
-            Register();
         }
 
         /// <summary>
@@ -393,7 +398,7 @@ namespace Contellation.Custom.Controls.TrayIcon
                 return;
             }
 
-            notifyIcon.internalNotifyIconManager.Icon = e.NewValue as string;
+            notifyIcon.internalNotifyIconManager.Icon = e.NewValue as ImageSource;
             _ = notifyIcon.internalNotifyIconManager.ModifyIcon();
         }
 

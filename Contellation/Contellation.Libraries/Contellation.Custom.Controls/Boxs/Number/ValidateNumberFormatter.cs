@@ -3,7 +3,6 @@ using System.Globalization;
 
 namespace Contellation.Custom.Controls.Boxs.Number
 {
-
     /// <summary>
     /// Base nubmer formatter that uses default format specifier and <see cref="CultureInfo"/> that represents the culture used by the current thread.
     /// </summary>

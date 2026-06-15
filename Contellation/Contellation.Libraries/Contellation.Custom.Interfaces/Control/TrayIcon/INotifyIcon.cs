@@ -2,6 +2,7 @@
 using Contellation.Custom.Interops;
 using System.Windows.Controls;
 using System.Windows.Interop;
+using System.Windows.Media;
 
 namespace Contellation.Custom.Interfaces.Control
 {
@@ -33,7 +34,7 @@ namespace Contellation.Custom.Interfaces.Control
         /// <summary>
         /// Gets or sets the <see cref="System.Windows.Media.Imaging.BitmapSource"/> of the tray icon.
         /// </summary>
-        string? Icon { get; set; }
+        ImageSource? Icon { get; set; }
 
         /// <summary>
         /// Gets or sets the hWnd that will receive messages for the icon.

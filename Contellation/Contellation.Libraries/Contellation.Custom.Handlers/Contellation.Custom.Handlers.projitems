@@ -13,6 +13,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzDragDeltaEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzDragStartedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DragablzItemEventHandler.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\FloatRequestedEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\NotifyIconEventHandler.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\TrayHandler.cs" />
   </ItemGroup>

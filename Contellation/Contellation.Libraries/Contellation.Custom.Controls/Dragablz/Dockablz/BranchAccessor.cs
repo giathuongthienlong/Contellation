@@ -1,8 +1,5 @@
 ﻿using Contellation.Custom.Controls.Dragablz.Core;
 using Contellation.Custom.Enums.Control.Dragablz;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 
 namespace Contellation.Custom.Controls.Dragablz.Dockablz
