@@ -54,7 +54,8 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="AccentBorder" Property="BorderThickness" Value="0,0,0,2" />
-                            <Setter TargetName="AccentBorder" Property="BorderBrush" Value="{DynamicResource Col_ABCFF2}" />
+                            <Setter TargetName="AccentBorder" Property="BorderBrush" 
+                                    Value="{DynamicResource Col_ABCFF2}" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource Col_FFFFFF}" />
                         </Trigger>
                         <MultiTrigger>
@@ -63,7 +64,8 @@
                                 <Condition Property="IsMouseOver" Value="True" />
                                 <Condition Property="IsFocused" Value="False" />
                             </MultiTrigger.Conditions>
-                            <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource Col_ABCFF2}" />
+                            <Setter TargetName="ContentBorder" Property="Background" 
+                                    Value="{DynamicResource Col_ABCFF2}" />
                         </MultiTrigger>
                         <Trigger Property="IsEnabled" Value="True">
                             <Setter Property="Cursor" Value="IBeam" />
@@ -98,7 +100,8 @@
 
                     <ContentPresenter x:Name="ControlIconLeft" Grid.Column="0" Margin="10,0,0,0"
                                       Focusable="False" Visibility="Visible" VerticalAlignment="Center"
-                                      Content="{TemplateBinding Icon}" TextElement.FontFamily="{TemplateBinding FontFamilyIcon}"
+                                      Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                      TextElement.FontFamily="controls:Element.FontFamilyIcon"
                                       TextElement.FontSize="{TemplateBinding FontSize}" TextElement.Foreground="{TemplateBinding Foreground}" />
 
                     <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
@@ -120,12 +123,15 @@
                                      HorizontalAlignment="Center" VerticalAlignment="Center"
                                      HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                      Background="Transparent" BorderBrush="Transparent"
-                                     Content="&#x58;" FontFamily="{StaticResource FontAwesome_Solid}"
+                                     Content="X" 
                                      Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}">
+                        <!--Content="&#x58;" 
+FontFamily="{StaticResource FontAwesome_Solid}"-->
                     </controls:Button>
 
                     <ContentPresenter x:Name="ControlIconRight" Grid.Column="3" Margin="0 0 10 0" VerticalAlignment="Center"
-                                      Content="{TemplateBinding Icon}" TextElement.FontFamily="{TemplateBinding FontFamilyIcon}"
+                                      Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                      TextElement.FontFamily="controls:Element.FontFamilyIcon"
                                       TextElement.FontSize="{TemplateBinding FontSize}"
                                       TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
@@ -154,7 +160,7 @@
                 <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
             </Trigger>
-            <Trigger Property="Icon" Value="{x:Null}">
+            <Trigger Property="controls:Element.Icon" Value="{x:Null}">
                 <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
                 <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />

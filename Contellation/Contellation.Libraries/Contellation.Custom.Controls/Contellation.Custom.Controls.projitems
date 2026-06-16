@@ -9,6 +9,7 @@
     <Import_RootNamespace>Contellation.Custom.Controls</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Boxs\Text\Readme.md" />
     <None Include="$(MSBuildThisFileDirectory)ResponsiveGrids\Readme.md" />
   </ItemGroup>
   <ItemGroup>
@@ -18,6 +19,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\CalendarDatePickers\CalendarDatePicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\CalendarWithClocks\CalendarWithClock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\Clocks\ClockBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\Clocks\ListClock.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\DatePickers\DatePickers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\DateTimePickers\DateTimePicker.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datetimes\DateTimeRangeComparer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\CanvasOrganiser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\ContainerCustomisations.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Core\CollectionTeaser.cs" />
@@ -75,6 +83,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\Trapezoid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\VerticalOrganiser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Dragablz\VerticalPositionMonitor.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Panels\SimplePanel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\BreakPoints.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scrolls\PassiveScrollViewer.cs" />
@@ -104,6 +113,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\CalendarDatePickers\CalendarDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\CalendarWithClocks\CalendarWithClock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\Clocks\ListClock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\DatePickers\DatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\DateTimePickers\DateTimePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Dragablz\MahApps.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -124,6 +153,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Generic\Converts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Generic\Default.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Bars\TitleBars\TitleBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Scrolls\DefaultTextBoxScrollViewerStyle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,7 +191,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="$(MSBuildThisFileDirectory)Buttons\Normal\" />
     <Folder Include="$(MSBuildThisFileDirectory)Bars\" />
     <Folder Include="$(MSBuildThisFileDirectory)Windows\Normal\" />
   </ItemGroup>

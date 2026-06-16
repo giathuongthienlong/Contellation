@@ -48,7 +48,8 @@
 
                                 <ContentControl x:Name="ControlIconLeft" Grid.Column="0" Margin="10 8 0 0" Padding="0"
                                                 VerticalAlignment="Top" FontSize="16" IsTabStop="False"
-                                                Content="{TemplateBinding Icon}" FontFamily="{TemplateBinding FontFamilyIcon}" Foreground="{TemplateBinding Foreground}" />
+                                                Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{TemplateBinding Foreground}" />
                                 <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
                                     <controls:PassiveScrollViewer x:Name="PART_ContentHost" Style="{DynamicResource DefaultTextBoxScrollViewerStyle}" 
                                                                   TextElement.Foreground="{TemplateBinding Foreground}" />
@@ -80,7 +81,8 @@
                                                  Foreground="{DynamicResource Col_FFFFFF}">
                                 </controls:Button>
                                 <ContentControl x:Name="ControlIconRight" Grid.Column="5" Margin="0 8 10 0" Padding="0" FontSize="16" IsTabStop="False" VerticalAlignment="Top"
-                                                Content="{TemplateBinding Icon}" FontFamily="{TemplateBinding FontFamilyIcon}"
+                                                Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                                 Foreground="{TemplateBinding Foreground}" />
                             </Grid>
                         </Border>
@@ -116,7 +118,7 @@
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="Icon" Value="{x:Null}">
+                        <Trigger Property="controls:Element.Icon" Value="{x:Null}">
                             <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
@@ -204,7 +206,9 @@
 
                                 <ContentControl x:Name="ControlIconLeft" Grid.Column="0" Margin="10 8 0 0" Padding="0"
                                                 VerticalAlignment="Top" FontSize="16" IsTabStop="False"
-                                                Content="{TemplateBinding Icon}" FontFamily="{TemplateBinding FontFamilyIcon}" Foreground="{TemplateBinding Foreground}" />
+                                                Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                Foreground="{TemplateBinding Foreground}" />
                                 <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
                                     <controls:PassiveScrollViewer x:Name="PART_ContentHost" Style="{DynamicResource DefaultTextBoxScrollViewerStyle}" 
                                                                   TextElement.Foreground="{TemplateBinding Foreground}" />
@@ -245,7 +249,8 @@
                                 </Grid>
 
                                 <ContentControl x:Name="ControlIconRight" Grid.Column="5" Margin="0 8 10 0" Padding="0" FontSize="16" IsTabStop="False" VerticalAlignment="Top"
-                                                Content="{TemplateBinding Icon}" FontFamily="{TemplateBinding FontFamilyIcon}"
+                                                Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                                 Foreground="{TemplateBinding Foreground}" />
                             </Grid>
                         </Border>
@@ -282,7 +287,7 @@
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="Icon" Value="{x:Null}">
+                        <Trigger Property="controls:Element.Icon" Value="{x:Null}">
                             <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />

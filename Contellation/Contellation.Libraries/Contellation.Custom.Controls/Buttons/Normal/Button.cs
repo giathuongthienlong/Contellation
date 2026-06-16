@@ -4,30 +4,19 @@ using Contellation.Custom.Extensions;
 using Contellation.Custom.Interops;
 using System.ComponentModel;
 using System.Windows;
-using System.Windows.Automation.Peers;
-using System.Windows.Automation.Provider;
 using System.Windows.Controls;
 using System.Windows.Media;
 
 namespace Contellation.Custom.Controls
 {
     /// <summary>
-    /// Inherited from the <see cref="System.Windows.Controls.Button"/>.
+    /// Custom Button cho Contellation.
+    /// Hỗ trợ cả Button thông thường và TitleBar Button (Close, Minimize, Maximize...).
     /// </summary>
-    /// <example>
-    /// <code lang="xml">
-    /// &lt;ui:Button
-    ///     Appearance="Primary"
-    ///     Content="WPF UI button with font icon"
-    ///     Icon="'&#x1F308;" 
-    ///     FontFamilyIcon="{StaticReource FontAwesome_Solid}"/&gt;
-    /// </code>
-    /// </example>
-    /// <remarks>
-    /// The <see cref="Button"/> class inherits from the base <see cref="System.Windows.Controls.Button"/> class.
-    /// </remarks>
     public class Button : System.Windows.Controls.Button
     {
+        #region Appearance & General Properties
+
         [Category(nameof(Appearance))]
         public ControlAppearance Appearance
         {
@@ -37,17 +26,6 @@ namespace Contellation.Custom.Controls
         /// <summary>Identifies the <see cref="Appearance"/> dependency property.</summary>
         public static readonly DependencyProperty AppearanceProperty = DependencyProperty.Register(nameof(Appearance),
             typeof(ControlAppearance), typeof(Button), new PropertyMetadata(ControlAppearance.Primary));
-
-        /// <summary> 
-        /// Gets or sets FontFamily Icon
-        /// </summary>
-        public FontFamily? FontFamilyIcon
-        {
-            get { return (FontFamily?)GetValue(FontFamilyIconProperty); }
-            set { SetValue(FontFamilyIconProperty, value); }
-        }
-        public static readonly DependencyProperty FontFamilyIconProperty = DependencyProperty.Register(nameof(FontFamilyIcon), typeof(FontFamily),
-            typeof(Button), new PropertyMetadata(null));
 
         /// <summary>
         /// Gets or sets background <see cref="Brush"/>.
@@ -143,6 +121,9 @@ namespace Contellation.Custom.Controls
         public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius),
             typeof(Button), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
 
+        #endregion
+
+        #region TitleBar Support Properties
         /// <summary>
         /// Gets or sets the Type of the button.
         /// </summary>
@@ -211,12 +192,15 @@ namespace Contellation.Custom.Controls
         public static readonly DependencyProperty RenderButtonsForegroundProperty = DependencyProperty.Register(nameof(RenderButtonsForeground), typeof(Brush),
             typeof(Button), new FrameworkPropertyMetadata(SystemColors.ControlTextBrush, FrameworkPropertyMetadataOptions.Inherits));
 
-        public bool IsHovered { get; private set; }
+        #endregion
 
+        #region Internal Fields & Logic
+        public bool IsHovered { get; private set; }
         private readonly Brush _defaultBackgroundBrush = Brushes.Transparent; // REVIEW: Should it be transparent?
         private User32.WM_NCHITTEST _returnValue;
 
         private bool _isClickedDown;
+        #endregion
 
         public Button()
         {
@@ -247,8 +231,8 @@ namespace Contellation.Custom.Controls
 
             SetCurrentValue(BackgroundProperty, MouseOverBackground);
             if (MouseOverButtonsForeground != null) { SetCurrentValue(RenderButtonsForegroundProperty, MouseOverButtonsForeground); }
-
             IsHovered = true;
+
         }
 
         /// <summary> Forces button background to change. </summary>
@@ -266,11 +250,14 @@ namespace Contellation.Custom.Controls
         /// <summary> Invokes click on the button. </summary>
         public void InvokeClick()
         {
-            if (new ButtonAutomationPeer(this).GetPattern(PatternInterface.Invoke) is IInvokeProvider invokeProvider) { invokeProvider.Invoke(); }
-
+            RaiseEvent(new RoutedEventArgs(ClickEvent));
+            //if (new ButtonAutomationPeer(this).GetPattern(PatternInterface.Invoke) is IInvokeProvider invokeProvider) { invokeProvider.Invoke(); }
             _isClickedDown = false;
         }
 
+        /// <summary>
+        /// Dùng cho TitleBar Hook
+        /// </summary>
         internal bool ReactToHwndHook(User32.WM msg, IntPtr lParam, out IntPtr returnIntPtr)
         {
             returnIntPtr = IntPtr.Zero;

@@ -9,6 +9,7 @@
     <Import_RootNamespace>Contellation.Custom.Helpers</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DateTimeHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DesignerHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DpiHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MathHelper.cs" />

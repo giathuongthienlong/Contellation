@@ -1,9 +1,11 @@
-﻿using Contellation.Custom.Enums.Control.Placements;
+﻿using Contellation.Custom.Enums;
+using Contellation.Custom.Enums.Control.Placements;
 using Contellation.Custom.Extensions.Inputs;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media;
+using System.Windows.Input;
 
 namespace Contellation.Custom.Controls
 {
@@ -15,28 +17,6 @@ namespace Contellation.Custom.Controls
     public class TextBox : System.Windows.Controls.TextBox
     {
         /// <summary> 
-        /// Gets or sets displayed <see cref="Icon"/>. 
-        /// </summary>
-        public string? Icon
-        {
-            get { return (string?)GetValue(IconProperty); }
-            set { SetValue(IconProperty, value); }
-        }
-        public static readonly DependencyProperty IconProperty = DependencyProperty.Register(nameof(Icon), typeof(string),
-            typeof(TextBox), new PropertyMetadata(null));
-
-        /// <summary> 
-        /// Gets or sets FontFamily FontAwesomes for Icon <see cref="FontFamily"/>. 
-        /// </summary>
-        public FontFamily? FontFamilyIcon
-        {
-            get { return (FontFamily?)GetValue(FontFamilyIconProperty); }
-            set { SetValue(FontFamilyIconProperty, value); }
-        }
-        public static readonly DependencyProperty FontFamilyIconProperty = DependencyProperty.Register(nameof(FontFamilyIcon), typeof(FontFamily),
-            typeof(TextBox), new PropertyMetadata(null));
-
-        /// <summary> 
         /// Gets or sets which side the icon should be placed on.
         /// </summary>
         public HorizontalPlacement IconPlacement
@@ -44,8 +24,8 @@ namespace Contellation.Custom.Controls
             get { return (HorizontalPlacement)GetValue(IconPlacementProperty); }
             set { SetValue(IconPlacementProperty, value); }
         }
-        public static readonly DependencyProperty IconPlacementProperty = DependencyProperty.Register(nameof(IconPlacement), typeof(HorizontalPlacement),
-            typeof(TextBox), new PropertyMetadata(HorizontalPlacement.Left));
+        public static readonly DependencyProperty IconPlacementProperty = DependencyProperty.Register(nameof(IconPlacement), 
+            typeof(HorizontalPlacement), typeof(TextBox), new PropertyMetadata(HorizontalPlacement.Left));
 
         /// <summary> 
         /// Gets or sets numbers pattern. 
@@ -69,6 +49,8 @@ namespace Contellation.Custom.Controls
         public static readonly DependencyProperty PlaceholderEnabledProperty = DependencyProperty.Register(nameof(PlaceholderEnabled), typeof(bool),
             typeof(TextBox), new PropertyMetadata(true));
 
+        #region Clear Button (giữ nguyên)
+
         /// <summary> 
         /// Gets or sets a value indicating whether to enable the clear button.
         /// </summary>
@@ -90,6 +72,8 @@ namespace Contellation.Custom.Controls
         }
         public static readonly DependencyProperty ShowClearButtonProperty = DependencyProperty.Register(nameof(ShowClearButton), typeof(bool),
             typeof(TextBox), new PropertyMetadata(false));
+        
+        #endregion
 
         /// <summary> 
         /// Gets or sets a value indicating whether text selection is enabled. 
@@ -109,6 +93,39 @@ namespace Contellation.Custom.Controls
         public static readonly DependencyProperty TemplateButtonCommandProperty = DependencyProperty.Register(nameof(TemplateButtonCommand), typeof(IRelayCommand),
             typeof(TextBox), new PropertyMetadata(null));
 
+        #region Masked Input
+        public string Mask
+        {
+            get => (string)GetValue(MaskProperty);
+            set => SetValue(MaskProperty, value);
+        }
+        public static readonly DependencyProperty MaskProperty =
+            DependencyProperty.Register(nameof(Mask), typeof(string),
+                typeof(TextBox), new PropertyMetadata(string.Empty, OnMaskChanged));
+
+        public char PromptChar
+        {
+            get => (char)GetValue(PromptCharProperty);
+            set => SetValue(PromptCharProperty, value);
+        }
+        public static readonly DependencyProperty PromptCharProperty =
+            DependencyProperty.Register(nameof(PromptChar), typeof(char),
+                typeof(TextBox), new PropertyMetadata(' ', OnMaskChanged));
+
+        public TextBoxMaskedFilterType Filter
+        {
+            get => (TextBoxMaskedFilterType)GetValue(FilterProperty);
+            set => SetValue(FilterProperty, value);
+        }
+        public static readonly DependencyProperty FilterProperty =
+            DependencyProperty.Register(nameof(Filter), typeof(TextBoxMaskedFilterType),
+                typeof(TextBox), new PropertyMetadata(TextBoxMaskedFilterType.Any, OnMaskChanged));
+
+        private MaskedTextProvider? _maskProvider;
+        private string _lastMask = string.Empty;
+
+        #endregion
+
         /// <summary> 
         /// Initializes a new instance of the <see cref="TextBox"/> class. 
         /// </summary>
@@ -117,16 +134,32 @@ namespace Contellation.Custom.Controls
             SetValue(TemplateButtonCommandProperty, new RelayCommand<string>(OnTemplateButtonClick));
         }
 
-        /// <inheritdoc />
+        private static void OnMaskChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is TextBox tb) tb.RefreshMaskProvider();
+        }
+        
+        private void RefreshMaskProvider()
+        {
+            if (string.IsNullOrEmpty(Mask))
+            {
+                _maskProvider = null;
+                return;
+            }
+
+            _maskProvider = new MaskedTextProvider(Mask) { PromptChar = PromptChar };
+        }
+
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
-            base.OnTextChanged(e);
+            base.OnTextChanged(e); 
+            UpdateStates();
 
-            if (PlaceholderEnabled && Text.Length > 0) { SetCurrentValue(PlaceholderEnabledProperty, false); }
+            //if (PlaceholderEnabled && Text.Length > 0) { SetCurrentValue(PlaceholderEnabledProperty, false); }
 
-            if (!PlaceholderEnabled && Text.Length < 1) { SetCurrentValue(PlaceholderEnabledProperty, true); }
+            //if (!PlaceholderEnabled && Text.Length < 1) { SetCurrentValue(PlaceholderEnabledProperty, true); }
 
-            RevealClearButton();
+            //RevealClearButton();
         }
 
         /// <inheritdoc />
@@ -135,35 +168,35 @@ namespace Contellation.Custom.Controls
             base.OnGotFocus(e);
 
             CaretIndex = Text.Length;
-
-            RevealClearButton();
+            //RevealClearButton();
+            UpdateStates();
         }
 
         /// <inheritdoc />
         protected override void OnLostFocus(RoutedEventArgs e)
         {
             base.OnLostFocus(e);
+            UpdateStates();
 
-            HideClearButton();
+            //HideClearButton();
         }
 
-        /// <summary> 
-        /// Reveals the clear button by <see cref="ShowClearButton"/> property. 
-        /// </summary>
-        protected void RevealClearButton() { if (ClearButtonEnabled && IsKeyboardFocusWithin) { SetCurrentValue(ShowClearButtonProperty, Text.Length > 0); } }
-
-        /// <summary> 
-        /// Hides the clear button by <see cref="ShowClearButton"/> property. 
-        /// </summary>
-        protected void HideClearButton()
+        private void UpdateStates()
         {
-            if (ClearButtonEnabled && !IsKeyboardFocusWithin && ShowClearButton) { SetCurrentValue(ShowClearButtonProperty, false); }
+            bool shouldShowClear = ClearButtonEnabled && IsKeyboardFocusWithin && !string.IsNullOrEmpty(Text);
+            SetValue(ShowClearButtonProperty, shouldShowClear);
+            //SetValue(ShowClearButtonProperty, ClearButtonEnabled && IsKeyboardFocusWithin && !string.IsNullOrEmpty(Text));
         }
+
 
         /// <summary> 
         /// Triggered when the user clicks the clear text button. 
         /// </summary>
-        protected virtual void OnClearButtonClick() { if (Text.Length > 0) { SetCurrentValue(TextProperty, string.Empty); } }
+        protected virtual void OnClearButtonClick() 
+        {
+            SetCurrentValue(TextProperty, string.Empty);
+            Focus();
+        }
 
         /// <summary> 
         /// Triggered by clicking a button in the control template. 
@@ -173,6 +206,71 @@ namespace Contellation.Custom.Controls
             Debug.WriteLine($"INFO: {typeof(TextBox)} button clicked", "Contellation.Custom.Controls.TextBox");
 
             OnClearButtonClick();
+        }
+
+        // ==================== MASKED INPUT LOGIC ====================
+        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+        {
+            if (IsReadOnly || string.IsNullOrEmpty(Mask) || _maskProvider == null)
+            {
+                base.OnPreviewTextInput(e);
+                return;
+            }
+
+            int position = SelectionStart;
+            bool success = _maskProvider.InsertAt(e.Text, position);
+
+            if (success)
+            {
+                Text = _maskProvider.ToDisplayString();
+                SelectionStart = GetSafeEditPosition(position + 1);
+            }
+
+            e.Handled = true;
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            if (string.IsNullOrEmpty(Mask) || _maskProvider == null)
+            {
+                base.OnPreviewKeyDown(e);
+                return;
+            }
+
+            int position = SelectionStart;
+
+            switch (e.Key)
+            {
+                case Key.Back when position > 0:
+                    position--;
+                    if (_maskProvider.RemoveAt(position))
+                    {
+                        Text = _maskProvider.ToDisplayString();
+                        SelectionStart = GetSafeEditPosition(position);
+                    }
+                    e.Handled = true;
+                    break;
+
+                case Key.Delete when position < Text.Length:
+                    if (_maskProvider.RemoveAt(position))
+                    {
+                        Text = _maskProvider.ToDisplayString();
+                        SelectionStart = GetSafeEditPosition(position);
+                    }
+                    e.Handled = true;
+                    break;
+            }
+
+            base.OnPreviewKeyDown(e);
+        }
+
+        private int GetSafeEditPosition(int startPosition)
+        {
+            if (_maskProvider == null)
+                return Math.Max(0, startPosition);
+
+            int pos = _maskProvider.FindEditPositionFrom(startPosition, true);
+            return pos >= 0 ? pos : _maskProvider.FindEditPositionFrom(0, true);
         }
     }
 }

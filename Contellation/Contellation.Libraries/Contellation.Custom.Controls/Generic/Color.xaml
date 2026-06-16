@@ -8,6 +8,7 @@
     <Color x:Key="C_FFFFFF">#FFFFFF</Color>
     <SolidColorBrush x:Key="Col_FFFFFF" Color="{StaticResource C_FFFFFF}" />
     <Color x:Key="C_2D3236">#2D3236</Color>
+    <SolidColorBrush x:Key="Col_2D3236" Color="{StaticResource C_2D3236}" />
     <Color x:Key="C_212D3B">#212D3B</Color>
     <Color x:Key="C_2B2B2B">#2B2B2B</Color>
     <SolidColorBrush x:Key="Col_2B2B2B" Color="{StaticResource C_2B2B2B}" />
@@ -43,6 +44,10 @@
     <SolidColorBrush x:Key="Col_D6B4FD" Color="{StaticResource C_D6B4FD}" />
     <Color x:Key="C_FFEE32">#FFEE32</Color>
     <SolidColorBrush x:Key="Col_FFEE32" Color="{StaticResource C_FFEE32}" />
+    <Color x:Key="C_00FFFFFF">#00FFFFFF</Color>
+    <SolidColorBrush x:Key="Col_00FFFFFF" Color="{StaticResource C_00FFFFFF }" />
+    <Color x:Key="C_ABCFF2">#ABCFF2</Color>
+    <SolidColorBrush x:Key="Col_ABCFF2" Color="{StaticResource C_ABCFF2}" />
 
     <Color x:Key="KeyboardFocusBorderColor">#87FFFFFF</Color>
     

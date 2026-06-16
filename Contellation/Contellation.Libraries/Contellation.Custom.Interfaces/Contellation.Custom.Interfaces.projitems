@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\Number\INumberParser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\INotifyIcon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\TrayIcon\INotifyIconService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)IValueRange.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Control\TrayIcon\" />

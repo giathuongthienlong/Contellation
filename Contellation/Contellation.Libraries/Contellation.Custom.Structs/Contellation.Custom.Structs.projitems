@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)APPBARDATA.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)DateTimeRange.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)DisplayDpi.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HRESULT.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)MINMAXINFO.cs" />

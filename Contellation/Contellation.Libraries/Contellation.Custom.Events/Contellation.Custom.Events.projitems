@@ -12,6 +12,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\ItemActionCallbackArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\LocationChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\OrderChangedEventArgs.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)FunctionEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)HwndProcEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RoutedNotifyIconEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TypedEventHandler.cs" />

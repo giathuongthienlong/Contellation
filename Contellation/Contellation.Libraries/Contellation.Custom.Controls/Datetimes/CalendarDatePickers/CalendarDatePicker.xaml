@@ -1,0 +1,16 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Contellation.Custom.Controls">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="DefaultUiCalendarDatePickerStyle" BasedOn="{StaticResource DefaultUiButtonStyle}" TargetType="{x:Type controls:CalendarDatePicker}">
+        <Setter Property="controls:Element.Icon" Value="&#xf783;"/>
+        <!--<Setter Property="controls:Element.FontFamilyIcon" Value="{StaticResource FontAwesome_Regular_Pro}"/>-->
+    </Style>
+
+    <Style BasedOn="{StaticResource DefaultUiCalendarDatePickerStyle}" TargetType="{x:Type controls:CalendarDatePicker}" />
+
+</ResourceDictionary>

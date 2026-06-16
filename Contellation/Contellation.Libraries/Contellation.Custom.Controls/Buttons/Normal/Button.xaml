@@ -233,6 +233,7 @@
                                 <ContentPresenter x:Name="ControlIcon" Grid.Column="0"
                                                   VerticalAlignment="Center" Focusable="False" Margin="{StaticResource ButtonIconMargin}"
                                                   Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}"
+                                                  TextElement.FontFamily="{Binding (controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                                   TextElement.FontSize="{TemplateBinding FontSize}" TextElement.Foreground="{TemplateBinding Foreground}" />
 
                                 <ContentPresenter x:Name="ContentPresenter" Grid.Column="1" 

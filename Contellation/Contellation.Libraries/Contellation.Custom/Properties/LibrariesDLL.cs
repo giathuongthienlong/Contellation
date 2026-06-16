@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Contellation.Custom.Properties
+﻿namespace Contellation.Custom.Properties
 {
     public class LibrariesDLL
     {

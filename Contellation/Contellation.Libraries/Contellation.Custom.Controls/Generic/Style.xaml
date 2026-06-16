@@ -3,6 +3,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Color.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Converts.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Default.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/FontFamily.xaml" />
 
