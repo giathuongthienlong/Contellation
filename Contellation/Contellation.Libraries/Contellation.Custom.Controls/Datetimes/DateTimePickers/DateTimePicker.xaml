@@ -9,6 +9,8 @@
     <Style x:Key="DateTimePickerBaseStyle" TargetType="{x:Type controls:DateTimePicker}">
         <Setter Property="CaretBrush" Value="Black"/>
         <Setter Property="Padding" Value="5 0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type controls:DateTimePicker}">
@@ -27,9 +29,7 @@
 
                         <controls:Button x:Name="PART_Button" Focusable="False" Height="Auto" Width="Auto" 
                                          HorizontalAlignment="Right" VerticalAlignment="Stretch" FontSize="12" BorderThickness="0" Margin="1"
-                                         Content="X" Foreground="Black" />
-
-                        <!--Content="&#xf783;"  FontFamily="{StaticResource FontAwesome_Regular_Pro}"  Foreground="Black" />-->
+                                         Content="&#xf783;" FontFamily="{StaticResource FontAwesome_Regular_Pro}" Foreground="Black" />
                         <Popup Grid.Column="0" x:Name="PART_Popup" PopupAnimation="{StaticResource {x:Static SystemParameters.ComboBoxPopupAnimationKey}}" AllowsTransparency="True" Placement="Bottom" PlacementTarget="{Binding ElementName=border}" StaysOpen="False" />
                     </Grid>
                     <ControlTemplate.Triggers>
