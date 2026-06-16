@@ -10,6 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Boxs\Text\Readme.md" />
+    <None Include="$(MSBuildThisFileDirectory)Datetimes\DateTimePickers\Readme.md" />
     <None Include="$(MSBuildThisFileDirectory)ResponsiveGrids\Readme.md" />
   </ItemGroup>
   <ItemGroup>
@@ -114,6 +115,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Datetimes\CalendarDatePickers\CalendarDatePicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datetimes\Calendars\Calendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

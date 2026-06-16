@@ -4,11 +4,14 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="DefaultUiCalendarDatePickerStyle" BasedOn="{StaticResource DefaultUiButtonStyle}" TargetType="{x:Type controls:CalendarDatePicker}">
+    <Style x:Key="DefaultUiCalendarDatePickerStyle" 
+           BasedOn="{StaticResource DefaultUiButtonStyle}" TargetType="{x:Type controls:CalendarDatePicker}">
+        <Setter Property="Content" Value=""/>
         <Setter Property="controls:Element.Icon" Value="&#xf783;"/>
-        <!--<Setter Property="controls:Element.FontFamilyIcon" Value="{StaticResource FontAwesome_Regular_Pro}"/>-->
+        <Setter Property="controls:Element.FontFamilyIcon" Value="{StaticResource FontAwesome_Regular_Pro}"/>
     </Style>
 
     <Style BasedOn="{StaticResource DefaultUiCalendarDatePickerStyle}" TargetType="{x:Type controls:CalendarDatePicker}" />

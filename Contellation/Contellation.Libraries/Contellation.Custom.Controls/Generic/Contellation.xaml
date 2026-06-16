@@ -11,6 +11,7 @@
         
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Datetimes/Calendars/Calendar.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Datetimes/CalendarDatePickers/CalendarDatePicker.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Datetimes/CalendarWithClocks/CalendarWithClock.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Datetimes/Clocks/ListClock.xaml" />
