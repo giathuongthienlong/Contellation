@@ -10,6 +10,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Controls\BreakPointsTypeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\SolidBrushToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\DataGrid\StringFormatConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\BooleanAndToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\BrushToRadialGradientBrushConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\EqualityToBooleanConverter.cs" />

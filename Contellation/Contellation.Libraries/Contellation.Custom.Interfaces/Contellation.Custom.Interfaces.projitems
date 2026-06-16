@@ -9,6 +9,7 @@
     <Import_RootNamespace>Contellation.Custom.Interfaces</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Control\DataGrid\ILanguageDictionary.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\ICancelable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\IInterLayoutClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\IItemsOrganiser.cs" />

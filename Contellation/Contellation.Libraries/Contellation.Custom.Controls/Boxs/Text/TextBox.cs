@@ -154,12 +154,6 @@ namespace Contellation.Custom.Controls
         {
             base.OnTextChanged(e); 
             UpdateStates();
-
-            //if (PlaceholderEnabled && Text.Length > 0) { SetCurrentValue(PlaceholderEnabledProperty, false); }
-
-            //if (!PlaceholderEnabled && Text.Length < 1) { SetCurrentValue(PlaceholderEnabledProperty, true); }
-
-            //RevealClearButton();
         }
 
         /// <inheritdoc />
@@ -168,7 +162,6 @@ namespace Contellation.Custom.Controls
             base.OnGotFocus(e);
 
             CaretIndex = Text.Length;
-            //RevealClearButton();
             UpdateStates();
         }
 

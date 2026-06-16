@@ -18,8 +18,25 @@
     <Compile Include="$(MSBuildThisFileDirectory)Borders\ClientArea.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\NumberBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Password\PasswordBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\DataGrid.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\DataGridColumns\DataGridColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\DataGridColumns\IDataGridColumn.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\Extensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Filter\FilterBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Filter\FilterCommon.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Filter\FilterItem.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Filter\FilterItemDate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Filter\FilterState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\Helpers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\JsonConvert.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\LanguageDictionary.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\Loc.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\NotifyProperty.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\ScrollToTopBehavior.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\Generic\VisualTreeHelpers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datetimes\CalendarDatePickers\CalendarDatePicker.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datetimes\CalendarWithClocks\CalendarWithClock.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datetimes\Clocks\ClockBase.cs" />
@@ -106,11 +123,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Boxs\Password\PasswordBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Datas\DataGrids\DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

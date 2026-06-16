@@ -14,6 +14,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Control\Button\ButtonAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\CacheSlot.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\ControlAppearance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\DataGrid\TranslatableElements.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Control\DataGrid\TranslateLanguage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\AddLocationHint.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\BranchItem.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Control\Dragablz\DropZoneLocation.cs" />
