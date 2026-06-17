@@ -35,12 +35,12 @@ namespace Contellation.Custom.Controls
         /// <summary>
         /// Gets or sets the number of decimal places to be rounded when converting from Text to Value.
         /// </summary>
-        public int MaxDecimalPlaces
+        public int DecimalPlaces
         {
-            get { return (int)GetValue(MaxDecimalPlacesProperty); }
-            set { SetValue(MaxDecimalPlacesProperty, value); }
+            get { return (int)GetValue(DecimalPlacesProperty); }
+            set { SetValue(DecimalPlacesProperty, value); }
         }
-        public static readonly DependencyProperty MaxDecimalPlacesProperty = DependencyProperty.Register(nameof(MaxDecimalPlaces), typeof(int),
+        public static readonly DependencyProperty DecimalPlacesProperty = DependencyProperty.Register(nameof(DecimalPlaces), typeof(int),
             typeof(NumberBox), new PropertyMetadata(6));
 
         /// <summary>
@@ -280,7 +280,7 @@ namespace Contellation.Custom.Controls
         {
             var newText = string.Empty;
 
-            if (Value is not null && NumberFormatter is not null) { newText = NumberFormatter.FormatDouble(Math.Round((double)Value, MaxDecimalPlaces)); }
+            if (Value is not null && NumberFormatter is not null) { newText = NumberFormatter.FormatDouble(Math.Round((double)Value, DecimalPlaces)); }
 
             SetCurrentValue(TextProperty, newText);
         }

@@ -49,7 +49,8 @@
                                 <ContentControl x:Name="ControlIconLeft" Grid.Column="0" Margin="10 8 0 0" Padding="0"
                                                 VerticalAlignment="Top" FontSize="16" IsTabStop="False"
                                                 Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
-                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{TemplateBinding Foreground}" />
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" 
+                                                Foreground="{TemplateBinding Foreground}" />
                                 <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
                                     <controls:PassiveScrollViewer x:Name="PART_ContentHost" Style="{DynamicResource DefaultTextBoxScrollViewerStyle}" 
                                                                   TextElement.Foreground="{TemplateBinding Foreground}" />
@@ -162,8 +163,6 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource DefaultUiNumberBoxStyle}" TargetType="{x:Type controls:NumberBox}" />
-
     <Style x:Key="UiNumberBoxStyle" TargetType="{x:Type controls:NumberBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultControlContextMenu}" />
@@ -194,7 +193,7 @@
                                 Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
                                 Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}">
-                            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid Background="Aqua" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -207,8 +206,7 @@
                                 <ContentControl x:Name="ControlIconLeft" Grid.Column="0" Margin="10 8 0 0" Padding="0"
                                                 VerticalAlignment="Top" FontSize="16" IsTabStop="False"
                                                 Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
-                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" 
-                                                Foreground="{TemplateBinding Foreground}" />
+                                                FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}" Foreground="{TemplateBinding Foreground}" />
                                 <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
                                     <controls:PassiveScrollViewer x:Name="PART_ContentHost" Style="{DynamicResource DefaultTextBoxScrollViewerStyle}" 
                                                                   TextElement.Foreground="{TemplateBinding Foreground}" />
@@ -226,21 +224,21 @@
                                                  Foreground="{DynamicResource Col_000000}">
                                 </controls:Button>
 
-                                <Grid Grid.Column="3">
+                                <Grid Background="Yellow" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
                                     <controls:Button x:Name="InlineIncrementButton" Grid.Row="0" Width="24" Height="12" Margin="0,3,2,0" Padding="0,0,0,0"
-                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
+                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="BurlyWood" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="increment"
                                                  Content="&#xf077;" FontFamily="{StaticResource FontAwesome_Solid}" FontSize="8"
                                                  Foreground="{DynamicResource Col_000000}">
                                     </controls:Button>
                                     <controls:Button x:Name="InlineDecrementButton" Grid.Row="1" Width="24" Height="12" Margin="0,2,2,3" Padding="0,0,0,0"
-                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
+                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="BurlyWood" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="decrement"
                                                  Content="&#xf078;" FontFamily="{StaticResource FontAwesome_Solid}" FontSize="8"
@@ -331,5 +329,6 @@
         </Setter>
     </Style>
 
+    <Style BasedOn="{StaticResource UiNumberBoxStyle}" TargetType="{x:Type controls:NumberBox}" />
 
 </ResourceDictionary>

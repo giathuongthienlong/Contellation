@@ -10,8 +10,9 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-
-        <ui:DateTimePicker Height="50" Width="200" Margin="10" />
+        
+        <ui:NumberBox Style="{StaticResource UiNumberBoxStyle}" Width="280" Height="50" Margin="10" />
+        <!--<ui:CurrencyBox CurrencySymbol="$" DecimalPlaces="2" Width="280" Height="50" Margin="10" />-->
         <!--<ui:CalendarDatePicker Height="50" />-->
         <!--<ui:Button Content="a" ui:Element.Icon ="&#xf073;" 
                    ui:Element.FontFamilyIcon="{StaticResource FontAwesome_Solid_Pro}" />-->

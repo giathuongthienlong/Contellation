@@ -80,5 +80,11 @@ namespace Contellation.Custom.Controls
             }
         }
 
+        public static readonly DependencyProperty CornerRadiusProperty = DependencyProperty.RegisterAttached(nameof(CornerRadius),
+            typeof(CornerRadius), typeof(Element), new FrameworkPropertyMetadata(default(CornerRadius), FrameworkPropertyMetadataOptions.AffectsMeasure | FrameworkPropertyMetadataOptions.AffectsRender));
+
+        public static void SetCornerRadius(DependencyObject element, CornerRadius value) => element.SetValue(CornerRadiusProperty, value);
+        public static CornerRadius GetCornerRadius(DependencyObject element) => (CornerRadius)element.GetValue(CornerRadiusProperty);
+
     }
 }

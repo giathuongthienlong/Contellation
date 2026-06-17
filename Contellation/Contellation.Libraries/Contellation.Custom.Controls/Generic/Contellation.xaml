@@ -6,6 +6,7 @@
 
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Bars/TitleBars/TitleBar.xaml" />
 
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Currency/CurrencyBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Number/NumberBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Password/PasswordBox.xaml" />
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Text/TextBox.xaml" />

@@ -16,8 +16,8 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Attachs\Element.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Borders\ClientArea.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boxs\CurrencyBoxs\CurrencyBox.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Boxs\CurrencyBoxs\KeyValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Currency\CurrencyBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Currency\KeyValidator.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\NumberBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Password\PasswordBox.cs" />
@@ -121,7 +121,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Windows\WindowBackdrop.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)Boxs\CurrencyBoxs\CurrencyBox.xaml">
+    <Page Include="$(MSBuildThisFileDirectory)Boxs\Currency\CurrencyBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
