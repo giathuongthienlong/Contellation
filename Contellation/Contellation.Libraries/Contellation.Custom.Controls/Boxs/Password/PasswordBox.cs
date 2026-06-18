@@ -1,273 +1,218 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Contellation.Custom.Controls
 {
     /// <summary>
-    /// The modified password control.
+    /// PasswordBox tùy chỉnh của Contellation, hỗ trợ Reveal Password, Placeholder, Icon, Clear Button.
     /// </summary>
-    public class PasswordBox : TextBox
+    public partial class PasswordBox : TextBox
     {
-        private bool _lockUpdatingContents;
+        private readonly PasswordHelper _passwordHelper;
+        private bool _isUpdating;
 
-        /// <summary>
-        /// Gets or sets currently typed text represented by asterisks.
-        /// </summary>
+        #region Dependency Properties
+
+        public static readonly DependencyProperty PasswordProperty =
+            DependencyProperty.Register(nameof(Password), typeof(string),
+                typeof(PasswordBox), new PropertyMetadata(string.Empty, OnPasswordChanged));
+
+        public static readonly DependencyProperty PasswordCharProperty =
+            DependencyProperty.Register(nameof(PasswordChar), typeof(char),
+                typeof(PasswordBox), new PropertyMetadata('●', OnPasswordCharChanged));
+
+        public static readonly DependencyProperty IsPasswordRevealedProperty =
+            DependencyProperty.Register(nameof(IsPasswordRevealed), typeof(bool),
+                typeof(PasswordBox), new PropertyMetadata(false, OnIsPasswordRevealedChanged));
+
+        public static readonly DependencyProperty RevealButtonEnabledProperty =
+            DependencyProperty.Register(nameof(RevealButtonEnabled), typeof(bool),
+                typeof(PasswordBox), new PropertyMetadata(true));
+
+        public static readonly RoutedEvent PasswordChangedEvent =
+            EventManager.RegisterRoutedEvent(nameof(PasswordChanged), RoutingStrategy.Bubble,
+                typeof(RoutedEventHandler), typeof(PasswordBox));
+
         public string Password
         {
-            get { return (string)GetValue(PasswordProperty); }
-            set { SetValue(PasswordProperty, value); }
-        }
-        public static readonly DependencyProperty PasswordProperty = DependencyProperty.Register(nameof(Password), typeof(string),
-            typeof(PasswordBox), new PropertyMetadata(string.Empty, OnPasswordChanged));
-
-        /// <summary>
-        /// Called when <see cref="Password"/> is changed.
-        /// </summary>
-        private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is not PasswordBox control) { return; }
-
-            control.OnPasswordChanged();
-        }
-        /// <summary>
-        /// Is called when <see cref="Password"/> property is changing.
-        /// </summary>
-        protected virtual void OnPasswordChanged()
-        {
-            UpdateTextContents(false);
+            get => (string)GetValue(PasswordProperty);
+            set => SetValue(PasswordProperty, value);
         }
 
-        /// <summary>
-        /// Gets or sets character used to mask the password.
-        /// </summary>
         public char PasswordChar
         {
-            get { return (char)GetValue(PasswordCharProperty); }
-            set { SetValue(PasswordCharProperty, value); }
-        }
-        public static readonly DependencyProperty PasswordCharProperty = DependencyProperty.Register(nameof(PasswordChar), typeof(char),
-            typeof(PasswordBox), new PropertyMetadata('●', OnPasswordCharChanged));
-
-        /// <summary>
-        /// Is called when <see cref="PasswordChar"/> property is changing.
-        /// </summary>
-        protected virtual void OnPasswordCharChanged()
-        {
-            /// If password is currently revealed,
-            /// do not replace displayed text with asterisks
-            if (IsPasswordRevealed) { return; }
-
-            _lockUpdatingContents = true;
-
-            SetCurrentValue(TextProperty, new string(PasswordChar, Password.Length));
-
-            _lockUpdatingContents = false;
-        }
-        /// <summary>
-        /// Called if the character is changed in the during the run.
-        /// </summary>
-        private static void OnPasswordCharChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is not PasswordBox control) { return; }
-
-            control.OnPasswordCharChanged();
+            get => (char)GetValue(PasswordCharProperty);
+            set => SetValue(PasswordCharProperty, value);
         }
 
-        /// <summary>
-        /// Gets a value indicating whether the password is revealed.
-        /// </summary>
         public bool IsPasswordRevealed
         {
-            get { return (bool)GetValue(IsPasswordRevealedProperty); }
-            private set { SetValue(IsPasswordRevealedProperty, value); }
-        }
-        public static readonly DependencyProperty IsPasswordRevealedProperty = DependencyProperty.Register(nameof(IsPasswordRevealed), typeof(bool),
-            typeof(PasswordBox), new PropertyMetadata(false, OnIsPasswordRevealedChanged));
-
-        /// <summary>
-        /// Called if the reveal mode is changed in the during the run.
-        /// </summary>
-        private static void OnIsPasswordRevealedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is not PasswordBox control) { return; }
-
-            control.OnPasswordRevealModeChanged();
-        }
-        protected virtual void OnPasswordRevealModeChanged()
-        {
-            _lockUpdatingContents = true;
-
-            SetCurrentValue(TextProperty, IsPasswordRevealed ? Password : new string(PasswordChar, Password.Length));
-
-            _lockUpdatingContents = false;
+            get => (bool)GetValue(IsPasswordRevealedProperty);
+            private set => SetValue(IsPasswordRevealedProperty, value);
         }
 
-        public bool IsSafeEnabled
-        {
-            get { return (bool)GetValue(IsSafeEnabledProperty); }
-            set { SetValue(IsSafeEnabledProperty, value); }
-        }
-        public static readonly DependencyProperty IsSafeEnabledProperty = DependencyProperty.Register(nameof(IsSafeEnabled), typeof(bool),
-            typeof(PasswordBox), new PropertyMetadata(true, OnIsSafeEnabledChanged));
-
-        private static void OnIsSafeEnabledChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var p = (PasswordBox)d;
-            p.SetCurrentValue(UnsafePasswordProperty, !(bool)e.NewValue ? p.Password : string.Empty);
-        }
-
-        public string UnsafePassword
-        {
-            get { return (string)GetValue(UnsafePasswordProperty); }
-            set { SetValue(UnsafePasswordProperty, value); }
-        }
-        public static readonly DependencyProperty UnsafePasswordProperty = DependencyProperty.Register(nameof(UnsafePassword), typeof(string),
-            typeof(PasswordBox), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnUnsafePasswordChanged));
-
-        private static void OnUnsafePasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            var p = (PasswordBox)d;
-            if (!p.IsSafeEnabled)
-            {
-                p.Password = e.NewValue != null ? e.NewValue.ToString() : string.Empty;
-            }
-        }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether whether to display the  password reveal button.
-        /// </summary>
         public bool RevealButtonEnabled
         {
-            get { return (bool)GetValue(RevealButtonEnabledProperty); }
-            set { SetValue(RevealButtonEnabledProperty, value); }
+            get => (bool)GetValue(RevealButtonEnabledProperty);
+            set => SetValue(RevealButtonEnabledProperty, value);
         }
-        public static readonly DependencyProperty RevealButtonEnabledProperty = DependencyProperty.Register(nameof(RevealButtonEnabled), typeof(bool),
-            typeof(PasswordBox), new PropertyMetadata(true));
 
-        /// <summary>
-        /// Event fired from this text box when its inner content
-        /// has been changed.
-        /// </summary>
-        /// <remarks>
-        /// It is redirected from inner TextContainer.Changed event.
-        /// </remarks>
         public event RoutedEventHandler PasswordChanged
         {
             add => AddHandler(PasswordChangedEvent, value);
             remove => RemoveHandler(PasswordChangedEvent, value);
         }
-        public static readonly RoutedEvent PasswordChangedEvent = EventManager.RegisterRoutedEvent(nameof(PasswordChanged), RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler), typeof(PasswordBox));
+
+        #endregion
+
+        public static readonly RoutedCommand ToggleRevealCommand = new RoutedCommand("ToggleReveal", typeof(PasswordBox));
 
         public PasswordBox()
         {
-            _lockUpdatingContents = false;
+            //CommandBindings.Add(new CommandBinding(ToggleRevealCommand, (s, e) => ToggleReveal()));
+            _passwordHelper = new PasswordHelper(this);
         }
 
-        /// <inheritdoc />
+        #region Event Handlers
+
+        private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is PasswordBox pb) pb.UpdateTextContents();
+        }
+
+        private static void OnPasswordCharChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is PasswordBox pb && !pb.IsPasswordRevealed)
+                pb.UpdateMaskedText();
+        }
+
+        private static void OnIsPasswordRevealedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is PasswordBox pb) pb.UpdateTextContents();
+        }
+
+        #endregion
+
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
-            UpdateTextContents(true);
-
-            if (_lockUpdatingContents) { base.OnTextChanged(e); }
-            else
+            if (_isUpdating)
             {
-                if (PlaceholderEnabled && Text.Length > 0) { SetCurrentValue(PlaceholderEnabledProperty, false); }
-
-                if (!PlaceholderEnabled && Text.Length < 1) { SetCurrentValue(PlaceholderEnabledProperty, true); }
-
-                OnClearButtonClick();
-            }
-        }
-
-        /// <summary>
-        /// Triggered by clicking a button in the control template.
-        /// </summary>
-        /// <param name="parameter">Additional parameters.</param>
-        protected override void OnTemplateButtonClick(string? parameter)
-        {
-            System.Diagnostics.Debug.WriteLine($"INFO: {typeof(PasswordBox)} button clicked with param: {parameter}", "Core.Libraries.WPF.PasswordBox");
-
-            switch (parameter)
-            {
-                case "reveal":
-                    SetCurrentValue(IsPasswordRevealedProperty, !IsPasswordRevealed);
-                    _ = Focus();
-                    CaretIndex = Text.Length;
-                    break;
-                default:
-                    base.OnTemplateButtonClick(parameter);
-                    break;
-            }
-        }
-
-        private void UpdateTextContents(bool isTriggeredByTextInput)
-        {
-            if (_lockUpdatingContents) { return; }
-
-            if (IsPasswordRevealed)
-            {
-                if (Password == Text) { return; }
-
-                _lockUpdatingContents = true;
-
-                if (isTriggeredByTextInput) { SetCurrentValue(PasswordProperty, Text); }
-                else
-                {
-                    SetCurrentValue(TextProperty, Password);
-                    CaretIndex = Text.Length;
-                }
-
-                RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
-
-                _lockUpdatingContents = false;
-
+                base.OnTextChanged(e);
                 return;
             }
-
-            var caretIndex = CaretIndex;
-            var selectionIndex = SelectionStart;
-            var currentPassword = Password;
-            var newPasswordValue = currentPassword;
-
-            if (isTriggeredByTextInput)
+            // Chỉ xử lý khi người dùng đang gõ (không lock)
+            if (IsPasswordRevealed)
             {
-                var currentText = Text;
-                var newCharacters = currentText.Replace(PasswordChar.ToString(), string.Empty);
-
-                if (currentText.Length < currentPassword.Length)
+                UpdateWithLock(() =>
                 {
-                    newPasswordValue = currentPassword.Remove(selectionIndex, currentPassword.Length - currentText.Length);
-                }
-
-                if (newCharacters.Length > 1)
+                    SetCurrentValue(PasswordProperty, Text);
+                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
+                });
+            }
+            else
+            {
+                // Chế độ ẩn mật khẩu
+                UpdateWithLock(() =>
                 {
-                    var index = currentText.IndexOf(newCharacters[0]);
+                    // Cập nhật Password từ input
+                    string newPassword = _passwordHelper.GetNewPassword(e.Changes);
+                    SetCurrentValue(PasswordProperty, newPassword);
 
-                    newPasswordValue = index > newPasswordValue.Length - 1 ? newPasswordValue + newCharacters : newPasswordValue.Insert(index, newCharacters);
-                }
-                else
-                {
-                    for (int i = 0; i < currentText.Length; i++)
-                    {
-                        if (currentText[i] == PasswordChar) { continue; }
+                    // Hiển thị mask
+                    string masked = new string(PasswordChar, newPassword?.Length ?? 0);
+                    SetCurrentValue(TextProperty, masked);
 
-                        newPasswordValue = currentText.Length == newPasswordValue.Length ? newPasswordValue.Remove(i, 1).Insert(i, currentText[i].ToString()) : newPasswordValue.Insert(i, currentText[i].ToString());
-                    }
-                }
+                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
+                });
             }
 
-            _lockUpdatingContents = true;
+            SetPlaceholderTextVisibility();
+            RevealClearButton();
 
-            SetCurrentValue(TextProperty, new string(PasswordChar, newPasswordValue.Length));
-            SetCurrentValue(PasswordProperty, newPasswordValue);
-            CaretIndex = caretIndex;
-
-            RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
-
-            _lockUpdatingContents = false;
+            base.OnTextChanged(e);
         }
 
+        protected override void OnTemplateButtonClick(string? parameter)
+        {
+            if (parameter == "reveal")
+            {
+                SetCurrentValue(IsPasswordRevealedProperty, !IsPasswordRevealed);
+                Focus();
+                CaretIndex = Text.Length;
+            }
+            else
+            {
+                base.OnTemplateButtonClick(parameter);
+            }
+        }
+
+        private void UpdateTextContents()
+        {
+            if (IsPasswordRevealed)
+            {
+                HandleRevealedMode();
+            }
+            else
+            {
+                HandleHiddenMode();
+            }
+        }
+
+        private void HandleRevealedMode()
+        {
+            if (Password != Text)
+            {
+                UpdateWithLock(() =>
+                {
+                    SetCurrentValue(PasswordProperty, Text);
+                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
+                });
+            }
+        }
+
+        private void HandleHiddenMode()
+        {
+            UpdateWithLock(() =>
+            {
+                string maskedText = new string(PasswordChar, Password?.Length ?? 0);
+                SetCurrentValue(TextProperty, maskedText);
+            });
+        }
+
+        private void UpdateMaskedText()
+        {
+            UpdateWithLock(() =>
+            {
+                SetCurrentValue(TextProperty, new string(PasswordChar, Password?.Length ?? 0));
+            });
+        }
+
+        private void UpdateWithLock(Action action)
+        {
+            _isUpdating = true;
+            try
+            {
+                action();
+            }
+            finally
+            {
+                _isUpdating = false;
+            }
+            //action();
+            _isUpdating = false;
+        }
+
+
+
+        private void SetPlaceholderTextVisibility()
+        {
+            // Sử dụng Attached Property nếu có
+        }
+
+        private void RevealClearButton()
+        {
+            // Logic ClearButton nếu cần
+        }
     }
 }

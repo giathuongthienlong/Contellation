@@ -10,4 +10,6 @@
     <converters:EmptyStringToCollapsedConverter x:Key="EmptyStringToCollapsedConverter" />
     <converters:NullOrEmptyToCollapsedConverter x:Key="NullOrEmptyToCollapsedConverter" />
 
+    <converters:RevealIconConverter x:Key="RevealIconConverter" />
+
 </ResourceDictionary>

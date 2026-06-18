@@ -9,7 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Text/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="DefaultUiNumberBoxStyle" TargetType="{x:Type controls:NumberBox}">
+    <!--<Style x:Key="DefaultUiNumberBoxStyle" TargetType="{x:Type controls:NumberBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultControlContextMenu}" />
         <Setter Property="Foreground" Value="{DynamicResource Col_FFFFFF}" />
@@ -27,7 +27,7 @@
         <Setter Property="Padding" Value="10 8 10 7" />
         <Setter Property="Border.CornerRadius" Value="4" />
         <Setter Property="ClearButtonEnabled" Value="True" />
-        <Setter Property="IconPlacement" Value="Left" />
+        <Setter Property="controls:Element.IconPlacement" Value="Left" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
@@ -61,7 +61,7 @@
                                                Text="{TemplateBinding PlaceholderText}" />
                                 </Grid>
 
-                                <!--  Buttons and Icons have no padding from the main element to allow absolute positions if height is larger than the text entry zone  -->
+                                --><!--  Buttons and Icons have no padding from the main element to allow absolute positions if height is larger than the text entry zone  --><!--
                                 <controls:Button x:Name="ClearButton" Grid.Column="2" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Arrow" IsTabStop="False"
                                                  Background="Transparent" BorderBrush="Transparent"
@@ -90,12 +90,12 @@
                                                 Foreground="{TemplateBinding Foreground}" />
                             </Grid>
                         </Border>
-                        <!--  The Accent Border is a separate element so that changes to the border thickness do not affect the position of the element  -->
+                        --><!--  The Accent Border is a separate element so that changes to the border thickness do not affect the position of the element  --><!--
                         <Border x:Name="AccentBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                 BorderBrush="#B6F6F0" BorderThickness="0 0 0 1" CornerRadius="{TemplateBinding Border.CornerRadius}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="PlaceholderEnabled" Value="False">
+                        <Trigger Property="controls:Element.PlaceholderEnabled" Value="False">
                             <Setter TargetName="PlaceholderTextBox" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ShowClearButton" Value="False">
@@ -114,11 +114,11 @@
                             <Setter TargetName="InlineIncrementButton" Property="Visibility" Value="Visible" />
                             <Setter TargetName="InlineDecrementButton" Property="Visibility" Value="Visible" />
                         </Trigger>
-                        <Trigger Property="IconPlacement" Value="Left">
+                        <Trigger Property="controls:Element.IconPlacement" Value="Left">
                             <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="IconPlacement" Value="Right">
+                        <Trigger Property="controls:Element.IconPlacement" Value="Right">
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
                         </Trigger>
@@ -184,7 +184,7 @@
         <Setter Property="Padding" Value="10 8 10 7" />
         <Setter Property="Border.CornerRadius" Value="4" />
         <Setter Property="ClearButtonEnabled" Value="True" />
-        <Setter Property="IconPlacement" Value="Left" />
+        <Setter Property="controls:Element.IconPlacement" Value="Left" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
@@ -203,7 +203,7 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
-                                    <!--<ColumnDefinition Width="Auto" />-->
+                                    --><!--<ColumnDefinition Width="Auto" />--><!--
                                 </Grid.ColumnDefinitions>
 
                                 <ContentControl x:Name="ControlIconLeft" Grid.Column="0" Margin="10 8 0 0" Padding="0"
@@ -217,7 +217,7 @@
                                                Text="{TemplateBinding PlaceholderText}" />
                                 </Grid>
 
-                                <!-- Các nút và biểu tượng không có khoảng đệm so với phần tử chính để cho phép định vị tuyệt đối nếu chiều cao lớn hơn vùng nhập văn bản.  -->
+                                --><!-- Các nút và biểu tượng không có khoảng đệm so với phần tử chính để cho phép định vị tuyệt đối nếu chiều cao lớn hơn vùng nhập văn bản.  --><!--
                                 <controls:Button x:Name="ClearButton" Grid.Column="2" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Arrow" IsTabStop="False"
                                                  Background="Transparent" BorderBrush="Transparent"
@@ -255,13 +255,13 @@
                                                 Foreground="{TemplateBinding Foreground}" />
                             </Grid>
                         </Border>
-                        <!--  The Accent Border is a separate element so that changes to the border thickness do not affect the position of the element  -->
+                        --><!--  The Accent Border is a separate element so that changes to the border thickness do not affect the position of the element  --><!--
                         <Border x:Name="AccentBorder" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                                 BorderBrush="#2D3236"
                                 BorderThickness="0 0 0 1" CornerRadius="{TemplateBinding Border.CornerRadius}" />
                     </Grid>
                     <ControlTemplate.Triggers>
-                        <Trigger Property="PlaceholderEnabled" Value="False">
+                        <Trigger Property="controls:Element.PlaceholderEnabled" Value="False">
                             <Setter TargetName="PlaceholderTextBox" Property="Visibility" Value="Collapsed" />
                         </Trigger>
                         <Trigger Property="ShowClearButton" Value="False">
@@ -280,11 +280,11 @@
                             <Setter TargetName="InlineIncrementButton" Property="Visibility" Value="Visible" />
                             <Setter TargetName="InlineDecrementButton" Property="Visibility" Value="Visible" />
                         </Trigger>
-                        <Trigger Property="IconPlacement" Value="Left">
+                        <Trigger Property="controls:Element.IconPlacement" Value="Left">
                             <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
                         </Trigger>
-                        <Trigger Property="IconPlacement" Value="Right">
+                        <Trigger Property="controls:Element.IconPlacement" Value="Right">
                             <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                             <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
                         </Trigger>
@@ -332,6 +332,6 @@
         </Setter>
     </Style>
 
-    <Style BasedOn="{StaticResource UiNumberBoxStyle}" TargetType="{x:Type controls:NumberBox}" />
+    <Style BasedOn="{StaticResource UiNumberBoxStyle}" TargetType="{x:Type controls:NumberBox}" />-->
 
 </ResourceDictionary>

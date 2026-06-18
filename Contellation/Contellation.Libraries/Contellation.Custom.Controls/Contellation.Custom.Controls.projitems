@@ -20,6 +20,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\NumberBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Number\ValidateNumberFormatter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Password\PasswordBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Boxs\Password\PasswordHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Boxs\Text\TextBox.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Buttons\Normal\Button.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Datas\DataGrids\DataGrid.cs" />

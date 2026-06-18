@@ -1,5 +1,4 @@
 ﻿using Contellation.Custom.Enums;
-using Contellation.Custom.Enums.Control.Placements;
 using Contellation.Custom.Extensions.Inputs;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -16,40 +15,7 @@ namespace Contellation.Custom.Controls
     /// </summary>
     public class TextBox : System.Windows.Controls.TextBox
     {
-        /// <summary> 
-        /// Gets or sets which side the icon should be placed on.
-        /// </summary>
-        public HorizontalPlacement IconPlacement
-        {
-            get { return (HorizontalPlacement)GetValue(IconPlacementProperty); }
-            set { SetValue(IconPlacementProperty, value); }
-        }
-        public static readonly DependencyProperty IconPlacementProperty = DependencyProperty.Register(nameof(IconPlacement), 
-            typeof(HorizontalPlacement), typeof(TextBox), new PropertyMetadata(HorizontalPlacement.Left));
-
-        /// <summary> 
-        /// Gets or sets numbers pattern. 
-        /// </summary>
-        public string PlaceholderText
-        {
-            get { return (string)GetValue(PlaceholderTextProperty); }
-            set { SetValue(PlaceholderTextProperty, value); }
-        }
-        public static readonly DependencyProperty PlaceholderTextProperty = DependencyProperty.Register(nameof(PlaceholderText), typeof(string),
-            typeof(TextBox), new PropertyMetadata(string.Empty));
-
-        /// <summary> 
-        /// Gets or sets a value indicating whether to display the placeholder text. 
-        /// </summary>
-        public bool PlaceholderEnabled
-        {
-            get { return (bool)GetValue(PlaceholderEnabledProperty); }
-            set { SetValue(PlaceholderEnabledProperty, value); }
-        }
-        public static readonly DependencyProperty PlaceholderEnabledProperty = DependencyProperty.Register(nameof(PlaceholderEnabled), typeof(bool),
-            typeof(TextBox), new PropertyMetadata(true));
-
-        #region Clear Button (giữ nguyên)
+        #region Dependency Properties
 
         /// <summary> 
         /// Gets or sets a value indicating whether to enable the clear button.
@@ -72,7 +38,7 @@ namespace Contellation.Custom.Controls
         }
         public static readonly DependencyProperty ShowClearButtonProperty = DependencyProperty.Register(nameof(ShowClearButton), typeof(bool),
             typeof(TextBox), new PropertyMetadata(false));
-        
+
         #endregion
 
         /// <summary> 
@@ -138,7 +104,7 @@ namespace Contellation.Custom.Controls
         {
             if (d is TextBox tb) tb.RefreshMaskProvider();
         }
-        
+
         private void RefreshMaskProvider()
         {
             if (string.IsNullOrEmpty(Mask))
@@ -152,7 +118,7 @@ namespace Contellation.Custom.Controls
 
         protected override void OnTextChanged(TextChangedEventArgs e)
         {
-            base.OnTextChanged(e); 
+            base.OnTextChanged(e);
             UpdateStates();
         }
 
@@ -185,7 +151,7 @@ namespace Contellation.Custom.Controls
         /// <summary> 
         /// Triggered when the user clicks the clear text button. 
         /// </summary>
-        protected virtual void OnClearButtonClick() 
+        protected virtual void OnClearButtonClick()
         {
             SetCurrentValue(TextProperty, string.Empty);
             Focus();

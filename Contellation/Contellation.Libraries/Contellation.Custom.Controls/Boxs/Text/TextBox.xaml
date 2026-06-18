@@ -141,7 +141,7 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
                     BorderBrush="#2D3236" BorderThickness="0 0 0 1" CornerRadius="4" />
         </Grid>
         <ControlTemplate.Triggers>
-            <Trigger Property="PlaceholderEnabled" Value="False">
+            <Trigger Property="controls:Element.PlaceholderEnabled" Value="False">
                 <Setter TargetName="PlaceholderTextBox" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="ShowClearButton" Value="False">
@@ -152,11 +152,11 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
                 <Setter TargetName="ClearButton" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ClearButton" Property="Margin" Value="0" />
             </Trigger>
-            <Trigger Property="IconPlacement" Value="Left">
+            <Trigger Property="controls:Element.IconPlacement" Value="Left">
                 <Setter TargetName="ControlIconRight" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ControlIconRight" Property="Margin" Value="0" />
             </Trigger>
-            <Trigger Property="IconPlacement" Value="Right">
+            <Trigger Property="controls:Element.IconPlacement" Value="Right">
                 <Setter TargetName="ControlIconLeft" Property="Visibility" Value="Collapsed" />
                 <Setter TargetName="ControlIconLeft" Property="Margin" Value="0" />
             </Trigger>
@@ -242,7 +242,7 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
         <Setter Property="Padding" Value="10 8 10 7" />
         <Setter Property="Border.CornerRadius" Value="4" />
         <Setter Property="ClearButtonEnabled" Value="True" />
-        <Setter Property="IconPlacement" Value="Left" />
+        <Setter Property="controls:Element.IconPlacement" Value="Left" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Style.Triggers>

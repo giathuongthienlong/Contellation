@@ -1,4 +1,5 @@
-﻿using Contellation.Custom.Extensions.Inputs;
+﻿using Contellation.Custom.Enums.Control.Placements;
+using Contellation.Custom.Extensions.Inputs;
 using System.Collections;
 using System.Windows;
 using System.Windows.Controls;
@@ -8,11 +9,29 @@ namespace Contellation.Custom.Controls
 {
     public class Element
     {
+        #region
         /// <summary> Placeholder </summary>
         public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.RegisterAttached("Placeholder",
             typeof(string), typeof(Element), new FrameworkPropertyMetadata(default(string), FrameworkPropertyMetadataOptions.Inherits));
         public static void SetPlaceholder(DependencyObject element, string value) => element.SetValue(PlaceholderProperty, value);
         public static string GetPlaceholder(DependencyObject element) => (string)element.GetValue(PlaceholderProperty);
+
+        /// <summary>
+        /// Placeholder Enabled
+        /// </summary>
+        public static readonly DependencyProperty PlaceholderEnabledProperty = DependencyProperty.RegisterAttached("PlaceholderEnabled",
+            typeof(bool), typeof(Element), new PropertyMetadata(false));
+        public static void SetPlaceholderEnabled(DependencyObject element, bool value) => element.SetValue(PlaceholderEnabledProperty, value);
+        public static bool GetPlaceholderEnabled(DependencyObject element) => (bool)element.GetValue(PlaceholderEnabledProperty);
+
+        #endregion
+
+
+        /// <summary> Icon Placement </summary>
+        public static readonly DependencyProperty IconPlacementProperty = DependencyProperty.RegisterAttached("IconPlacement",
+            typeof(HorizontalPlacement), typeof(Element), new FrameworkPropertyMetadata(HorizontalPlacement.Left));
+        public static void SetIconPlacement(DependencyObject element, string value) => element.SetValue(IconPlacementProperty, value);
+        public static string GetIconPlacement(DependencyObject element) => (string)element.GetValue(IconPlacementProperty);
 
         /// <summary> Icon </summary>
         public static readonly DependencyProperty IconProperty = DependencyProperty.RegisterAttached("Icon",
