@@ -10,8 +10,8 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid>
-        
-        <ui:NumberBox  Width="280" Margin="10" />
+
+        <ui:NumberBox Width="280" Height="40" />
         <!--<ui:CurrencyBox CurrencySymbol="$" DecimalPlaces="2" Width="280" Height="50" Margin="10" />-->
         <!--<ui:CalendarDatePicker Height="50" />-->
         <!--<ui:Button Content="a" ui:Element.Icon ="&#xf073;" 

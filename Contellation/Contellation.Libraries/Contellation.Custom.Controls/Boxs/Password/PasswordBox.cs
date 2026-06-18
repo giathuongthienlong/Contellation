@@ -3,7 +3,6 @@ using System.Windows.Controls;
 
 namespace Contellation.Custom.Controls
 {
-
     /// <summary>
     /// The modified password control.
     /// </summary>

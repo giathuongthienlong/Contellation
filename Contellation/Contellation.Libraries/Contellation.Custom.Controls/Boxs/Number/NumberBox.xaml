@@ -1,18 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:controls="clr-namespace:Contellation.Custom.Controls">
+                    xmlns:controls="clr-namespace:Contellation.Custom.Controls"
+                    xmlns:conv="clr-namespace:Contellation.Custom.Converters">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Boxs/Text/TextBox.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Style x:Key="DefaultUiNumberBoxStyle" TargetType="{x:Type controls:NumberBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultControlContextMenu}" />
-        <Setter Property="Foreground" Value="{DynamicResource Col_2D3236}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource Col_2D3236}" />
-        <Setter Property="Background" Value="{DynamicResource Col_FFFFFF}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Col_2D3236}" />
+        <Setter Property="Foreground" Value="{DynamicResource Col_FFFFFF}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Col_FFFFFF}" />
+        <Setter Property="Background" Value="{DynamicResource Col_2D3236}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Col_FFFFFF}" />
         <Setter Property="BorderThickness" Value="1 1 1 0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -65,15 +68,15 @@
                                                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="clear"
                                                  Content="&#x58;" FontFamily="{StaticResource FontAwesome_Solid}"
-                                                 Foreground="{DynamicResource Col_000000}"/>
-
+                                                 Foreground="{DynamicResource Col_FFFFFF}">
+                                </controls:Button>
                                 <controls:Button x:Name="InlineIncrementButton" Grid.Column="3" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="increment"
                                                  Content="&#xf077;" FontFamily="{StaticResource FontAwesome_Solid}"
-                                                 Foreground="{DynamicResource Col_000000}"/>
-
+                                                 Foreground="{DynamicResource Col_FFFFFF}">
+                                </controls:Button>
                                 <controls:Button x:Name="InlineDecrementButton" Grid.Column="4" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
@@ -193,7 +196,7 @@
                                 Width="{TemplateBinding Width}" Height="{TemplateBinding Height}"
                                 Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="{TemplateBinding Border.CornerRadius}">
-                            <Grid Background="Aqua" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                            <Grid HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="*" />
@@ -214,36 +217,36 @@
                                                Text="{TemplateBinding PlaceholderText}" />
                                 </Grid>
 
-                                <!--  Buttons and Icons have no padding from the main element to allow absolute positions if height is larger than the text entry zone  -->
+                                <!-- Các nút và biểu tượng không có khoảng đệm so với phần tử chính để cho phép định vị tuyệt đối nếu chiều cao lớn hơn vùng nhập văn bản.  -->
                                 <controls:Button x:Name="ClearButton" Grid.Column="2" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" Cursor="Arrow" IsTabStop="False"
                                                  Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="clear"
                                                  Content="&#x58;" FontFamily="{StaticResource FontAwesome_Solid}"
-                                                 Foreground="{DynamicResource Col_000000}">
-                                </controls:Button>
+                                                 Foreground="{DynamicResource Col_000000}" MouseOverBackground="Gray" MouseOverBorderBrush="Transparent"/>
 
-                                <Grid Background="Yellow" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                                <Grid Grid.Column="3">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
 
                                     <controls:Button x:Name="InlineIncrementButton" Grid.Row="0" Width="24" Height="12" Margin="0,3,2,0" Padding="0,0,0,0"
-                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="BurlyWood" BorderBrush="Transparent"
-                                                 HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
+                                                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="increment"
                                                  Content="&#xf077;" FontFamily="{StaticResource FontAwesome_Solid}" FontSize="8"
-                                                 Foreground="{DynamicResource Col_000000}">
-                                    </controls:Button>
+                                                 Foreground="{DynamicResource Col_000000}" MouseOverBackground="Gray" MouseOverBorderBrush="Transparent"/>
+
                                     <controls:Button x:Name="InlineDecrementButton" Grid.Row="1" Width="24" Height="12" Margin="0,2,2,3" Padding="0,0,0,0"
-                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="BurlyWood" BorderBrush="Transparent"
+                                                 Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="decrement"
                                                  Content="&#xf078;" FontFamily="{StaticResource FontAwesome_Solid}" FontSize="8"
-                                                 Foreground="{DynamicResource Col_000000}">
-                                    </controls:Button>
+                                                 Foreground="{DynamicResource Col_000000}" MouseOverBackground="Gray" MouseOverBorderBrush="Transparent"/>
+
                                 </Grid>
 
                                 <ContentControl x:Name="ControlIconRight" Grid.Column="5" Margin="0 8 10 0" Padding="0" FontSize="16" IsTabStop="False" VerticalAlignment="Top"

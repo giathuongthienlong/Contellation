@@ -106,6 +106,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ResponsiveGrids\ResponsiveGrid.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scrolls\PassiveScrollViewer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Bars\TitleBars\TitleBar.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Test\Test.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Hicon.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\Internal\InternalNotifyIconManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)TrayIcon\NotifyIcon.cs" />
