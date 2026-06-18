@@ -4,6 +4,7 @@
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Generic/Style.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/Contellation.Custom;component/Buttons/Normal/Button.xaml" />
     </ResourceDictionary.MergedDictionaries>
     
     <Style x:Key="DefaultTextBoxStyle" TargetType="{x:Type TextBox}">
@@ -54,8 +55,7 @@
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsFocused" Value="True">
                             <Setter TargetName="AccentBorder" Property="BorderThickness" Value="0,0,0,2" />
-                            <Setter TargetName="AccentBorder" Property="BorderBrush" 
-                                    Value="{DynamicResource Col_ABCFF2}" />
+                            <Setter TargetName="AccentBorder" Property="BorderBrush" Value="{DynamicResource Col_ABCFF2}" />
                             <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource Col_FFFFFF}" />
                         </Trigger>
                         <MultiTrigger>
@@ -101,7 +101,7 @@
                     <ContentPresenter x:Name="ControlIconLeft" Grid.Column="0" Margin="10,0,0,0"
                                       Focusable="False" Visibility="Visible" VerticalAlignment="Center"
                                       Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
-                                      TextElement.FontFamily="controls:Element.FontFamilyIcon"
+                                      TextElement.FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                       TextElement.FontSize="{TemplateBinding FontSize}" TextElement.Foreground="{TemplateBinding Foreground}" />
 
                     <Grid Grid.Column="1" Margin="{TemplateBinding Padding}">
@@ -115,23 +115,16 @@
                                    FontSize="{TemplateBinding FontSize}" Text="{Binding Path=(controls:Element.Placeholder), RelativeSource={RelativeSource TemplatedParent}}" />
                     </Grid>
 
-                    <!--  Buttons and Icons have no padding from the main element to allow absolute positions if height is larger than the text entry zone  -->
-                    <controls:Button x:Name="ClearButton" Grid.Column="2" IsTabStop="False"
-                                     MinWidth="24" MinHeight="24"
-                                     Margin="0,0,4,0" Padding="0,0,0,0"
-                                     Cursor="Arrow" Foreground="{DynamicResource Col_FFFFFF}"
-                                     HorizontalAlignment="Center" VerticalAlignment="Center"
-                                     HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-                                     Background="Transparent" BorderBrush="Transparent"
-                                     Content="X" 
-                                     Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}">
-                        <!--Content="&#x58;" 
-FontFamily="{StaticResource FontAwesome_Solid}"-->
-                    </controls:Button>
-
+                    <!--  Các nút và biểu tượng không có khoảng đệm so với phần tử chính để cho phép định vị tuyệt đối nếu chiều cao lớn hơn vùng nhập văn bản.  -->
+                    <controls:Button x:Name="ClearButton" Margin="0,0,8,0" Grid.Column="2"
+                                     HorizontalAlignment="Right" VerticalAlignment="Center"
+                                     Style="{StaticResource ClearButtonStyle}"
+                                     Visibility="{Binding ShowClearButton, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                     Command="{Binding TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="clear" />
+                    
                     <ContentPresenter x:Name="ControlIconRight" Grid.Column="3" Margin="0 0 10 0" VerticalAlignment="Center"
                                       Content="{Binding Path=(controls:Element.Icon), RelativeSource={RelativeSource TemplatedParent}}" 
-                                      TextElement.FontFamily="controls:Element.FontFamilyIcon"
+                                      TextElement.FontFamily="{Binding Path=(controls:Element.FontFamilyIcon), RelativeSource={RelativeSource TemplatedParent}}"
                                       TextElement.FontSize="{TemplateBinding FontSize}"
                                       TextElement.Foreground="{TemplateBinding Foreground}" />
                 </Grid>
@@ -170,6 +163,8 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
                 <Setter TargetName="AccentBorder" Property="BorderThickness" Value="0,0,0,2" />
                 <Setter TargetName="AccentBorder" Property="BorderBrush" Value="{DynamicResource Col_2D3236}" />
                 <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource Col_00FFFFFF}" />
+                <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource AccentBrush}" />
+                <Setter TargetName="ContentBorder" Property="BorderThickness" Value="2" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -186,14 +181,20 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
             <Trigger Property="IsEnabled" Value="True">
                 <Setter Property="Cursor" Value="IBeam" />
             </Trigger>
+            <!-- Hover -->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource MouseOverBorderBrush}" />
+            </Trigger>
+
+            <!-- Disabled -->
             <Trigger Property="IsEnabled" Value="False">
-                <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource Col_A6A6A6}" />
+                <Setter TargetName="ContentBorder" Property="Background" Value="{DynamicResource DisabledBackgroundBrush}" />
                 <Setter TargetName="ContentBorder" Property="BorderBrush" Value="{DynamicResource Col_A6A6A6}" />
                 <Setter TargetName="AccentBorder" Property="BorderBrush" Value="{DynamicResource Col_A6A6A6}" />
                 <Setter TargetName="ControlIconLeft" Property="TextElement.Foreground" Value="{DynamicResource Col_A6A6A6}" />
                 <Setter TargetName="ControlIconRight" Property="TextElement.Foreground" Value="{DynamicResource Col_A6A6A6}" />
                 <Setter TargetName="PlaceholderTextBox" Property="Foreground" Value="{DynamicResource Col_A6A6A6}" />
-                <Setter Property="Foreground" Value="{DynamicResource Col_2D3236}" />
+                <Setter Property="Foreground" Value="{DynamicResource DisabledForegroundBrush}" />
                 <Setter Property="ClearButtonEnabled" Value="False" />
             </Trigger>
         </ControlTemplate.Triggers>
@@ -220,6 +221,7 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
         </Grid>
     </ControlTemplate>
 
+    <!-- Style chính cho TextBox -->
     <Style x:Key="DefaultUiTextBoxStyle" TargetType="{x:Type controls:TextBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultControlContextMenu}" />
@@ -245,6 +247,10 @@ FontFamily="{StaticResource FontAwesome_Solid}"-->
         <Setter Property="controls:Element.IconPlacement" Value="Left" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="OverridesDefaultStyle" Value="True" />
+
+        <Setter Property="controls:Element.IconPlacement" Value="Left" />
+        <Setter Property="ClearButtonEnabled" Value="True" />
+        <Setter Property="controls:Element.CornerRadius" Value="4" />
         <Style.Triggers>
             <Trigger Property="IsTextSelectionEnabled" Value="False">
                 <Setter Property="Template" Value="{StaticResource DefaultUiTextBoxControlTemplate}" />

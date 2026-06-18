@@ -8,11 +8,6 @@ using System.Windows.Input;
 
 namespace Contellation.Custom.Controls
 {
-    /// <summary>
-    /// Extended <see cref="System.Windows.Controls.TextBox"/> 
-    /// with additional parameters like 
-    /// <see cref="PlaceholderText"/>.
-    /// </summary>
     public class TextBox : System.Windows.Controls.TextBox
     {
         #region Dependency Properties
@@ -107,13 +102,9 @@ namespace Contellation.Custom.Controls
 
         private void RefreshMaskProvider()
         {
-            if (string.IsNullOrEmpty(Mask))
-            {
-                _maskProvider = null;
-                return;
-            }
-
-            _maskProvider = new MaskedTextProvider(Mask) { PromptChar = PromptChar };
+            _maskProvider = string.IsNullOrEmpty(Mask)
+                 ? null
+                 : new MaskedTextProvider(Mask) { PromptChar = PromptChar };
         }
 
         protected override void OnTextChanged(TextChangedEventArgs e)
@@ -126,7 +117,6 @@ namespace Contellation.Custom.Controls
         protected override void OnGotFocus(RoutedEventArgs e)
         {
             base.OnGotFocus(e);
-
             CaretIndex = Text.Length;
             UpdateStates();
         }
@@ -136,15 +126,12 @@ namespace Contellation.Custom.Controls
         {
             base.OnLostFocus(e);
             UpdateStates();
-
-            //HideClearButton();
         }
 
         private void UpdateStates()
         {
             bool shouldShowClear = ClearButtonEnabled && IsKeyboardFocusWithin && !string.IsNullOrEmpty(Text);
             SetValue(ShowClearButtonProperty, shouldShowClear);
-            //SetValue(ShowClearButtonProperty, ClearButtonEnabled && IsKeyboardFocusWithin && !string.IsNullOrEmpty(Text));
         }
 
 
@@ -163,8 +150,9 @@ namespace Contellation.Custom.Controls
         protected virtual void OnTemplateButtonClick(string? parameter)
         {
             Debug.WriteLine($"INFO: {typeof(TextBox)} button clicked", "Contellation.Custom.Controls.TextBox");
-
-            OnClearButtonClick();
+            
+            if (parameter == "clear")
+                OnClearButtonClick();
         }
 
         // ==================== MASKED INPUT LOGIC ====================
