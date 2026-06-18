@@ -14,6 +14,12 @@
     <SolidColorBrush x:Key="MouseOverBorderBrush" Color="#FF6B6B" />
     <SolidColorBrush x:Key="MouseOverBackgroundBrush" Color="#FFF0F0F0" />
 
+    <SolidColorBrush x:Key="Col_0F000000" Color="#0F000000" />
+    <SolidColorBrush x:Key="Col_5C000000" Color="#5C000000" />
+    <SolidColorBrush x:Key="Col_9E000000" Color="#9E000000" />
+    <SolidColorBrush x:Key="Col_80F9F9F9" Color="#80F9F9F9" />
+    <SolidColorBrush x:Key="Col_4DF9F9F9" Color="#4DF9F9F9" />
+
     <!-- Disabled State -->
     <SolidColorBrush x:Key="DisabledBackgroundBrush" Color="#FFF5F5F5" />
     <SolidColorBrush x:Key="DisabledForegroundBrush" Color="#FFAAAAAA" />

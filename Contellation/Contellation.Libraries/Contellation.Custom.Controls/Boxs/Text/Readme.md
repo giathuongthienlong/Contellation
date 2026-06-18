@@ -20,7 +20,7 @@
 ### 1. Khai báo namespace
 
 ```xml
-xmlns:ui="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom.Controls"
+xmlns:ui="clr-namespace:Contellation.Custom.Controls;assembly=Contellation.Custom"
 ```
 
 ### 2. Ví dụ cơ bản

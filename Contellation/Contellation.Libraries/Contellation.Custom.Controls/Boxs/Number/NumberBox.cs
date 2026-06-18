@@ -36,14 +36,6 @@ namespace Contellation.Custom.Controls
         public static readonly DependencyProperty DecimalPlacesProperty = DependencyProperty.Register(nameof(DecimalPlaces), 
             typeof(int), typeof(NumberBox), new PropertyMetadata(0, OnFormatChanged));
 
-        public string CurrencySymbol
-        {
-            get => (string)GetValue(CurrencySymbolProperty);
-            set => SetValue(CurrencySymbolProperty, value);
-        }
-        public static readonly DependencyProperty CurrencySymbolProperty = DependencyProperty.Register(nameof(CurrencySymbol), 
-            typeof(string), typeof(NumberBox), new PropertyMetadata(string.Empty, OnFormatChanged));
-
         public double SmallChange
         {
             get => (double)GetValue(SmallChangeProperty);
@@ -175,14 +167,14 @@ namespace Contellation.Custom.Controls
             if (Value.HasValue)
             {
                 string format = DecimalPlaces > 0 ? $"N{DecimalPlaces}" : "N0";
-                string formatted = Value.Value.ToString(format, CultureInfo.CurrentCulture);
-                //Text = Value.Value.ToString(format, CultureInfo.CurrentCulture);
+                //string formatted = Value.Value.ToString(format, CultureInfo.CurrentCulture);
+                Text = Value.Value.ToString(format, CultureInfo.CurrentCulture);
 
-                // Thêm Currency Symbol (nếu có)
-                if (!string.IsNullOrEmpty(CurrencySymbol))
-                    Text = $"{formatted} {CurrencySymbol}";
-                else
-                    Text = formatted;
+                //// Thêm Currency Symbol (nếu có)
+                //if (!string.IsNullOrEmpty(CurrencySymbol))
+                //    Text = $"{formatted} {CurrencySymbol}";
+                //else
+                //    Text = formatted;
             }
             else
             {

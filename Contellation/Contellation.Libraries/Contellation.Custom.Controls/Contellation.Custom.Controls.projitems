@@ -9,6 +9,7 @@
     <Import_RootNamespace>Contellation.Custom.Controls</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Boxs\Number\Readme.md" />
     <None Include="$(MSBuildThisFileDirectory)Boxs\Text\Readme.md" />
     <None Include="$(MSBuildThisFileDirectory)Datetimes\DateTimePickers\Readme.md" />
     <None Include="$(MSBuildThisFileDirectory)ResponsiveGrids\Readme.md" />

@@ -177,7 +177,6 @@ namespace Contellation.Custom.Controls
 
                 if (!PlaceholderEnabled && Text.Length < 1) { SetCurrentValue(PlaceholderEnabledProperty, true); }
 
-                //RevealClearButton();
                 OnClearButtonClick();
             }
         }
