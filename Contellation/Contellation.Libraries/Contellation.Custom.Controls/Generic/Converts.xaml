@@ -11,5 +11,6 @@
     <converters:NullOrEmptyToCollapsedConverter x:Key="NullOrEmptyToCollapsedConverter" />
 
     <converters:RevealIconConverter x:Key="RevealIconConverter" />
+    <converters:MaskToPromptConverter x:Key="MaskToPromptConverter" />
 
 </ResourceDictionary>

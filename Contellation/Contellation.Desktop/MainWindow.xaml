@@ -11,7 +11,7 @@
 
     <Grid>
 
-        <ui:TextBox Width="200" Height="40" />
+        <ui:TextBox Width="200" Height="40" Mask="(###) ###-####" PromptChar="_" />
         <!--<ui:CurrencyBox CurrencySymbol="$" DecimalPlaces="2" Width="280" Height="50" Margin="10" />-->
         <!--<ui:CalendarDatePicker Height="50" />-->
         <!--<ui:Button Content="a" ui:Element.Icon ="&#xf073;" 
