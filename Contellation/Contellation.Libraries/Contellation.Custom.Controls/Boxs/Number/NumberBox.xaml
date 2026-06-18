@@ -9,10 +9,10 @@
     <Style x:Key="DefaultUiNumberBoxStyle" TargetType="{x:Type controls:NumberBox}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DefaultControlFocusVisualStyle}" />
         <Setter Property="ContextMenu" Value="{DynamicResource DefaultControlContextMenu}" />
-        <Setter Property="Foreground" Value="{DynamicResource Col_FFFFFF}" />
-        <Setter Property="CaretBrush" Value="{DynamicResource Col_FFFFFF}" />
-        <Setter Property="Background" Value="{DynamicResource Col_2D3236}" />
-        <Setter Property="BorderBrush" Value="{DynamicResource Col_FFFFFF}" />
+        <Setter Property="Foreground" Value="{DynamicResource Col_2D3236}" />
+        <Setter Property="CaretBrush" Value="{DynamicResource Col_2D3236}" />
+        <Setter Property="Background" Value="{DynamicResource Col_FFFFFF}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource Col_2D3236}" />
         <Setter Property="BorderThickness" Value="1 1 1 0" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
@@ -65,15 +65,15 @@
                                                  HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="clear"
                                                  Content="&#x58;" FontFamily="{StaticResource FontAwesome_Solid}"
-                                                 Foreground="{DynamicResource Col_FFFFFF}">
-                                </controls:Button>
+                                                 Foreground="{DynamicResource Col_000000}"/>
+
                                 <controls:Button x:Name="InlineIncrementButton" Grid.Column="3" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                                                  Command="{Binding Path=TemplateButtonCommand, RelativeSource={RelativeSource TemplatedParent}}" CommandParameter="increment"
                                                  Content="&#xf077;" FontFamily="{StaticResource FontAwesome_Solid}"
-                                                 Foreground="{DynamicResource Col_FFFFFF}">
-                                </controls:Button>
+                                                 Foreground="{DynamicResource Col_000000}"/>
+
                                 <controls:Button x:Name="InlineDecrementButton" Grid.Column="4" Width="24" Height="24" Margin="0,5,4,0" Padding="0,0,0,0"
                                                  Cursor="Arrow" IsTabStop="False" Visibility="Collapsed" Background="Transparent" BorderBrush="Transparent"
                                                  HorizontalAlignment="Center" VerticalAlignment="Top" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"

@@ -18,6 +18,11 @@
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\EqualityToVisibilityConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\ShowDefaultCloseButtonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\Dockablz\TabablzHeaderSizeConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Generic\BooleanToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Generic\EmptyStringToCollapsedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Generic\InverseBooleanConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Generic\NullOrEmptyToCollapsedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Controls\Generic\NullToCollapsedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Controls\ResponsiveVisibilityConverter.cs" />
   </ItemGroup>
 </Project>

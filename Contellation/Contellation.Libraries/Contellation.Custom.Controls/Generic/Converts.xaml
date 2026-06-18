@@ -3,7 +3,11 @@
                     xmlns:converters="clr-namespace:Contellation.Custom.Converters.Controls">
 
     <BooleanToVisibilityConverter x:Key="Boolean2VisibilityConverter"/>
-    
-    <!--<converters:StringFormatConverter x:Key="StringFormatConverter"/>-->
+
+    <converters:NullToCollapsedConverter x:Key="NullToCollapsedConverter" />
+    <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+    <converters:EmptyStringToCollapsedConverter x:Key="EmptyStringToCollapsedConverter" />
+    <converters:NullOrEmptyToCollapsedConverter x:Key="NullOrEmptyToCollapsedConverter" />
 
 </ResourceDictionary>

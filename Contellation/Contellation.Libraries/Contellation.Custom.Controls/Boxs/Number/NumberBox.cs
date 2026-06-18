@@ -1,6 +1,7 @@
 ﻿using Contellation.Custom.Controls.Boxs.Number;
 using Contellation.Custom.Enums.Control;
 using Contellation.Custom.Interfaces.Control.Number;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Input;
@@ -41,7 +42,16 @@ namespace Contellation.Custom.Controls
             set { SetValue(DecimalPlacesProperty, value); }
         }
         public static readonly DependencyProperty DecimalPlacesProperty = DependencyProperty.Register(nameof(DecimalPlaces), typeof(int),
-            typeof(NumberBox), new PropertyMetadata(6));
+            typeof(NumberBox), new PropertyMetadata(2, OnFormatChanged));
+
+        public string CurrencySymbol
+        {
+            get => (string)GetValue(CurrencySymbolProperty);
+            set => SetValue(CurrencySymbolProperty, value);
+        }
+        public static readonly DependencyProperty CurrencySymbolProperty =
+            DependencyProperty.Register(nameof(CurrencySymbol), typeof(string), typeof(NumberBox),
+                new PropertyMetadata("₫", OnFormatChanged));
 
         /// <summary>
         /// Gets or sets the value that is added to or subtracted from <see cref="Value"/> when a small change is made, such as with an arrow key or scrolling.
@@ -117,8 +127,8 @@ namespace Contellation.Custom.Controls
             get { return (NumberBoxValidationMode)GetValue(ValidationModeProperty); }
             set { SetValue(ValidationModeProperty, value); }
         }
-        public static readonly DependencyProperty ValidationModeProperty = DependencyProperty.Register(nameof(ValidationMode), typeof(NumberBoxValidationMode),
-            typeof(NumberBox), new PropertyMetadata(NumberBoxValidationMode.InvalidInputOverwritten));
+        public static readonly DependencyProperty ValidationModeProperty = DependencyProperty.Register(nameof(ValidationMode), 
+            typeof(NumberBoxValidationMode), typeof(NumberBox), new PropertyMetadata(NumberBoxValidationMode.InvalidInputOverwritten));
 
         /// <summary>
         /// Gets or sets the number formatter.
@@ -128,8 +138,8 @@ namespace Contellation.Custom.Controls
             get { return (INumberFormatter?)GetValue(NumberFormatterProperty); }
             set { SetValue(NumberFormatterProperty, value); }
         }
-        public static readonly DependencyProperty NumberFormatterProperty = DependencyProperty.Register(nameof(NumberFormatter), typeof(INumberFormatter),
-            typeof(NumberBox), new PropertyMetadata(null, OnNumberFormatterChanged));
+        public static readonly DependencyProperty NumberFormatterProperty = DependencyProperty.Register(nameof(NumberFormatter), 
+            typeof(INumberFormatter), typeof(NumberBox), new PropertyMetadata(null, OnNumberFormatterChanged));
 
         /// <summary>
         /// Occurs after the user triggers evaluation of new input by pressing the Enter key, clicking a spin button, or by changing focus.
@@ -139,11 +149,12 @@ namespace Contellation.Custom.Controls
             add => AddHandler(ValueChangedEvent, value);
             remove => RemoveHandler(ValueChangedEvent, value);
         }
-        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), RoutingStrategy.Bubble,
-            typeof(RoutedEventHandler), typeof(NumberBox));
+        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), 
+            RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(NumberBox));
 
         static NumberBox()
         {
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(NumberBox), new FrameworkPropertyMetadata(typeof(NumberBox)));
             AcceptsReturnProperty.OverrideMetadata(typeof(NumberBox), new FrameworkPropertyMetadata(false));
             MaxLinesProperty.OverrideMetadata(typeof(NumberBox), new FrameworkPropertyMetadata(1));
             MinLinesProperty.OverrideMetadata(typeof(NumberBox), new FrameworkPropertyMetadata(1));
@@ -151,9 +162,10 @@ namespace Contellation.Custom.Controls
 
         public NumberBox() : base()
         {
+            HorizontalContentAlignment = HorizontalAlignment.Right;
             NumberFormatter ??= NumberBox.GetRegionalSettingsAwareDecimalFormatter();
-
-            DataObject.AddPastingHandler(this, OnClipboardPaste);
+            DataObject.AddPastingHandler(this, OnClipboardPaste); 
+            Loaded += (s, e) => UpdateTextToValue();
         }
 
         protected override void OnKeyUp(KeyEventArgs e)
@@ -165,16 +177,16 @@ namespace Contellation.Custom.Controls
             switch (e.Key)
             {
                 case Key.PageUp:
-                    StepValue(LargeChange);
+                    LargeIncrement();
                     break;
                 case Key.PageDown:
-                    StepValue(-LargeChange);
+                    LargeDecrement();
                     break;
                 case Key.Up:
-                    StepValue(SmallChange);
+                    Increment();
                     break;
                 case Key.Down:
-                    StepValue(-SmallChange);
+                    Decrement();
                     break;
                 case Key.Enter:
                     if (TextWrapping != TextWrapping.Wrap)
@@ -198,12 +210,13 @@ namespace Contellation.Custom.Controls
 
                     break;
                 case "increment":
-                    StepValue(SmallChange);
+                    //StepValue(SmallChange);
+                    Increment();
 
                     break;
                 case "decrement":
-                    StepValue(-SmallChange);
-
+                    //StepValue(-SmallChange);
+                    Decrement();
                     break;
             }
 
@@ -214,6 +227,7 @@ namespace Contellation.Custom.Controls
         protected override void OnLostFocus(RoutedEventArgs e)
         {
             base.OnLostFocus(e);
+            //UpdateValueToText();
 
             ValidateInput();
         }
@@ -230,23 +244,15 @@ namespace Contellation.Custom.Controls
         /// <summary> 
         /// Is called when <see cref="Value"/> in this <see cref="NumberBox"/> changes. 
         /// </summary>
-        protected virtual void OnValueChanged(DependencyObject d, double? oldValue)
+        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (_valueUpdating) { return; }
-
-            _valueUpdating = true;
-
-            var newValue = Value;
-
-            if (newValue > Maximum) { SetCurrentValue(ValueProperty, Maximum); }
-
-            if (newValue < Minimum) { SetCurrentValue(ValueProperty, Minimum); }
-
-            if (!Equals(newValue, oldValue)) { RaiseEvent(new RoutedEventArgs(ValueChangedEvent)); }
-
-            UpdateTextToValue();
-
-            _valueUpdating = false;
+            if (d is not NumberBox numberBox) { return; }
+            if (d is NumberBox nb && !nb._valueUpdating)
+            {
+                nb._valueUpdating = true;
+                nb.UpdateTextToValue();
+                nb._valueUpdating = false;
+            }
         }
 
         /// <summary> 
@@ -259,6 +265,33 @@ namespace Contellation.Custom.Controls
 
             ValidateInput();
         }
+        private static void OnFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NumberBox nb)
+                nb.UpdateTextToValue();
+        }
+
+        #region Spin Button support (nếu dùng template có nút +/-)
+
+        /// <summary>
+        /// Tăng đơn vị theo <see cref="SmallChange"/>
+        /// </summary>
+        public void Increment() => StepValue(SmallChange);
+
+        /// <summary>
+        /// Giảm đơn vị theo <see cref="SmallChange"/>
+        /// </summary>
+        public void Decrement() => StepValue(-SmallChange);
+
+        /// <summary>
+        /// Tăng nhiều đơn vị theo <see cref="LargeChange"/>
+        /// </summary>
+        public void LargeIncrement() => StepValue(LargeChange);
+
+        /// <summary>
+        /// Giảm nhiều đơn vị theo <see cref="LargeChange"/>
+        /// </summary>
+        public void LargeDecrement() => StepValue(-LargeChange);
 
         private void StepValue(double? change)
         {
@@ -274,63 +307,71 @@ namespace Contellation.Custom.Controls
             SetCurrentValue(ValueProperty, newValue);
 
             MoveCaretToTextEnd();
+
+
+            //double newValue = (Value ?? 0) + change;
+            //newValue = Math.Max(Minimum, Math.Min(Maximum, newValue));
+            //SetCurrentValue(ValueProperty, newValue);
+            //MoveCaretToTextEnd();
         }
+
+        #endregion
 
         private void UpdateTextToValue()
         {
-            var newText = string.Empty;
+            if (Value.HasValue)
+            {
+                string format = DecimalPlaces > 0 ? $"N{DecimalPlaces}" : "N0";
+                string formatted = Value.Value.ToString(format, CultureInfo.CurrentCulture);
+                //Text = Value.Value.ToString(format, CultureInfo.CurrentCulture);
 
-            if (Value is not null && NumberFormatter is not null) { newText = NumberFormatter.FormatDouble(Math.Round((double)Value, DecimalPlaces)); }
-
-            SetCurrentValue(TextProperty, newText);
+                // Thêm Currency Symbol (nếu có)
+                if (!string.IsNullOrEmpty(CurrencySymbol))
+                    Text = $"{formatted} {CurrencySymbol}";
+                else
+                    Text = formatted;
+            }
+            else
+            {
+                Text = string.Empty;
+            }
         }
 
-        private void UpdateValueToText() { ValidateInput(); }
+        private void UpdateValueToText() 
+        {
+            ValidateInput(); 
+        }
 
         private void ValidateInput()
         {
-            var text = Text.Trim();
-
-            if (string.IsNullOrEmpty(text))
+            if (double.TryParse(Text, NumberStyles.Any, CultureInfo.CurrentCulture, out double result))
             {
-                SetCurrentValue(ValueProperty, null);
-
-                return;
+                result = Math.Max(Minimum, Math.Min(Maximum, result));
+                SetCurrentValue(ValueProperty, result);
             }
-
-            var numberParser = NumberFormatter as INumberParser;
-            var value = numberParser!.ParseDouble(text);
-
-            if (value is null || Equals(Value, value))
+            else
             {
-                UpdateTextToValue();
-
-                return;
+                UpdateTextToValue(); // Khôi phục giá trị cũ
             }
-
-            if (value > Maximum) { value = Maximum; }
-
-            if (value < Minimum) { value = Minimum; }
-
-            SetCurrentValue(ValueProperty, value);
-
-            UpdateTextToValue();
         }
 
         private void MoveCaretToTextEnd() { CaretIndex = Text.Length; }
 
         private static INumberFormatter GetRegionalSettingsAwareDecimalFormatter() { return new ValidateNumberFormatter(); }
 
-        private static void OnValueChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        {
-            if (d is not NumberBox numberBox) { return; }
-
-            numberBox.OnValueChanged(d, (double?)e.OldValue);
-        }
-
         private static void OnNumberFormatterChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (e.NewValue is not INumberParser) { throw new InvalidOperationException($"{nameof(NumberFormatter)} must implement {typeof(INumberParser)}"); }
         }
+
+        protected override void OnPreviewTextInput(TextCompositionEventArgs e)
+        {
+            // Cho phép số, dấu chấm, dấu phẩy, dấu trừ
+            if (!"0123456789.,-".Contains(e.Text))
+                e.Handled = true;
+
+            base.OnPreviewTextInput(e);
+        }
+
     }
 }
