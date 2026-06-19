@@ -13,7 +13,6 @@ namespace Contellation.Custom.Controls
         private bool _isUpdating;
 
         #region Dependency Properties
-
         public static readonly DependencyProperty PasswordProperty =
             DependencyProperty.Register(nameof(Password), typeof(string),
                 typeof(PasswordBox), new PropertyMetadata(string.Empty, OnPasswordChanged));
@@ -63,22 +62,20 @@ namespace Contellation.Custom.Controls
             add => AddHandler(PasswordChangedEvent, value);
             remove => RemoveHandler(PasswordChangedEvent, value);
         }
-
         #endregion
 
         public static readonly RoutedCommand ToggleRevealCommand = new RoutedCommand("ToggleReveal", typeof(PasswordBox));
 
         public PasswordBox()
         {
-            //CommandBindings.Add(new CommandBinding(ToggleRevealCommand, (s, e) => ToggleReveal()));
             _passwordHelper = new PasswordHelper(this);
+            CommandBindings.Add(new CommandBinding(ToggleRevealCommand, (s, e) => ToggleReveal()));
         }
 
         #region Event Handlers
-
         private static void OnPasswordChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is PasswordBox pb) pb.UpdateTextContents();
+            if (d is PasswordBox pb) pb.SyncTextWithPassword();
         }
 
         private static void OnPasswordCharChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -89,9 +86,8 @@ namespace Contellation.Custom.Controls
 
         private static void OnIsPasswordRevealedChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if (d is PasswordBox pb) pb.UpdateTextContents();
+            if (d is PasswordBox pb) pb.SyncTextWithPassword();
         }
-
         #endregion
 
         protected override void OnTextChanged(TextChangedEventArgs e)
@@ -101,36 +97,71 @@ namespace Contellation.Custom.Controls
                 base.OnTextChanged(e);
                 return;
             }
-            // Chỉ xử lý khi người dùng đang gõ (không lock)
+
             if (IsPasswordRevealed)
             {
-                UpdateWithLock(() =>
-                {
-                    SetCurrentValue(PasswordProperty, Text);
-                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
-                });
+                _isUpdating = true;
+                SetCurrentValue(PasswordProperty, Text);
+                _isUpdating = false;
             }
             else
             {
-                // Chế độ ẩn mật khẩu
-                UpdateWithLock(() =>
-                {
-                    // Cập nhật Password từ input
-                    string newPassword = _passwordHelper.GetNewPassword(e.Changes);
-                    SetCurrentValue(PasswordProperty, newPassword);
+                _isUpdating = true;
+                string newPassword = _passwordHelper.GetNewPassword(e.Changes);
+                SetCurrentValue(PasswordProperty, newPassword);
 
-                    // Hiển thị mask
-                    string masked = new string(PasswordChar, newPassword?.Length ?? 0);
-                    SetCurrentValue(TextProperty, masked);
-
-                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
-                });
+                string masked = new string(PasswordChar, newPassword?.Length ?? 0);
+                SetCurrentValue(TextProperty, masked);
+                _isUpdating = false;
             }
 
+            RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
             SetPlaceholderTextVisibility();
             RevealClearButton();
 
             base.OnTextChanged(e);
+        }
+        private void SyncTextWithPassword()
+        {
+            _isUpdating = true;
+            try
+            {
+                if (IsPasswordRevealed)
+                {
+                    SetCurrentValue(TextProperty, Password ?? string.Empty);
+                }
+                else
+                {
+                    SetCurrentValue(TextProperty, new string(PasswordChar, Password?.Length ?? 0));
+                }
+            }
+            finally
+            {
+                _isUpdating = false;
+            }
+        }
+        private void UpdateMaskedText()
+        {
+            _isUpdating = true;
+            SetCurrentValue(TextProperty, new string(PasswordChar, Password?.Length ?? 0));
+            _isUpdating = false;
+            //UpdateWithLock(() =>
+            //{
+            //    SetCurrentValue(TextProperty, new string(PasswordChar, Password?.Length ?? 0));
+            //});
+        }
+
+        private void UpdateWithLock(Action action)
+        {
+            _isUpdating = true;
+            try
+            {
+                action();
+            }
+            finally
+            {
+                _isUpdating = false;
+            }
         }
 
         protected override void OnTemplateButtonClick(string? parameter)
@@ -147,72 +178,27 @@ namespace Contellation.Custom.Controls
             }
         }
 
-        private void UpdateTextContents()
+        public void ToggleReveal()
         {
-            if (IsPasswordRevealed)
+            SetCurrentValue(IsPasswordRevealedProperty, !IsPasswordRevealed);
+
+            // Force update display
+            Dispatcher.BeginInvoke(new Action(() =>
             {
-                HandleRevealedMode();
-            }
-            else
-            {
-                HandleHiddenMode();
-            }
+                SyncTextWithPassword();
+                Focus();
+                CaretIndex = Text.Length;
+            }));
+            //SetCurrentValue(IsPasswordRevealedProperty, !IsPasswordRevealed);
+            //// Reset caret position
+            //Dispatcher.BeginInvoke(new Action(() =>
+            //{
+            //    Focus();
+            //    CaretIndex = Text.Length;
+            //}));
         }
 
-        private void HandleRevealedMode()
-        {
-            if (Password != Text)
-            {
-                UpdateWithLock(() =>
-                {
-                    SetCurrentValue(PasswordProperty, Text);
-                    RaiseEvent(new RoutedEventArgs(PasswordChangedEvent));
-                });
-            }
-        }
-
-        private void HandleHiddenMode()
-        {
-            UpdateWithLock(() =>
-            {
-                string maskedText = new string(PasswordChar, Password?.Length ?? 0);
-                SetCurrentValue(TextProperty, maskedText);
-            });
-        }
-
-        private void UpdateMaskedText()
-        {
-            UpdateWithLock(() =>
-            {
-                SetCurrentValue(TextProperty, new string(PasswordChar, Password?.Length ?? 0));
-            });
-        }
-
-        private void UpdateWithLock(Action action)
-        {
-            _isUpdating = true;
-            try
-            {
-                action();
-            }
-            finally
-            {
-                _isUpdating = false;
-            }
-            //action();
-            _isUpdating = false;
-        }
-
-
-
-        private void SetPlaceholderTextVisibility()
-        {
-            // Sử dụng Attached Property nếu có
-        }
-
-        private void RevealClearButton()
-        {
-            // Logic ClearButton nếu cần
-        }
+        private void SetPlaceholderTextVisibility() { /* Implement nếu cần */ }
+        private void RevealClearButton() { /* Implement nếu cần */ }
     }
 }

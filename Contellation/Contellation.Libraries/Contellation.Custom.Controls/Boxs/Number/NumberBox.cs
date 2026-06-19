@@ -1,6 +1,5 @@
 ﻿using Contellation.Custom.Controls.Boxs.Number;
 using Contellation.Custom.Enums.Control;
-using Contellation.Custom.Extensions.Inputs;
 using Contellation.Custom.Interfaces.Control.Number;
 using System.Globalization;
 using System.Windows;
@@ -24,8 +23,8 @@ namespace Contellation.Custom.Controls
             get => (double?)GetValue(ValueProperty);
             set => SetValue(ValueProperty, value);
         }
-        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value), 
-            typeof(double?), typeof(NumberBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, 
+        public static readonly DependencyProperty ValueProperty = DependencyProperty.Register(nameof(Value),
+            typeof(double?), typeof(NumberBox), new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                 OnValueChanged, null, false, UpdateSourceTrigger.LostFocus));
 
         public int DecimalPlaces
@@ -33,7 +32,7 @@ namespace Contellation.Custom.Controls
             get => (int)GetValue(DecimalPlacesProperty);
             set => SetValue(DecimalPlacesProperty, value);
         }
-        public static readonly DependencyProperty DecimalPlacesProperty = DependencyProperty.Register(nameof(DecimalPlaces), 
+        public static readonly DependencyProperty DecimalPlacesProperty = DependencyProperty.Register(nameof(DecimalPlaces),
             typeof(int), typeof(NumberBox), new PropertyMetadata(0, OnFormatChanged));
 
         public double SmallChange
@@ -121,7 +120,7 @@ namespace Contellation.Custom.Controls
             add => AddHandler(ValueChangedEvent, value);
             remove => RemoveHandler(ValueChangedEvent, value);
         }
-        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged), 
+        public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(nameof(ValueChanged),
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(NumberBox));
 
         static NumberBox()
@@ -155,7 +154,7 @@ namespace Contellation.Custom.Controls
             }
             //numberBox.OnValueChanged(d, (double?)e.OldValue);
         }
-        
+
         private static void OnFormatChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             if (d is NumberBox nb)
@@ -182,8 +181,8 @@ namespace Contellation.Custom.Controls
             }
         }
 
-        private void UpdateValueToText() 
-        { 
+        private void UpdateValueToText()
+        {
             ValidateInput();
         }
 
@@ -318,9 +317,9 @@ namespace Contellation.Custom.Controls
             ValidateInput();
         }
 
-        private void MoveCaretToTextEnd() 
-        { 
-            CaretIndex = Text.Length; 
+        private void MoveCaretToTextEnd()
+        {
+            CaretIndex = Text.Length;
         }
 
         private static INumberFormatter GetRegionalSettingsAwareDecimalFormatter() { return new ValidateNumberFormatter(); }

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace Contellation.Custom.Controls
 {
@@ -18,9 +15,23 @@ namespace Contellation.Custom.Controls
 
             public string GetNewPassword(ICollection<TextChange> changes)
             {
-                // Logic xử lý thay đổi text khi ở chế độ ẩn
-                // (có thể giữ hoặc tối ưu thêm theo nhu cầu)
-                return _owner.Password; // tạm thời
+                string current = _owner.Password ?? "";
+                string result = current;
+
+                foreach (var change in changes)
+                {
+                    if (change.RemovedLength > 0)
+                    {
+                        result = result.Remove(change.Offset, change.RemovedLength);
+                    }
+                    if (change.AddedLength > 0)
+                    {
+                        string added = _owner.Text.Substring(change.Offset, change.AddedLength);
+                        result = result.Insert(change.Offset, added);
+                    }
+                }
+
+                return result;
             }
         }
     }

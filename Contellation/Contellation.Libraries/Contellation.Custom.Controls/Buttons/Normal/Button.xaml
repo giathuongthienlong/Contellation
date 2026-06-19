@@ -520,7 +520,8 @@
                     <Border x:Name="border" 
                         Background="{TemplateBinding Background}"
                         CornerRadius="10">
-                        <TextBlock Text="✕"
+                        <TextBlock Text="&#x58;"
+                                   FontFamily="{StaticResource FontAwesome_Solid}"
                                FontSize="14"
                                FontWeight="Bold"
                                HorizontalAlignment="Center"
